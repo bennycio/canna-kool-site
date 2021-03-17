@@ -18,6 +18,8 @@ import {
   Spin,
   Form,
   Input,
+  Checkbox,
+  Switch,
 } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { CartContext } from "../App";
@@ -31,6 +33,7 @@ import {
 } from "react-square-payment-form";
 
 import { v4 as uuidv4 } from "uuid";
+import { useToggle } from "react-use";
 
 const { Title } = Typography;
 
@@ -326,18 +329,17 @@ const Cart = (props) => {
 const Checkout = () => {
   const { cart, clear } = useContext(CartContext);
 
-  const [email, setEmail] = useState("test@gmail.com");
   const [shippingDetails, setShippingDetails] = useState({});
   const [billingDetails, setBillingDetails] = useState({});
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isResultVisible, setResultVisible] = useState(false);
-  const [isShippingAndBillingFilled, setShippingAndBillingFilled] = useState(
+  const [isModalVisible, setIsModalVisible] = useToggle(false);
+  const [isResultVisible, setResultVisible] = useToggle(false);
+  const [isShippingAndBillingFilled, setShippingAndBillingFilled] = useToggle(
     false
   );
 
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useToggle(false);
+  const [loading, setLoading] = useToggle(false);
   const [errors, setErrors] = useState([]);
 
   const APPLICATION_ID = "sandbox-sq0idb-zpwIkYe7ALhGiYVqJgT8aA";
@@ -422,13 +424,13 @@ const Checkout = () => {
   function createVerificationDetails() {
     setLoading(true);
     return {
-      amount: total + "00",
+      amount: (total * 100).toString(),
       currencyCode: "USD",
       intent: "CHARGE",
       billingContact: {
         familyName: billingDetails.last_name,
         givenName: billingDetails.first_name,
-        email: email,
+        email: shippingDetails.email,
         country: "US",
         city: billingDetails.locality,
         addressLines: [billingDetails.address_line_1],
@@ -486,6 +488,9 @@ const Checkout = () => {
 
     const onFinish = (values) => {
       setShippingDetails(shippingDetails);
+      if (shippingBillingEqual) {
+        billingDetails = shippingBillingEqual;
+      }
       setBillingDetails(billingDetails);
       setShippingAndBillingFilled(true);
       console.log(shippingDetails);
@@ -496,9 +501,16 @@ const Checkout = () => {
       console.log("Failed:", errorInfo);
     };
 
+    const [form] = Form.useForm();
+    const [shippingBillingEqual, setShippingBillingEqual] = useState(false);
+    useEffect(() => {}, [setShippingBillingEqual]);
+    const onCheckboxChange = (checked) => {
+      setShippingBillingEqual(checked);
+    };
+
     return (
       <Form
-        name="basic"
+        name="billing-shipping"
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -551,7 +563,7 @@ const Checkout = () => {
           <Input
             placeholder="cooldude@gmail.com"
             onChange={(e) => {
-              setEmail(e.target.value);
+              shippingDetails.email = e.target.value;
             }}
           />
         </Form.Item>
@@ -606,6 +618,23 @@ const Checkout = () => {
           />
         </Form.Item>
         <Form.Item
+          label="State"
+          name="State"
+          rules={[
+            {
+              required: true,
+              message: "State required",
+            },
+          ]}
+        >
+          <Input
+            placeholder="California"
+            onChange={(e) => {
+              shippingDetails.administrativeDistrictLevel1 = e.target.value;
+            }}
+          />
+        </Form.Item>
+        <Form.Item
           label="Zip"
           name="Zip"
           rules={[
@@ -622,13 +651,25 @@ const Checkout = () => {
             }}
           />
         </Form.Item>
+
         <Divider orientation="left">Billing Details</Divider>
+        <Form.Item
+          label="Same as Shipping?"
+          name="Equal"
+          rules={[
+            {
+              required: false,
+            },
+          ]}
+        >
+          <Switch checked={shippingBillingEqual} onChange={onCheckboxChange} />
+        </Form.Item>
         <Form.Item
           label="First Name"
           name="Billing First Name"
           rules={[
             {
-              required: true,
+              required: !shippingBillingEqual,
               message: "First Name Required",
             },
           ]}
@@ -638,6 +679,7 @@ const Checkout = () => {
             onChange={(e) => {
               billingDetails.first_name = e.target.value;
             }}
+            disabled={shippingBillingEqual}
           />
         </Form.Item>
         <Form.Item
@@ -645,7 +687,7 @@ const Checkout = () => {
           name="Billing Last Name"
           rules={[
             {
-              required: true,
+              required: !shippingBillingEqual,
               message: "Last Name Required",
             },
           ]}
@@ -655,6 +697,7 @@ const Checkout = () => {
             onChange={(e) => {
               billingDetails.last_name = e.target.value;
             }}
+            disabled={shippingBillingEqual}
           />
         </Form.Item>
         <Form.Item
@@ -662,7 +705,7 @@ const Checkout = () => {
           name="Billing Address Line 1"
           rules={[
             {
-              required: true,
+              required: !shippingBillingEqual,
               message: "Address Required",
             },
           ]}
@@ -672,6 +715,7 @@ const Checkout = () => {
             onChange={(e) => {
               billingDetails.address_line_1 = e.target.value;
             }}
+            disabled={shippingBillingEqual}
           />
         </Form.Item>
         <Form.Item
@@ -688,6 +732,7 @@ const Checkout = () => {
             onChange={(e) => {
               billingDetails.address_line_2 = e.target.value;
             }}
+            disabled={shippingBillingEqual}
           />
         </Form.Item>
         <Form.Item
@@ -695,7 +740,7 @@ const Checkout = () => {
           name="Billing City"
           rules={[
             {
-              required: true,
+              required: !shippingBillingEqual,
               message: "City required",
             },
           ]}
@@ -705,6 +750,25 @@ const Checkout = () => {
             onChange={(e) => {
               billingDetails.locality = e.target.value;
             }}
+            disabled={shippingBillingEqual}
+          />
+        </Form.Item>
+        <Form.Item
+          label="State"
+          name="Billing State"
+          rules={[
+            {
+              required: !shippingBillingEqual,
+              message: "State required",
+            },
+          ]}
+        >
+          <Input
+            placeholder="California"
+            onChange={(e) => {
+              billingDetails.administrativeDistrictLevel1 = e.target.value;
+            }}
+            disabled={shippingBillingEqual}
           />
         </Form.Item>
         <Form.Item
@@ -712,7 +776,7 @@ const Checkout = () => {
           name="Billing Zip"
           rules={[
             {
-              required: true,
+              required: !shippingBillingEqual,
               message: "Zip required",
             },
           ]}
@@ -722,6 +786,7 @@ const Checkout = () => {
             onChange={(e) => {
               billingDetails.postalCode = e.target.value;
             }}
+            disabled={shippingBillingEqual}
           />
         </Form.Item>
         <Form.Item>
