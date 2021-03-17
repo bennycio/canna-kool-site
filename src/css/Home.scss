@@ -458,6 +458,9 @@ $bg-color-2: rgb(221, 221, 221);
 }
 
 @media (max-width: 900px) {
+  .hero-title {
+    top: 10%;
+  }
   .alternating-info {
     display: none;
   }
