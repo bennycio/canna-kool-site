@@ -468,8 +468,9 @@ $bg-color-2: rgb(221, 221, 221);
     margin-left: 1%;
     margin-right: 1%;
     img {
-      max-height: 80vh;
-      max-width: 70vh;
+      height: auto;
+      max-width: 100%;
+      width: 100%;
     }
   }
 }
