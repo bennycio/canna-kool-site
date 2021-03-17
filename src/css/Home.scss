@@ -458,12 +458,12 @@ $bg-color-2: rgb(221, 221, 221);
 }
 
 
-@media screen and (max-width: 900px) and (min-width: 600px) {
+@media (max-width: 900px) {
   .alternating-info{
-    display: hidden;
+    display: none;
   }
   .image-container{
-    display: hidden
+    display: none;
   }
 
 }
