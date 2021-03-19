@@ -1,28 +1,38 @@
-import React, { useContext, useState, useEffect } from "react";
-import "../css/Store.scss";
+/*eslint-disable*/
+import React, { useEffect, useContext, useState } from "react";
+// nodejs library that concatenates classes
+import classNames from "classnames";
+// core components
+import GridContainer from "components/Grid/GridContainer.js";
+import GridItem from "components/Grid/GridItem.js";
+import Parallax from "components/Parallax/Parallax.js";
+import Button from "components/CustomButtons/Button.js";
+import Card from "components/Card/Card.js";
+import CardBody from "components/Card/CardBody.js";
+import CustomInput from "components/CustomInput/CustomInput.js";
+import Slide from "@material-ui/core/Slide";
+
+// sections for this page
+import prodcuctsStyles from "assets/jss/material-kit-pro-react/views/ecommerceSections/latestOffersStyle.js";
+import modalStyles from "assets/jss/material-kit-pro-react/modalStyle.js";
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+// @material-ui icons
+import Mail from "@material-ui/icons/Mail";
+
+import ecommerceHeader from "assets/img/examples/ecommerce-header.jpg";
+
+import storeStyles from "assets/jss/material-kit-pro-react/views/ecommerceStyle.js";
+
 import {
   FaInfoCircle,
   FaRegPlusSquare,
   FaRegMinusSquare,
   FaWindowClose,
 } from "react-icons/fa";
-import {
-  Typography,
-  Divider,
-  Row,
-  Col,
-  Drawer,
-  Button,
-  Modal,
-  Result,
-  Spin,
-  Form,
-  Input,
-  Checkbox,
-  Switch,
-} from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
-import { CartContext } from "../App";
+import { CartContext } from "../index";
 import {
   SquarePaymentForm,
   CreditCardCVVInput,
@@ -34,8 +44,19 @@ import {
 
 import { v4 as uuidv4 } from "uuid";
 import { useToggle } from "react-use";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  FormControlLabel,
+  Input,
+  Switch,
+  TextField,
+} from "@material-ui/core";
+import { Close } from "@material-ui/icons";
 
-const { Title } = Typography;
+const useStyles = makeStyles(storeStyles);
+const useProductStyles = makeStyles(prodcuctsStyles);
 
 const Store = () => {
   const ckStandard = {
@@ -62,54 +83,137 @@ const Store = () => {
     description: "Minty freshness mixed with cool relief",
     size: "3oz",
   };
-
+  const classes = useStyles();
+  const productClasses = useProductStyles();
   return (
-    <div className="body">
-      <div class="page-header shadowed">
-        <div class="page-header__bg"></div>
-        <h1 class="page-header__title">Our Products</h1>
+    <>
+      <Parallax
+        image={require("assets/img/examples/clark-street-merc.jpg")}
+        filter="dark"
+        small
+      >
+        <div className={classes.container}>
+          <GridContainer>
+            <GridItem
+              md={8}
+              sm={8}
+              className={classNames(
+                classes.mlAuto,
+                classes.mrAuto,
+                classes.textCenter
+              )}
+            >
+              <div className={classes.brand}>
+                <h1 className={classes.title}>Our Products</h1>
+              </div>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
+
+      <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={productClasses.section}>
+          <div className={productClasses.container}>
+            <Cart />
+            <h2>Roll Ons</h2>
+            <GridContainer>
+              <GridItem xs={12} sm={3} md={3}>
+                <Product
+                  name={ckStandard.name}
+                  cost={ckStandard.cost}
+                  description={ckStandard.description}
+                  size={ckStandard.size}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={3} md={3}>
+                <Product
+                  name={ckXL.name}
+                  cost={ckXL.cost}
+                  description={ckXL.description}
+                  size={ckXL.size}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={3} md={3}>
+                <Product
+                  name={ckMintStandard.name}
+                  cost={ckMintStandard.cost}
+                  description={ckMintStandard.description}
+                  size={ckMintStandard.size}
+                />
+              </GridItem>
+              <GridItem xs={12} sm={3} md={3}>
+                <Product
+                  name={ckMintXL.name}
+                  cost={ckMintXL.cost}
+                  description={ckMintXL.description}
+                  size={ckMintXL.size}
+                />
+              </GridItem>
+            </GridContainer>
+          </div>
+        </div>
       </div>
-      <div className="container products-container margin-top padding-bottom">
-        <Cart />
-        <Divider orientation="left" className="divider-lower">
-          Roll Ons
-        </Divider>
-        <Row className="standard">
-          <Col xs={24} sm={12} md={6} lg={6} xl={6}>
-            <Product
-              name={ckStandard.name}
-              cost={ckStandard.cost}
-              description={ckStandard.description}
-              size={ckStandard.size}
-            />
-          </Col>
-          <Col xs={24} sm={12} md={6} lg={6} xl={6}>
-            <Product
-              name={ckXL.name}
-              cost={ckXL.cost}
-              description={ckXL.description}
-              size={ckXL.size}
-            />
-          </Col>
-          <Col xs={24} sm={12} md={6} lg={6} xl={6}>
-            <Product
-              name={ckMintStandard.name}
-              cost={ckMintStandard.cost}
-              description={ckMintStandard.description}
-              size={ckMintStandard.size}
-            />
-          </Col>
-          <Col xs={24} sm={12} md={6} lg={6} xl={6}>
-            <Product
-              name={ckMintXL.name}
-              cost={ckMintXL.cost}
-              description={ckMintXL.description}
-              size={ckMintXL.size}
-            />
-          </Col>
-        </Row>
+      <div
+        className={classNames(
+          classes.subscribeLine,
+          classes.subscribeLineImage
+        )}
+        style={{ backgroundImage: `url(${ecommerceHeader})` }}
+      >
+        <div className={classes.container}>
+          <GridContainer>
+            <GridItem
+              xs={12}
+              sm={6}
+              md={6}
+              className={classNames(classes.mlAuto, classes.mrAuto)}
+            >
+              <div className={classes.textCenter}>
+                <h3 className={classes.title}>Subscribe to our Newsletter</h3>
+                <p className={classes.description}>
+                  Join our newsletter and get news in your inbox every week! We
+                  hate spam too, so no worries about this.
+                </p>
+              </div>
+              <Card raised className={classes.card}>
+                <CardBody className={classes.cardBody}>
+                  <form>
+                    <GridContainer>
+                      <GridItem xs={12} sm={6} md={6} lg={8}>
+                        <CustomInput
+                          id="emailPreFooter"
+                          formControlProps={{
+                            fullWidth: true,
+                            className: classes.cardForm,
+                          }}
+                          inputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <Mail />
+                              </InputAdornment>
+                            ),
+                            placeholder: "Your Email...",
+                          }}
+                        />
+                      </GridItem>
+                      <GridItem xs={12} sm={6} md={6} lg={4}>
+                        <Button
+                          color="rose"
+                          block
+                          className={classes.subscribeButton}
+                        >
+                          subscribe
+                        </Button>
+                      </GridItem>
+                    </GridContainer>
+                  </form>
+                </CardBody>
+              </Card>
+            </GridItem>
+          </GridContainer>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -161,7 +265,7 @@ const Counter = (props) => {
   );
 };
 
-const Product = (props) => {
+const Product = ({ name, cost, description, size }) => {
   const {
     cart,
     set,
@@ -178,64 +282,68 @@ const Product = (props) => {
     reset,
   } = useContext(CartContext);
 
+  const [added, toggleAdded] = useToggle(false);
+
   function changeAddedTxt() {
-    document.getElementById(props.name).innerHTML = "Added to Cart";
+    toggleAdded();
     setTimeout(() => {
-      document.getElementById(props.name).innerHTML = "Add to Cart";
+      toggleAdded();
     }, 1000);
   }
   function changeAdded() {
-    var index = cart.findIndex((i) => i.name === props.name);
+    var index = cart.findIndex((i) => i.name === name);
     if (index === -1) {
-      push({ name: props.name, cost: props.cost, count: 1 });
+      push({ name: name, cost: cost, count: 1 });
       changeAddedTxt();
     } else {
-      const count = cart[index].count + 1;
-      updateAt(index, { name: props.name, cost: props.cost, count: count });
+      const newCount = cart[index].count + 1;
+      updateAt(index, { name: name, cost: cost, count: newCount });
       changeAddedTxt();
     }
   }
 
   return (
     <>
-      <div class="product-wrapper shadowed">
-        <div class="product-container">
-          <div class="top"></div>
-          <div class="bottom">
-            <div class="details">
-              <h3>{props.name}</h3>
-              <h3>${props.cost}</h3>
+      <div className="product-wrapper shadowed">
+        <div className="product-container">
+          <div className="top"></div>
+          <div className="bottom">
+            <div className="details">
+              <h3>{name}</h3>
+              <h3>${cost}</h3>
             </div>
           </div>
         </div>
-        <div class="inside">
-          <div class="icon">
-            <i class="material-icons">
+        <div className="inside">
+          <div className="icon">
+            <i className="material-icons">
               <FaInfoCircle />
             </i>
           </div>
-          <div class="contents">
-            <h2 className="centered">{props.name}</h2>
-            <h2>{props.description}</h2>
-            <h2>Size: {props.size}</h2>
+          <div className="contents">
+            <h3 className="centered">{name}</h3>
+            <h3>{description}</h3>
+            <h3>Size: {size}</h3>
           </div>
         </div>
       </div>
       <div className="centered">
-        <button class="learn-more centered" onClick={changeAdded}>
-          <span class="circle" aria-hidden="true">
-            <span class="icon arrow"></span>
-          </span>
-          <span id={props.name} class="button-text">
-            Add to Cart
-          </span>
-        </button>
+        <Button id={name} color="primary" onClick={changeAdded}>
+          {added ? "Added to Cart" : "Add to Cart"}
+        </Button>
       </div>
     </>
   );
 };
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="down" ref={ref} {...props} />;
+});
+
+const useModalStyles = makeStyles(modalStyles);
+
 const Cart = (props) => {
+  const classes = useModalStyles();
   const {
     cart,
     set,
@@ -288,7 +396,7 @@ const Cart = (props) => {
         <p>Cost: ${item.cost}</p>
         <p>Count: {item.count}</p>
         <Counter name={item.name} />
-        <Divider />
+        <hr />
       </div>
     );
   });
@@ -296,10 +404,9 @@ const Cart = (props) => {
   return (
     <>
       <Button
-        type="primary"
-        shape="circle"
-        size="large"
-        icon={<ShoppingCartOutlined />}
+        color="primary"
+        justIcon
+        round
         onClick={openDrawer}
         className="cart-button"
         style={{
@@ -309,24 +416,44 @@ const Cart = (props) => {
           top: "5%",
           zIndex: "1000",
         }}
-      />
-      <Drawer
-        width={400}
-        title="Cart"
-        placement="left"
-        closable={true}
-        onClose={closeDrawer}
-        visible={visible}
       >
-        <div>{cartItems}</div>
-        <h4>Total: ${total}</h4>
-        <Checkout />
-      </Drawer>
+        <ShoppingCartOutlined />
+      </Button>
+      <Dialog
+        classes={{
+          root: classes.modalRoot,
+          paper: classes.modal,
+        }}
+        open={visible}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={closeDrawer}
+      >
+        <DialogTitle id="large-modal-slide-title" disableTypography>
+          <Button
+            simple
+            className={classes.modalCloseButton}
+            key="close"
+            aria-label="Close"
+            onClick={closeDrawer}
+          >
+            {" "}
+            <Close />
+          </Button>
+          Cart
+        </DialogTitle>
+        <DialogContent>
+          <div>{cartItems}</div>
+          <h4>Total: ${total}</h4>
+          <Checkout />
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
 
 const Checkout = () => {
+  const classes = useModalStyles();
   const { cart, clear } = useContext(CartContext);
 
   const [shippingDetails, setShippingDetails] = useState({});
@@ -337,6 +464,7 @@ const Checkout = () => {
   const [isShippingAndBillingFilled, setShippingAndBillingFilled] = useToggle(
     false
   );
+  const [shippingBillingEqual, setShippingBillingEqual] = useState(false);
 
   const [success, setSuccess] = useToggle(false);
   const [loading, setLoading] = useToggle(false);
@@ -486,7 +614,7 @@ const Checkout = () => {
     var shippingDetails = {};
     var billingDetails = {};
 
-    const onFinish = (values) => {
+    const onFinish = () => {
       setShippingDetails(shippingDetails);
       if (shippingBillingEqual) {
         billingDetails = shippingBillingEqual;
@@ -497,304 +625,167 @@ const Checkout = () => {
       console.log(billingDetails);
     };
 
-    const onFinishFailed = (errorInfo) => {
-      console.log("Failed:", errorInfo);
-    };
+    useEffect(() => {}, [shippingBillingEqual]);
 
-    const [form] = Form.useForm();
-    const [shippingBillingEqual, setShippingBillingEqual] = useState(false);
-    useEffect(() => {}, [setShippingBillingEqual]);
-    const onCheckboxChange = (checked) => {
-      setShippingBillingEqual(checked);
+    const onSwitch = (e) => {
+      setShippingBillingEqual(e.target.checked);
     };
 
     return (
-      <Form
-        name="billing-shipping"
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-      >
-        <Divider orientation="left">Shipping Details</Divider>
-        <Form.Item
+      <form onSubmit={onFinish}>
+        <h4>Shipping Details</h4>
+        <TextField
+          autoFocus
+          required
+          margin="dense"
+          id="fname"
           label="First Name"
-          name="First Name"
-          rules={[
-            {
-              required: true,
-              message: "First Name Required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Bob"
-            onChange={(e) => {
-              shippingDetails.first_name = e.target.value;
-            }}
-          />
-        </Form.Item>
-        <Form.Item
+          fullWidth
+          onChange={(e) => (shippingDetails.first_name = e.target.value)}
+        />
+        <TextField
+          required
+          margin="dense"
+          id="lname"
           label="Last Name"
-          name="Last Name"
-          rules={[
-            {
-              required: true,
-              message: "Last Name Required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Goldberg"
-            onChange={(e) => {
-              shippingDetails.last_name = e.target.value;
-            }}
-          />
-        </Form.Item>
-        <Form.Item
+          fullWidth
+          onChange={(e) => (shippingDetails.last_name = e.target.value)}
+        />
+        <TextField
+          required
+          margin="dense"
+          id="email"
           label="Email"
-          name="Email"
-          rules={[
-            {
-              required: true,
-              message: "Email Required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="cooldude@gmail.com"
-            onChange={(e) => {
-              shippingDetails.email = e.target.value;
-            }}
-          />
-        </Form.Item>
-        <Form.Item
+          type="email"
+          fullWidth
+          onChange={(e) => (shippingDetails.email = e.target.value)}
+        />
+        <TextField
+          required
+          margin="dense"
+          id="add1"
           label="Address Line 1"
-          name="Address Line 1"
-          rules={[
-            {
-              required: true,
-              message: "Address Required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="12345 Happy St."
-            onChange={(e) => {
-              shippingDetails.address_line_1 = e.target.value;
-            }}
-          />
-        </Form.Item>
-        <Form.Item
+          fullWidth
+          onChange={(e) => (shippingDetails.address_line_1 = e.target.value)}
+        />
+        <TextField
+          margin="dense"
+          id="add2"
           label="Address Line 2"
-          name="Address Line 2"
-          rules={[
-            {
-              required: false,
-            },
-          ]}
-        >
-          <Input
-            placeholder="Apt 2"
-            onChange={(e) => {
-              shippingDetails.address_line_2 = e.target.value;
-            }}
-          />
-        </Form.Item>
-        <Form.Item
+          fullWidth
+          onChange={(e) => (shippingDetails.address_line_2 = e.target.value)}
+        />
+        <TextField
+          required
+          margin="dense"
+          id="city"
           label="City"
-          name="City"
-          rules={[
-            {
-              required: true,
-              message: "City required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Los Angeles"
-            onChange={(e) => {
-              shippingDetails.locality = e.target.value;
-            }}
-          />
-        </Form.Item>
-        <Form.Item
+          type="city"
+          fullWidth
+          onChange={(e) => (shippingDetails.locality = e.target.value)}
+        />
+        <TextField
+          required
+          margin="dense"
+          id="state"
           label="State"
-          name="State"
-          rules={[
-            {
-              required: true,
-              message: "State required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="California"
-            onChange={(e) => {
-              shippingDetails.administrativeDistrictLevel1 = e.target.value;
-            }}
-          />
-        </Form.Item>
-        <Form.Item
-          label="Zip"
-          name="Zip"
-          rules={[
-            {
-              required: true,
-              message: "Zip required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="90101"
-            onChange={(e) => {
-              shippingDetails.postal_code = e.target.value;
-            }}
-          />
-        </Form.Item>
-
-        <Divider orientation="left">Billing Details</Divider>
-        <Form.Item
-          label="Same as Shipping?"
-          name="Equal"
-          rules={[
-            {
-              required: false,
-            },
-          ]}
-        >
-          <Switch checked={shippingBillingEqual} onChange={onCheckboxChange} />
-        </Form.Item>
-        <Form.Item
+          fullWidth
+          onChange={(e) =>
+            (shippingDetails.administrative_district_1 = e.target.value)
+          }
+        />
+        <TextField
+          required
+          margin="dense"
+          id="zip"
+          label="Zip Code/Postal Code"
+          fullWidth
+          onChange={(e) => (shippingDetails.zip = e.target.value)}
+        />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={shippingBillingEqual}
+              onChange={onSwitch}
+              name="equal"
+              color="primary"
+            />
+          }
+          label="Billing same as Shipping?"
+        />
+        <h4>Billing Details</h4>
+        <TextField
+          autoFocus
+          required
+          margin="dense"
+          id="fname-billing"
           label="First Name"
-          name="Billing First Name"
-          rules={[
-            {
-              required: !shippingBillingEqual,
-              message: "First Name Required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Bob"
-            onChange={(e) => {
-              billingDetails.first_name = e.target.value;
-            }}
-            disabled={shippingBillingEqual}
-          />
-        </Form.Item>
-        <Form.Item
+          fullWidth
+          disabled={shippingBillingEqual}
+          onChange={(e) => (billingDetails.first_name = e.target.value)}
+        />
+        <TextField
+          required
+          margin="dense"
+          id="lname-billing"
           label="Last Name"
-          name="Billing Last Name"
-          rules={[
-            {
-              required: !shippingBillingEqual,
-              message: "Last Name Required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Goldberg"
-            onChange={(e) => {
-              billingDetails.last_name = e.target.value;
-            }}
-            disabled={shippingBillingEqual}
-          />
-        </Form.Item>
-        <Form.Item
+          fullWidth
+          disabled={shippingBillingEqual}
+          onChange={(e) => (billingDetails.last_name = e.target.value)}
+        />
+        <TextField
+          required
+          margin="dense"
+          id="add1-billing"
           label="Address Line 1"
-          name="Billing Address Line 1"
-          rules={[
-            {
-              required: !shippingBillingEqual,
-              message: "Address Required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="12345 Happy St."
-            onChange={(e) => {
-              billingDetails.address_line_1 = e.target.value;
-            }}
-            disabled={shippingBillingEqual}
-          />
-        </Form.Item>
-        <Form.Item
+          fullWidth
+          disabled={shippingBillingEqual}
+          onChange={(e) => (billingDetails.address_line_1 = e.target.value)}
+        />
+        <TextField
+          margin="dense"
+          id="add2-billing"
           label="Address Line 2"
-          name="Billing Address Line 2"
-          rules={[
-            {
-              required: false,
-            },
-          ]}
-        >
-          <Input
-            placeholder="Apt 2"
-            onChange={(e) => {
-              billingDetails.address_line_2 = e.target.value;
-            }}
-            disabled={shippingBillingEqual}
-          />
-        </Form.Item>
-        <Form.Item
+          fullWidth
+          disabled={shippingBillingEqual}
+          onChange={(e) => (billingDetails.address_line_2 = e.target.value)}
+        />
+        <TextField
+          required
+          margin="dense"
+          id="city-billing"
           label="City"
-          name="Billing City"
-          rules={[
-            {
-              required: !shippingBillingEqual,
-              message: "City required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="Los Angeles"
-            onChange={(e) => {
-              billingDetails.locality = e.target.value;
-            }}
-            disabled={shippingBillingEqual}
-          />
-        </Form.Item>
-        <Form.Item
+          type="city"
+          fullWidth
+          disabled={shippingBillingEqual}
+          onChange={(e) => (billingDetails.locality = e.target.value)}
+        />
+        <TextField
+          required
+          margin="dense"
+          id="state-billing"
           label="State"
-          name="Billing State"
-          rules={[
-            {
-              required: !shippingBillingEqual,
-              message: "State required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="California"
-            onChange={(e) => {
-              billingDetails.administrativeDistrictLevel1 = e.target.value;
-            }}
-            disabled={shippingBillingEqual}
-          />
-        </Form.Item>
-        <Form.Item
-          label="Zip"
-          name="Billing Zip"
-          rules={[
-            {
-              required: !shippingBillingEqual,
-              message: "Zip required",
-            },
-          ]}
-        >
-          <Input
-            placeholder="90101"
-            onChange={(e) => {
-              billingDetails.postalCode = e.target.value;
-            }}
-            disabled={shippingBillingEqual}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
+          fullWidth
+          disabled={shippingBillingEqual}
+          onChange={(e) =>
+            (billingDetails.administrative_district_1 = e.target.value)
+          }
+        />
+        <TextField
+          required
+          margin="dense"
+          id="zip-billing"
+          label="Zip Code/Postal Code"
+          fullWidth
+          disabled={shippingBillingEqual}
+          onChange={(e) => (billingDetails.zip = e.target.value)}
+        />
+        <Input type="submit">
+          <Button type="button" color="primary">
             Submit
           </Button>
-        </Form.Item>
-      </Form>
+        </Input>
+      </form>
     );
   };
 
@@ -841,51 +832,56 @@ const Checkout = () => {
 
   return (
     <>
-      <Button type="primary" className="grey" onClick={showModal}>
+      <Button color="primary" onClick={showModal}>
         Checkout
       </Button>
 
-      <Modal
-        title="Checkout"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={null}
+      <Dialog
+        classes={{
+          root: classes.modalRoot,
+          paper: classes.modal,
+        }}
+        open={isModalVisible}
+        TransitionComponent={Transition}
+        keepMounted
+        scroll="paper"
+        onClose={handleCancel}
+        aria-labelledby="large-modal-slide-title"
+        aria-describedby="large-modal-slide-description"
       >
-        <Spin spinning={loading}>
+        <DialogTitle id="large-modal-slide-title" disableTypography>
+          <Button
+            simple
+            className={classes.modalCloseButton}
+            key="close"
+            aria-label="Close"
+            onClick={handleCancel}
+          >
+            {" "}
+            <Close />
+          </Button>
+          Checkout
+        </DialogTitle>
+        <DialogContent>
           {isShippingAndBillingFilled ? (
             <CheckoutForm />
           ) : (
             <ShippingAndBillingForm />
           )}
-        </Spin>
-      </Modal>
-      <Modal
-        title="Checkout"
-        visible={isResultVisible}
-        onOk={handleOkResult}
-        onCancel={handleCancelResult}
-        footer={null}
+        </DialogContent>
+      </Dialog>
+      <Dialog
+        classes={{
+          root: classes.modalRoot,
+          paper: classes.modal,
+        }}
+        open={isResultVisible}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleCancelResult}
       >
-        <Result
-          status={success ? "success" : "error"}
-          title={
-            success
-              ? "Successfully ordered Canna Kool"
-              : "Unsuccessful Transfer"
-          }
-          subTitle={
-            success
-              ? "Please check your email for shipping details and order confirmation"
-              : "Please check that you entered your information correctly. If error persists, contact site administrators. "
-          }
-          extra={[
-            <Button type="primary" onClick={handleOkResult}>
-              Continue
-            </Button>,
-          ]}
-        />
-      </Modal>
+        <DialogContent>{success ? "success" : "error"}</DialogContent>
+      </Dialog>
     </>
   );
 };

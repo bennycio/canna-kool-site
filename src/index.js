@@ -1,18 +1,191 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+/*!
 
+=========================================================
+* Material Kit PRO React - v1.9.0
+=========================================================
 
+* Product Page: https://www.creative-tim.com/product/material-kit-pro-react
+* Copyright 2020 Creative Tim (https://www.creative-tim.com)
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+* Coded by Creative Tim
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+import React, { createContext, useEffect } from "react";
+import ReactDOM from "react-dom";
+import { createBrowserHistory } from "history";
+import {
+  BrowserRouter,
+  Route,
+  NavLink,
+  Switch,
+  useLocation,
+} from "react-router-dom";
+import { useList } from "react-use";
+
+import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
+import "assets/scss/global.scss";
+
+import Home from "views/Home";
+import Store from "views/Store";
+import AboutUs from "views/AboutUs";
+import Contact from "views/Contact";
+
+import PageFooter from "components/PageFooter";
+
+var hist = createBrowserHistory();
+export const CartContext = createContext({
+  cart: [],
+  set: () => {},
+  push: () => {},
+  updateAt: () => {},
+  insertAt: () => {},
+  update: () => {},
+  updateFirst: () => {},
+  upsert: () => {},
+  sort: () => {},
+  filter: () => {},
+  removeAt: () => {},
+  clear: () => {},
+  reset: () => {},
+});
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
+const App = () => {
+  const [
+    cart,
+    {
+      set,
+      push,
+      updateAt,
+      insertAt,
+      update,
+      updateFirst,
+      upsert,
+      sort,
+      filter,
+      removeAt,
+      clear,
+      reset,
+    },
+  ] = useList([]);
+
+  const value = {
+    cart,
+    set,
+    push,
+    updateAt,
+    insertAt,
+    update,
+    updateFirst,
+    upsert,
+    sort,
+    filter,
+    removeAt,
+    clear,
+    reset,
+  };
+
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Navbar />
+      <CartContext.Provider value={value}>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/store" component={Store} />
+          <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/contact" component={Contact} />
+        </Switch>
+      </CartContext.Provider>
+      <PageFooter />
+    </BrowserRouter>
+  );
+};
+
+const Navbar = () => {
+  const unselectHamburger = () => {
+    document.getElementById("hamburger").checked = false;
+  };
+
+  return (
+    <div className="front">
+      <input id="hamburger" class="hamburger" type="checkbox" />
+      <label class="hamburger" for="hamburger">
+        <i />
+        <text>
+          <close>close</close>
+          <open>menu</open>
+        </text>
+      </label>
+      <section class="drawer-list">
+        <ul>
+          <li>
+            <NavLink className="nav-item" to="/" onClick={unselectHamburger}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/store"
+              onClick={unselectHamburger}
+            >
+              Store
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/info"
+              onClick={unselectHamburger}
+            >
+              Info
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/aboutus"
+              onClick={unselectHamburger}
+            >
+              About Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/contact"
+              onClick={unselectHamburger}
+            >
+              Contact
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/labresults"
+              onClick={unselectHamburger}
+            >
+              Lab Results
+            </NavLink>
+          </li>
+        </ul>
+      </section>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
