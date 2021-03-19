@@ -13,7 +13,6 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import PinDrop from "@material-ui/icons/PinDrop";
 import Phone from "@material-ui/icons/Phone";
-import BusinessCenter from "@material-ui/icons/BusinessCenter";
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";

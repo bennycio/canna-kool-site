@@ -29,7 +29,7 @@ const AboutUs = () => {
   const classes = useStyles();
   return (
     <>
-      <Parallax image={require("assets/img/bg9.jpg")} filter="dark" small>
+      <Parallax image={require("assets/img/team.jpg")} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem

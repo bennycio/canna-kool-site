@@ -88,7 +88,7 @@ const Store = () => {
   return (
     <>
       <Parallax
-        image={require("assets/img/examples/clark-street-merc.jpg")}
+        image={require("assets/img/oilbg.jpg")}
         filter="dark"
         small
       >

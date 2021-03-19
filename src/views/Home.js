@@ -14,7 +14,7 @@ import CardBody from "components/Card/CardBody.js";
 
 import headersStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/headersStyle.js";
 
-import bg12 from "assets/img/bg12.jpg";
+import headerBg from "assets/img/home.jpg";
 
 // @material-ui/icons
 import LocalPharmacyIcon from "@material-ui/icons/LocalPharmacy";
@@ -24,9 +24,6 @@ import PeopleIcon from "@material-ui/icons/People";
 import EcoIcon from "@material-ui/icons/Eco";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 import { FaBone, FaHeart } from "react-icons/fa";
-import FormatPaint from "@material-ui/icons/FormatPaint";
-import Dashboard from "@material-ui/icons/Dashboard";
-import ViewCarousel from "@material-ui/icons/ViewCarousel";
 import { GiWaterFountain, GiBackPain, GiHealthNormal } from "react-icons/gi";
 import { RiMentalHealthFill } from "react-icons/ri";
 // core components
@@ -35,8 +32,7 @@ import InfoArea from "components/InfoArea/InfoArea.js";
 import featuresStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/featuresStyle.js";
 
 import homegrown from "assets/img/homegrown.jpg";
-import doctor from "assets/img/doctor.png";
-import bg9 from "assets/img/bg9.jpg";
+import strongman from "assets/img/strongman.jpg";
 
 import Star from "@material-ui/icons/Star";
 // core components
@@ -78,7 +74,7 @@ const HomeHeader = () => {
     <>
       <div
         className={classes.pageHeader}
-        style={{ backgroundImage: `url("${bg12}")` }}
+        style={{ backgroundImage: `url("${headerBg}")` }}
       >
         <div className={classes.container}>
           <GridContainer>
@@ -202,7 +198,7 @@ const HomeFeatures = () => {
           </GridItem>
           <GridItem xs={12} sm={6} md={6}>
             <div className={classes.imgContainer}>
-              <img src={homegrown} alt="..." />
+              <img src={strongman} alt="..." />
             </div>
           </GridItem>
         </GridContainer>
