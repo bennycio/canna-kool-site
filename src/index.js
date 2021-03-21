@@ -29,10 +29,10 @@ import { useList } from "react-use";
 import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
-const Home = lazy(() => import("/views/Home"));
-const Store = lazy(() => import("/views/Store"));
-const AboutUs = lazy(() => import("/views/AboutUs"));
-const Contact = lazy(() => import("/views/Contact"));
+const Home = lazy(() => import("./views/Home"));
+const Store = lazy(() => import("./views/Store"));
+const AboutUs = lazy(() => import("./views/AboutUs"));
+const Contact = lazy(() => import("./views/Contact"));
 
 import PageFooter from "components/PageFooter";
 export const CartContext = createContext({
