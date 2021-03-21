@@ -699,6 +699,7 @@ const Checkout = () => {
           fullWidth
           onChange={(e) => (shippingDetails.zip = e.target.value)}
         />
+        {/*this makes everything go wrong :( */}
         <FormControlLabel
           control={
             <Switch
