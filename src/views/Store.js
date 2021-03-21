@@ -21,8 +21,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui icons
 import Mail from "@material-ui/icons/Mail";
 
-import ecommerceHeader from "assets/img/examples/ecommerce-header.jpg";
-
 import storeStyles from "assets/jss/material-kit-pro-react/views/ecommerceStyle.js";
 
 import {
@@ -158,7 +156,6 @@ const Store = () => {
           classes.subscribeLine,
           classes.subscribeLineImage
         )}
-        style={{ backgroundImage: `url(${ecommerceHeader})` }}
       >
         <div className={classes.container}>
           <GridContainer>
