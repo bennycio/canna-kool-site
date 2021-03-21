@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { createContext, useEffect } from "react";
+import React, { createContext, useEffect, lazy } from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import {
@@ -29,13 +29,12 @@ import { useList } from "react-use";
 import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
-import Home from "views/Home";
-import Store from "views/Store";
-import AboutUs from "views/AboutUs";
-import Contact from "views/Contact";
+const Home = lazy(() => import("/views/Home"));
+const Store = lazy(() => import("/views/Store"));
+const AboutUs = lazy(() => import("/views/AboutUs"));
+const Contact = lazy(() => import("/views/Contact"));
 
 import PageFooter from "components/PageFooter";
-
 export const CartContext = createContext({
   cart: [],
   set: () => {},
@@ -102,12 +101,14 @@ const App = () => {
       <ScrollToTop />
       <Navbar />
       <CartContext.Provider value={value}>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/store" component={Store} />
-          <Route exact path="/aboutus" component={AboutUs} />
-          <Route exact path="/contact" component={Contact} />
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/store" component={Store} />
+            <Route exact path="/aboutus" component={AboutUs} />
+            <Route exact path="/contact" component={Contact} />
+          </Switch>
+        </Suspense>
       </CartContext.Provider>
       <PageFooter />
     </BrowserRouter>
