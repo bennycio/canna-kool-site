@@ -36,7 +36,6 @@ import Contact from "views/Contact";
 
 import PageFooter from "components/PageFooter";
 
-var hist = createBrowserHistory();
 export const CartContext = createContext({
   cart: [],
   set: () => {},
