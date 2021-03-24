@@ -30,6 +30,7 @@ import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
 import PageFooter from "components/PageFooter";
+import { ClickAwayListener, CssBaseline } from "@material-ui/core";
 
 const Home = lazy(() => import("./views/Home"));
 const Store = lazy(() => import("./views/Store"));
@@ -100,6 +101,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <CssBaseline />
       <Navbar />
       <CartContext.Provider value={value}>
         <Suspense fallback={<div>Loading...</div>}>
@@ -109,9 +111,9 @@ const App = () => {
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/contact" component={Contact} />
           </Switch>
+          <PageFooter />
         </Suspense>
       </CartContext.Provider>
-      <PageFooter />
     </BrowserRouter>
   );
 };
@@ -123,68 +125,76 @@ const Navbar = () => {
 
   return (
     <div className="front">
-      <input id="hamburger" class="hamburger" type="checkbox" />
-      <label class="hamburger" for="hamburger">
-        <i />
-        <text>
-          <close>close</close>
-          <open>menu</open>
-        </text>
-      </label>
-      <section class="drawer-list">
-        <ul>
-          <li>
-            <NavLink className="nav-item" to="/" onClick={unselectHamburger}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="nav-item"
-              to="/store"
-              onClick={unselectHamburger}
-            >
-              Store
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="nav-item"
-              to="/info"
-              onClick={unselectHamburger}
-            >
-              Info
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="nav-item"
-              to="/aboutus"
-              onClick={unselectHamburger}
-            >
-              About Us
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="nav-item"
-              to="/contact"
-              onClick={unselectHamburger}
-            >
-              Contact
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className="nav-item"
-              to="/labresults"
-              onClick={unselectHamburger}
-            >
-              Lab Results
-            </NavLink>
-          </li>
-        </ul>
-      </section>
+      <ClickAwayListener onClickAway={unselectHamburger}>
+        <div>
+          <input id="hamburger" class="hamburger" type="checkbox" />
+          <label class="hamburger" for="hamburger">
+            <i />
+            <text>
+              <close>close</close>
+              <open>menu</open>
+            </text>
+          </label>
+          <section class="drawer-list">
+            <ul>
+              <li>
+                <NavLink
+                  className="nav-item"
+                  to="/"
+                  onClick={unselectHamburger}
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="nav-item"
+                  to="/store"
+                  onClick={unselectHamburger}
+                >
+                  Store
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="nav-item"
+                  to="/info"
+                  onClick={unselectHamburger}
+                >
+                  Info
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="nav-item"
+                  to="/aboutus"
+                  onClick={unselectHamburger}
+                >
+                  About Us
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="nav-item"
+                  to="/contact"
+                  onClick={unselectHamburger}
+                >
+                  Contact
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className="nav-item"
+                  to="/labresults"
+                  onClick={unselectHamburger}
+                >
+                  Lab Results
+                </NavLink>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </ClickAwayListener>
     </div>
   );
 };

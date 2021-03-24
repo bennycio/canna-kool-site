@@ -28,6 +28,9 @@ import { GiWaterFountain, GiBackPain, GiHealthNormal } from "react-icons/gi";
 import { RiMentalHealthFill } from "react-icons/ri";
 // core components
 import InfoArea from "components/InfoArea/InfoArea.js";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import CustomInput from "components/CustomInput/CustomInput.js";
+import Mail from "@material-ui/icons/Mail";
 
 import featuresStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/featuresStyle.js";
 
@@ -47,6 +50,18 @@ import cardProfile4Square from "assets/img/faces/card-profile4-square.jpg";
 import cardProfile6Square from "assets/img/faces/card-profile6-square.jpg";
 import kendall from "assets/img/faces/kendall.jpg";
 import christian from "assets/img/faces/christian.jpg";
+import { Paper } from "@material-ui/core";
+
+import imagesStyles from "assets/jss/material-kit-pro-react/imagesStyles.js";
+
+import Tooltip from "@material-ui/core/Tooltip";
+// @material-ui/icons
+import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
+import office2 from "assets/img/examples/office2.jpg";
+import blog8 from "assets/img/examples/blog8.jpg";
+import cardProject6 from "assets/img/examples/card-project6.jpg";
+
+import sectionPillsStyle from "assets/jss/material-kit-pro-react/views/blogPostsSections/sectionPillsStyle.js";
 
 const Home = () => {
   return (
@@ -102,8 +117,13 @@ const HomeHeader = () => {
 };
 
 const useStylesFeatures = makeStyles(featuresStyle);
+const useStylesImages = makeStyles(imagesStyles);
+const useStylesPills = makeStyles(sectionPillsStyle);
+
 const HomeFeatures = () => {
   const classes = useStylesFeatures();
+  const imageClasses = useStylesImages();
+  const pillsClasses = useStylesPills();
   return (
     <>
       <div className={classes.features1}>
@@ -152,6 +172,181 @@ const HomeFeatures = () => {
               solution."
               iconColor="danger"
             />
+          </GridItem>
+        </GridContainer>
+      </div>
+      <div className={classes.subscribeContainer}>
+        <GridContainer>
+          <GridItem
+            xs={12}
+            sm={6}
+            md={6}
+            className={classNames(classes.mlAuto, classes.mrAuto)}
+          >
+            <div className={classes.textCenter}>
+              <h3 className={classes.title}>
+                Subscribe to our Newsletter for <br /> weekly discounts on all
+                products!
+              </h3>
+            </div>
+            <Card raised>
+              <CardBody>
+                <form>
+                  <GridContainer>
+                    <GridItem xs={12} sm={6} md={6} lg={8}>
+                      <CustomInput
+                        id="emailPreFooter"
+                        formControlProps={{
+                          fullWidth: true,
+                        }}
+                        inputProps={{
+                          startAdornment: (
+                            <InputAdornment position="start">
+                              <Mail />
+                            </InputAdornment>
+                          ),
+                          placeholder: "Your Email...",
+                        }}
+                      />
+                    </GridItem>
+                    <GridItem xs={12} sm={6} md={6} lg={4}>
+                      <Button
+                        color="rose"
+                        block
+                        className={classes.subscribeButton}
+                      >
+                        subscribe
+                      </Button>
+                    </GridItem>
+                  </GridContainer>
+                </form>
+              </CardBody>
+            </Card>
+          </GridItem>
+        </GridContainer>
+      </div>
+      <div className={classes.container} style={{ marginTop: "3%" }}>
+        <Paper elevation={3} className={classes.textCenter}>
+          <GridContainer
+            justify="center"
+            alignItems="center"
+            style={{ padding: "0 5% 0 5%" }}
+          >
+            <GridItem xs={12} sm={4} md={4}>
+              <Card style={{ height: "30rem" }}>
+                <img
+                  style={{ height: "60%", width: "100%", display: "block" }}
+                  className={imageClasses.imgCardTop}
+                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+                  alt="Card-img-cap"
+                />
+                <CardBody>
+                  <h3>Buy this one please</h3>
+                  <Button color="primary">Buy Now</Button>
+                </CardBody>
+              </Card>
+            </GridItem>
+            <GridItem xs={12} sm={4} md={4}>
+              <Card style={{ height: "30rem" }}>
+                <img
+                  style={{ height: "60%", width: "100%", display: "block" }}
+                  className={imageClasses.imgCardTop}
+                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+                  alt="Card-img-cap"
+                />
+                <CardBody>
+                  <h3>No buy this one instead</h3>
+                  <Button color="primary">Buy Now</Button>
+                </CardBody>
+              </Card>
+            </GridItem>
+            <GridItem xs={12} sm={4} md={4}>
+              <Card style={{ height: "30rem" }}>
+                <img
+                  style={{ height: "60%", width: "100%", display: "block" }}
+                  className={imageClasses.imgCardTop}
+                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+                  alt="Card-img-cap"
+                />
+                <CardBody>
+                  <h3>But wait, please pick me</h3>
+                  <Button color="primary">Buy Now</Button>
+                </CardBody>
+              </Card>
+            </GridItem>
+          </GridContainer>
+        </Paper>
+      </div>
+      <div className={classes.container}>
+        <GridContainer>
+          <GridItem xs={12} sm={6} md={6}>
+            <Card
+              raised
+              background
+              style={{ backgroundImage: "url(" + office2 + ")" }}
+            >
+              <CardBody background>
+                <h6 className={pillsClasses.category}>HEALTH</h6>
+                <a href="#pablo">
+                  <h3 className={pillsClasses.cardTitle}>
+                    Hemp gives you wings
+                  </h3>
+                </a>
+                <p className={pillsClasses.category}>
+                  This stuff really gives you wings, the kind of wings that make
+                  you fly.
+                </p>
+                <Button round href="#pablo" color="danger">
+                  <FormatAlignLeft className={pillsClasses.icons} /> Read Story
+                </Button>
+              </CardBody>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={6} md={6}>
+            <Card
+              raised
+              background
+              style={{ backgroundImage: "url(" + blog8 + ")" }}
+            >
+              <CardBody background>
+                <h6 className={pillsClasses.category}>SAFETY</h6>
+                <a href="#pablo">
+                  <h3 className={pillsClasses.cardTitle}>
+                    Hemp is super safe... and surprisingly chill
+                  </h3>
+                </a>
+                <p className={pillsClasses.category}>
+                  Don{"'"}t be scared of the truth and don't be scared of hemp
+                  because both are very safe and very chill
+                </p>
+                <Button round href="#pablo" color="primary">
+                  <FormatAlignLeft className={pillsClasses.icons} /> Read Story
+                </Button>
+              </CardBody>
+            </Card>
+          </GridItem>
+          <GridItem xs={12} sm={12} md={12}>
+            <Card
+              raised
+              background
+              style={{ backgroundImage: "url(" + cardProject6 + ")" }}
+            >
+              <CardBody background>
+                <h6 className={pillsClasses.category}>EXERCISE</h6>
+                <a href="#pablo">
+                  <h3 className={pillsClasses.cardTitle}>
+                    Make big gains with Hemp
+                  </h3>
+                </a>
+                <p className={pillsClasses.category}>
+                  Hear the story of a man who made big gains because of Canna
+                  Kool.
+                </p>
+                <Button round href="#pablo" color="warning">
+                  <FormatAlignLeft className={pillsClasses.icons} /> Read Story
+                </Button>
+              </CardBody>
+            </Card>
           </GridItem>
         </GridContainer>
       </div>

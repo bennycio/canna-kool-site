@@ -1,3 +1,4 @@
+import { grey } from "@material-ui/core/colors";
 import {
   container,
   mlAuto,
@@ -15,6 +16,10 @@ const features = {
   mrAuto,
   title,
   description,
+  subscribeContainer: {
+    padding: "5% 0 5% 0",
+    background: grey[500],
+  },
   features1: {
     textAlign: "center",
     padding: "80px 0"
@@ -93,19 +98,19 @@ const features = {
     textAlign: "center"
   },
   imgContainer: {
-    alignItems:"center",
-    paddingTop:"20%",
-    paddingRight:"5%",
-    paddingLeft:"5%",
+    alignItems: "center",
+    paddingTop: "20%",
+    paddingRight: "5%",
+    paddingLeft: "5%",
     "& img": {
       maxHeight: "100%",
       maxWidth: "100%",
-      borderRadius:"10%",
+      borderRadius: "10%",
     },
   },
   doctorImg: {
-    alignItems:"center",
-    paddingTop:"20%",
+    alignItems: "center",
+    paddingTop: "20%",
     "& img": {
       maxHeight: "100%",
       maxWidth: "100%",
