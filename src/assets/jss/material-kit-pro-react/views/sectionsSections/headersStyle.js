@@ -86,7 +86,13 @@ const headersSection = () => ({
   },
   button: {
     margin: "0 !important"
-  }
+  },
+  list: {
+    display: "inline",
+  },
+  listItem: {
+    display: "inline",
+  },
 });
 
 export default headersSection;

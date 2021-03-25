@@ -13,16 +13,27 @@ import {
   CardBody,
   CardFooter,
   Button,
+  InfoArea,
+  Instruction,
 } from "@bennycio/material-ui-pro";
 // sections for this page
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
 
 import teamStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/teamStyle.js";
 
+import featuresStyle from "assets/jss/material-kit-pro-react/views/pricingSections/featuresStyle.js";
+
+import pricingStyle from "assets/jss/material-kit-pro-react/views/pricingSections/pricingStyle.js";
+
 import Troll from "assets/img/troll.png";
 import Benny from "assets/img/Benny.jpg";
 import FaceKendall from "assets/img/faces/kendall.jpg";
 import FaceAvatar from "assets/img/faces/avatar.jpg";
+
+import CardMembership from "@material-ui/icons/CardMembership";
+import CardGiftCard from "@material-ui/icons/CardGiftcard";
+import AttachMoney from "@material-ui/icons/AttachMoney";
+import QuestionAnswer from "@material-ui/icons/QuestionAnswer";
 
 const useStyles = makeStyles(aboutUsStyle);
 
@@ -49,10 +60,33 @@ const AboutUs = () => {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-          <SectionTeam />
+          <SectionPricing />
+          <SectionFeatures />
         </div>
       </div>
     </>
+  );
+};
+
+
+// TODO make this happen
+const SectionProcess = () => {
+  const classes = useStyles();
+  return (
+    <div>
+      <h3 className={classes.textCenter}>From Farm to You</h3>
+      <Instruction
+        title="1. Farm the hemp"
+        text={
+          <span>
+            We farm our hemp sustainably and with care and love so that each
+            time we extract something from the hemp we get a little love with it
+            too.
+          </span>
+        }
+        image={Troll}
+      />
+    </div>
   );
 };
 
@@ -194,5 +228,163 @@ const SectionTeam = () => {
     </div>
   );
 };
+
+const useStylesPricing = makeStyles(pricingStyle);
+
+function SectionPricing() {
+  const classes = useStylesPricing();
+  return (
+    <div className={classes.pricingSection}>
+      <h1 className={classes.textCenter}>Whats the Difference?</h1>
+      <GridContainer>
+        <GridItem md={4} sm={4}>
+          <Card plain pricing color="primary">
+            <CardBody pricing>
+              <h4
+                className={classNames(classes.cardCategory, classes.textInfo)}
+              >
+                Odorless
+              </h4>
+              <h1 className={classes.cardTitleWhite}>
+                <small>$</small>51 <small>.99</small>
+              </h1>
+              <ul>
+                <li>
+                  <b>1</b> Project
+                </li>
+                <li>
+                  <b>5</b> Team Members
+                </li>
+                <li>
+                  <b>55</b> Personal Contacts
+                </li>
+                <li>
+                  <b>5.000</b> Messages
+                </li>
+              </ul>
+              <Button href="#pablo" color="white" round>
+                Get started
+              </Button>
+            </CardBody>
+          </Card>
+        </GridItem>
+        <GridItem md={4} sm={4}>
+          <Card raised pricing color="success">
+            <CardBody pricing>
+              <h4
+                className={classNames(classes.cardCategory, classes.textInfo)}
+              >
+                Minty
+              </h4>
+              <h1 className={classes.cardTitleWhite}>
+                <small>$</small>55 <small>.99</small>
+              </h1>
+              <ul>
+                <li>
+                  <b>500</b> Project
+                </li>
+                <li>
+                  <b>50</b> Team Members
+                </li>
+                <li>
+                  <b>125</b> Personal Contacts
+                </li>
+                <li>
+                  <b>15.000</b> Messages
+                </li>
+              </ul>
+              <Button href="#pablo" color="white" round>
+                Get started
+              </Button>
+            </CardBody>
+          </Card>
+        </GridItem>
+        <GridItem md={4} sm={4}>
+          <Card plain pricing color="danger">
+            <CardBody pricing>
+              <h4
+                className={classNames(classes.cardCategory, classes.textInfo)}
+              >
+                Extreme
+              </h4>
+              <h1 className={classes.cardTitleWhite}>
+                <small>$</small>72 <small>.99</small>
+              </h1>
+              <ul>
+                <li>
+                  <b>1000</b> Project
+                </li>
+                <li>
+                  <b>100</b> Team Members
+                </li>
+                <li>
+                  <b>550</b> Personal Contacts
+                </li>
+                <li>
+                  <b>50.000</b> Messages
+                </li>
+              </ul>
+              <Button href="#pablo" color="white" round>
+                Get started
+              </Button>
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
+    </div>
+  );
+}
+
+const useStylesFeatures = makeStyles(featuresStyle);
+
+function SectionFeatures() {
+  const classes = useStylesFeatures();
+  return (
+    <div className={classes.featuresSection}>
+      <div className={classes.textCenter}>
+        <h3 className={classes.title}>Frequently Asked Questions</h3>
+      </div>
+      <GridContainer>
+        <GridItem md={4} sm={4} className={classes.mlAuto}>
+          <InfoArea
+            title="Is this safe to use?"
+            description="Yes you and your little friends have nothing to worry about."
+            icon={CardMembership}
+            iconColor="info"
+          />
+        </GridItem>
+        <GridItem md={4} sm={4} className={classes.mrAuto}>
+          <InfoArea
+            title="Are sensations local or entire body?"
+            description="Our hemp extract is strong enough to extend to the nearest person alongside your entire body."
+            icon={CardGiftCard}
+            iconColor="success"
+          />
+        </GridItem>
+      </GridContainer>
+      <GridContainer>
+        <GridItem md={4} sm={4} className={classes.mlAuto}>
+          <InfoArea
+            title="How many uses does one bottle get me?"
+            description="Well that depends on how much you use, some people like our product 
+            so much they go through one bottle a day but an average 
+            person can get probably 120 uses per bottle."
+            icon={AttachMoney}
+            iconColor="success"
+          />
+        </GridItem>
+        <GridItem md={4} sm={4} className={classes.mrAuto}>
+          <InfoArea
+            title="I have some more questions, where do I ask?"
+            description="Check out our contact page and send us a message with any questions you have 
+            and we will get back to you as quick as possible."
+            icon={QuestionAnswer}
+            iconColor="rose"
+          />
+        </GridItem>
+      </GridContainer>
+    </div>
+  );
+}
 
 export default AboutUs;
