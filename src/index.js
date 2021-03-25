@@ -13,7 +13,7 @@ import { useList, useWindowScroll } from "react-use";
 import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
-import { Header } from "material-ui-pro";
+import { Header } from "@bennycio/material-ui-pro";
 
 import {
   ClickAwayListener,
@@ -27,8 +27,9 @@ import {
 
 import PageFooter from "components/PageFooter";
 
-import navbarsStyle from "assets/jss/material-kit-pro-react/views/componentsSections/navbarsStyle.js";
 import useHamburger from "hooks/useHamburger";
+
+import headersStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/headersStyle.js";
 
 const Home = lazy(() => import("./views/Home"));
 const Store = lazy(() => import("./views/Store"));
@@ -202,10 +203,9 @@ const Navbar = () => {
   );
 };
 
-const useStylesNavbar = makeStyles(navbarsStyle);
-
+const useStyles = makeStyles(headersStyle);
 const BigNavbar = () => {
-  const classes = useStylesNavbar();
+  const classes = useStyles();
   const isBig = useMediaQuery("(min-width: 600px)");
   const { x, y } = useWindowScroll();
 

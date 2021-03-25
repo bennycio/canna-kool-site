@@ -5,7 +5,15 @@ import classNames from "classnames";
 // core components
 import Slide from "@material-ui/core/Slide";
 
-import {Card, CardBody, CustomInput, GridContainer, GridItem, Parallax, Button} from "material-ui-pro";
+import {
+  Card,
+  CardBody,
+  CustomInput,
+  GridContainer,
+  GridItem,
+  Parallax,
+  Button,
+} from "@bennycio/material-ui-pro";
 
 // sections for this page
 import prodcuctsStyles from "assets/jss/material-kit-pro-react/views/ecommerceSections/latestOffersStyle.js";
@@ -24,7 +32,6 @@ import {
   FaRegMinusSquare,
   FaWindowClose,
 } from "react-icons/fa";
-import { ShoppingCartOutlined } from "@ant-design/icons";
 import { CartContext } from "../index";
 import {
   SquarePaymentForm,
@@ -47,6 +54,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
+import { BiCart } from "react-icons/bi";
 
 const useStyles = makeStyles(storeStyles);
 const useProductStyles = makeStyles(prodcuctsStyles);
@@ -80,11 +88,7 @@ const Store = () => {
   const productClasses = useProductStyles();
   return (
     <>
-      <Parallax
-        image={require("assets/img/oilbg.jpg")}
-        filter="dark"
-        small
-      >
+      <Parallax image={require("assets/img/oilbg.jpg")} filter="dark" small>
         <div className={classes.container}>
           <GridContainer>
             <GridItem
@@ -409,7 +413,7 @@ const Cart = (props) => {
           zIndex: "1000",
         }}
       >
-        <ShoppingCartOutlined />
+        <BiCart />
       </Button>
       <Dialog
         classes={{

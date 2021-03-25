@@ -32,7 +32,7 @@ import {
   GridItem,
   Card,
   CardBody,
-} from "material-ui-pro";
+} from "@bennycio/material-ui-pro";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Mail from "@material-ui/icons/Mail";
 

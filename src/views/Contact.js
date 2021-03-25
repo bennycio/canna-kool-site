@@ -21,7 +21,7 @@ import {
   InfoArea,
   CustomInput,
   Button,
-} from "material-ui-pro";
+} from "@bennycio/material-ui-pro";
 
 import contactUsStyle from "assets/jss/material-kit-pro-react/views/contactUsStyle.js";
 

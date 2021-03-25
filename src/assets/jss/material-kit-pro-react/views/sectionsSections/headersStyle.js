@@ -1,4 +1,3 @@
-import headerLinksStyle from "assets/jss/material-kit-pro-react/components/headerLinksStyle.js";
 import {
   container,
   mrAuto,
@@ -8,8 +7,7 @@ import {
   hexToRgb
 } from "assets/jss/material-kit-pro-react.js";
 
-const headersSection = theme => ({
-  ...headerLinksStyle(theme),
+const headersSection = () => ({
   sectionBlank: {
     height: "70px",
     display: "block"

@@ -1,14 +1,16 @@
-
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "components/CustomButtons/Button.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
 import Mail from "@material-ui/icons/Mail";
-import Footer from "components/Footer/Footer.js";
+
+import {
+  Button,
+  GridContainer,
+  GridItem,
+  CustomInput,
+  Footer,
+} from "@bennycio/material-ui-pro";
 
 import footerStyles from "assets/jss/material-kit-pro-react/views/componentsSections/footerStyle.js";
 
@@ -49,7 +51,8 @@ const PageFooter = () => {
                 <h5>Canna Kool</h5>
               </a>
               <p>
-                CBD Products that are Lab Tested and Stronger than all our Competitors
+                CBD Products that are Lab Tested and Stronger than all our
+                Competitors
               </p>
             </GridItem>
             <GridItem xs={12} sm={3} md={3}>

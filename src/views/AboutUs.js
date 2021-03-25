@@ -4,15 +4,18 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
-import { GridContainer, GridItem, Parallax } from "material-ui-pro";
+import {
+  GridContainer,
+  GridItem,
+  Parallax,
+  Card,
+  CardAvatar,
+  CardBody,
+  CardFooter,
+  Button,
+} from "@bennycio/material-ui-pro";
 // sections for this page
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
-
-import Card from "components/Card/Card.js";
-import CardAvatar from "components/Card/CardAvatar.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import Button from "components/CustomButtons/Button.js";
 
 import teamStyle from "assets/jss/material-kit-pro-react/views/aboutUsSections/teamStyle.js";
 
