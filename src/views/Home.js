@@ -50,11 +50,9 @@ import cardProfile4Square from "assets/img/faces/card-profile4-square.jpg";
 import cardProfile6Square from "assets/img/faces/card-profile6-square.jpg";
 import kendall from "assets/img/faces/kendall.jpg";
 import christian from "assets/img/faces/christian.jpg";
-import { Paper } from "@material-ui/core";
+import { Fade, Paper } from "@material-ui/core";
 
 import imagesStyles from "assets/jss/material-kit-pro-react/imagesStyles.js";
-
-import Tooltip from "@material-ui/core/Tooltip";
 // @material-ui/icons
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 import office2 from "assets/img/examples/office2.jpg";
@@ -62,6 +60,7 @@ import blog8 from "assets/img/examples/blog8.jpg";
 import cardProject6 from "assets/img/examples/card-project6.jpg";
 
 import sectionPillsStyle from "assets/jss/material-kit-pro-react/views/blogPostsSections/sectionPillsStyle.js";
+import LazyLoad from "react-lazyload";
 
 const Home = () => {
   return (
@@ -77,14 +76,6 @@ const useStylesHeader = makeStyles(headersStyle);
 
 const HomeHeader = () => {
   const classes = useStylesHeader();
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: false,
-  };
   return (
     <>
       <div
@@ -235,7 +226,7 @@ const HomeFeatures = () => {
             <GridItem xs={12} sm={4} md={4}>
               <Card style={{ height: "30rem" }}>
                 <img
-                  style={{ height: "60%", width: "100%", display: "block" }}
+                style={{ height: "60%", width: "100%", display: "block" }}
                   className={imageClasses.imgCardTop}
                   src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
                   alt="Card-img-cap"
@@ -354,7 +345,9 @@ const HomeFeatures = () => {
         <GridContainer justify="center" alignItems="center">
           <GridItem xs={12} sm={6} md={6}>
             <div className={classes.imgContainer}>
-              <img src={homegrown} alt="..." />
+              <LazyLoad>
+                <img src={homegrown} alt="..." />
+              </LazyLoad>
             </div>
           </GridItem>
           <GridItem xs={12} sm={6} md={6}>
@@ -393,7 +386,9 @@ const HomeFeatures = () => {
           </GridItem>
           <GridItem xs={12} sm={6} md={6}>
             <div className={classes.imgContainer}>
-              <img src={strongman} alt="..." />
+              <LazyLoad>
+                <img src={strongman} alt="..." />
+              </LazyLoad>
             </div>
           </GridItem>
         </GridContainer>
