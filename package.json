@@ -9,7 +9,7 @@
     "antd": "^4.14.1",
     "classnames": "2.2.6",
     "history": "4.10.1",
-    "material-ui-pro": "git+ssh://git@github.com:bennycio/material-ui-pro.git",
+    "material-ui-pro": "git+https://4521aee087b1ba804547f10b9cb6dd23d65c34c3:x-oauth-basic@github.com/bennycio/material-ui-pro.git",
     "moment": "2.26.0",
     "node-sass": "4.14.1",
     "nouislider": "14.5.0",
