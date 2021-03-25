@@ -13,7 +13,8 @@ import { useList, useWindowScroll } from "react-use";
 import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
-import PageFooter from "components/PageFooter";
+import { Header } from "material-ui-pro";
+
 import {
   ClickAwayListener,
   CssBaseline,
@@ -24,8 +25,8 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 
-import Header from "components/Header/Header";
-import Button from "components/CustomButtons/Button";
+import PageFooter from "components/PageFooter";
+
 import navbarsStyle from "assets/jss/material-kit-pro-react/views/componentsSections/navbarsStyle.js";
 import useHamburger from "hooks/useHamburger";
 
@@ -233,7 +234,11 @@ const BigNavbar = () => {
                   </NavLink>
                 </ListItem>
                 <ListItem className={classes.listItem}>
-                  <NavLink to="/store" className={classes.navLink} style={{ color: "white" }}>
+                  <NavLink
+                    to="/store"
+                    className={classes.navLink}
+                    style={{ color: "white" }}
+                  >
                     Store
                   </NavLink>
                 </ListItem>

@@ -14,11 +14,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import PinDrop from "@material-ui/icons/PinDrop";
 import Phone from "@material-ui/icons/Phone";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "components/CustomButtons/Button.js";
+
+import {
+  GridContainer,
+  GridItem,
+  InfoArea,
+  CustomInput,
+  Button,
+} from "material-ui-pro";
 
 import contactUsStyle from "assets/jss/material-kit-pro-react/views/contactUsStyle.js";
 
@@ -178,11 +181,7 @@ const Contact = () => {
                 <InfoArea
                   className={classes.info}
                   title="HQ"
-                  description={
-                    <p>
-                      31 Spooner Street, Quahog, RI
-                    </p>
-                  }
+                  description={<p>31 Spooner Street, Quahog, RI</p>}
                   icon={PinDrop}
                   iconColor="primary"
                 />
@@ -191,8 +190,7 @@ const Contact = () => {
                   title="Give us a ring"
                   description={
                     <p>
-                      God <br /> 555-555-6666 <br /> Mon - Fri,
-                      8:00-22:00
+                      God <br /> 555-555-6666 <br /> Mon - Fri, 8:00-22:00
                     </p>
                   }
                   icon={Phone}

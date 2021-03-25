@@ -3,14 +3,9 @@ import React, { useEffect, useContext, useState } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Parallax from "components/Parallax/Parallax.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
 import Slide from "@material-ui/core/Slide";
+
+import {Card, CardBody, CustomInput, GridContainer, GridItem, Parallax, Button} from "material-ui-pro";
 
 // sections for this page
 import prodcuctsStyles from "assets/jss/material-kit-pro-react/views/ecommerceSections/latestOffersStyle.js";

@@ -5,12 +5,6 @@ import classNames from "classnames";
 import Carousel from "react-slick";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// core components
-import Button from "components/CustomButtons/Button.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
 
 import headersStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/headersStyle.js";
 
@@ -27,9 +21,19 @@ import { FaBone, FaHeart } from "react-icons/fa";
 import { GiWaterFountain, GiBackPain, GiHealthNormal } from "react-icons/gi";
 import { RiMentalHealthFill } from "react-icons/ri";
 // core components
-import InfoArea from "components/InfoArea/InfoArea.js";
+import {
+  InfoArea,
+  CustomInput,
+  CardAvatar,
+  Muted,
+  Warning,
+  Button,
+  GridContainer,
+  GridItem,
+  Card,
+  CardBody,
+} from "material-ui-pro";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import CustomInput from "components/CustomInput/CustomInput.js";
 import Mail from "@material-ui/icons/Mail";
 
 import featuresStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/featuresStyle.js";
@@ -38,10 +42,6 @@ import homegrown from "assets/img/homegrown.jpg";
 import strongman from "assets/img/strongman.jpg";
 
 import Star from "@material-ui/icons/Star";
-// core components
-import CardAvatar from "components/Card/CardAvatar.js";
-import Muted from "components/Typography/Muted.js";
-import Warning from "components/Typography/Warning.js";
 
 import testimonialsStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/testimonialsStyle.js";
 
@@ -226,7 +226,7 @@ const HomeFeatures = () => {
             <GridItem xs={12} sm={4} md={4}>
               <Card style={{ height: "30rem" }}>
                 <img
-                style={{ height: "60%", width: "100%", display: "block" }}
+                  style={{ height: "60%", width: "100%", display: "block" }}
                   className={imageClasses.imgCardTop}
                   src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
                   alt="Card-img-cap"
