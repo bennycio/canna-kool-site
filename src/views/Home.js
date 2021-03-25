@@ -43,6 +43,7 @@ import strongman from "assets/img/strongman.jpg";
 
 import Star from "@material-ui/icons/Star";
 
+
 import testimonialsStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/testimonialsStyle.js";
 
 import cardProfile1Square from "assets/img/faces/card-profile1-square.jpg";
