@@ -25,6 +25,8 @@ import featuresStyle from "assets/jss/material-kit-pro-react/views/pricingSectio
 
 import pricingStyle from "assets/jss/material-kit-pro-react/views/pricingSections/pricingStyle.js";
 
+import processStyle from "assets/jss/material-kit-pro-react/views/processStyle.js";
+
 import Troll from "assets/img/troll.png";
 import Benny from "assets/img/Benny.jpg";
 import FaceKendall from "assets/img/faces/kendall.jpg";
@@ -60,6 +62,7 @@ const AboutUs = () => {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
+          <SectionProcess />
           <SectionPricing />
           <SectionFeatures />
         </div>
@@ -68,24 +71,70 @@ const AboutUs = () => {
   );
 };
 
+const useStylesProcess = makeStyles(processStyle);
 
-// TODO make this happen
 const SectionProcess = () => {
-  const classes = useStyles();
+  const classes = useStylesProcess();
   return (
-    <div>
-      <h3 className={classes.textCenter}>From Farm to You</h3>
-      <Instruction
-        title="1. Farm the hemp"
-        text={
-          <span>
-            We farm our hemp sustainably and with care and love so that each
-            time we extract something from the hemp we get a little love with it
-            too.
-          </span>
-        }
-        image={Troll}
-      />
+    <div style={{ paddingTop: "8%" }}>
+      <h1 className={classes.textCenter}>From Farm to You</h1>
+      <GridContainer>
+        <GridItem xs={12} sm={6} md={6}>
+          <InfoArea
+            title="Farming"
+            description="Farming is the most important part of the process because you need hemp to make a product that is designed around the effects of hemp extract."
+            icon={AttachMoney}
+            iconColor="success"
+          />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <img className={classes.image} src={Troll} alt="Farming" />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <img className={classes.image} src={Troll} alt="Farming" />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <InfoArea
+            title="Farming"
+            description="Farming is the most important part of the process because you need hemp to make a product that is designed around the effects of hemp extract."
+            icon={AttachMoney}
+            iconColor="success"
+          />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <InfoArea
+            title="Farming"
+            description="Farming is the most important part of the process because you need hemp to make a product that is designed around the effects of hemp extract."
+            icon={AttachMoney}
+            iconColor="success"
+          />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <img className={classes.image} src={Troll} alt="Farming" />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <img className={classes.image} src={Troll} alt="Farming" />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <InfoArea
+            title="Farming"
+            description="Farming is the most important part of the process because you need hemp to make a product that is designed around the effects of hemp extract."
+            icon={AttachMoney}
+            iconColor="success"
+          />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <InfoArea
+            title="Farming"
+            description="Farming is the most important part of the process because you need hemp to make a product that is designed around the effects of hemp extract."
+            icon={AttachMoney}
+            iconColor="success"
+          />
+        </GridItem>
+        <GridItem xs={12} sm={6} md={6}>
+          <img className={classes.image} src={Troll} alt="Farming" />
+        </GridItem>
+      </GridContainer>
     </div>
   );
 };
@@ -250,20 +299,20 @@ function SectionPricing() {
               </h1>
               <ul>
                 <li>
-                  <b>1</b> Project
+                  <b>2/3</b> oz size
                 </li>
                 <li>
-                  <b>5</b> Team Members
+                  <b>No</b> odor
                 </li>
                 <li>
-                  <b>55</b> Personal Contacts
+                  <b>Powerful</b> sensations
                 </li>
                 <li>
-                  <b>5.000</b> Messages
+                  <b>Lab Tested</b> and Safe
                 </li>
               </ul>
               <Button href="#pablo" color="white" round>
-                Get started
+                Learn More
               </Button>
             </CardBody>
           </Card>
@@ -281,20 +330,20 @@ function SectionPricing() {
               </h1>
               <ul>
                 <li>
-                  <b>500</b> Project
+                  <b>2/3</b> oz size
                 </li>
                 <li>
-                  <b>50</b> Team Members
+                  <b>Minty Fresh</b> odor
                 </li>
                 <li>
-                  <b>125</b> Personal Contacts
+                  <b>Powerful</b> sensations
                 </li>
                 <li>
-                  <b>15.000</b> Messages
+                  <b>Lab Tested</b> and Safe
                 </li>
               </ul>
               <Button href="#pablo" color="white" round>
-                Get started
+                Learn More
               </Button>
             </CardBody>
           </Card>
@@ -312,20 +361,20 @@ function SectionPricing() {
               </h1>
               <ul>
                 <li>
-                  <b>1000</b> Project
+                  <b>2/3</b> oz size
                 </li>
                 <li>
-                  <b>100</b> Team Members
+                  <b>Minty Fresh</b> odor
                 </li>
                 <li>
-                  <b>550</b> Personal Contacts
+                  <b>Very Powerful</b> sensations
                 </li>
                 <li>
-                  <b>50.000</b> Messages
+                  <b>Lab Tested</b> and Safe
                 </li>
               </ul>
               <Button href="#pablo" color="white" round>
-                Get started
+                Learn More
               </Button>
             </CardBody>
           </Card>

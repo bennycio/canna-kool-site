@@ -43,7 +43,6 @@ import strongman from "assets/img/strongman.jpg";
 
 import Star from "@material-ui/icons/Star";
 
-
 import testimonialsStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/testimonialsStyle.js";
 
 import cardProfile1Square from "assets/img/faces/card-profile1-square.jpg";
@@ -369,28 +368,6 @@ const HomeFeatures = () => {
               description="There are no factories producing the CBD in Canna Kool products. Our products are farmed sustainably and with the consumer in mind."
               iconColor="primary"
             />
-          </GridItem>
-        </GridContainer>
-      </div>
-      <div className={classes.features3}>
-        <GridContainer justify="center" alignItems="center">
-          <GridItem className={classes.alternate} xs={12} sm={6} md={6}>
-            <h2 className={classes.title}>Potent Solution</h2>
-            <InfoArea
-              className={classes.infoArea}
-              icon={FlashOnIcon}
-              title="Over 9000"
-              description="Designed for people who want a powerful solution to body pain at a
-              price that makes it easy to feel good."
-              iconColor="primary"
-            />
-          </GridItem>
-          <GridItem xs={12} sm={6} md={6}>
-            <div className={classes.imgContainer}>
-              <LazyLoad>
-                <img src={strongman} alt="..." />
-              </LazyLoad>
-            </div>
           </GridItem>
         </GridContainer>
       </div>
