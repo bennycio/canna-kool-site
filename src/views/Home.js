@@ -10,13 +10,14 @@ import headersStyle from "assets/jss/material-kit-pro-react/views/sectionsSectio
 
 import headerBg from "assets/img/home.jpg";
 
+import styled from "styled-components";
+
 // @material-ui/icons
 import LocalPharmacyIcon from "@material-ui/icons/LocalPharmacy";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import PeopleIcon from "@material-ui/icons/People";
 import EcoIcon from "@material-ui/icons/Eco";
-import FlashOnIcon from "@material-ui/icons/FlashOn";
 import { FaBone, FaHeart } from "react-icons/fa";
 import { GiWaterFountain, GiBackPain, GiHealthNormal } from "react-icons/gi";
 import { RiMentalHealthFill } from "react-icons/ri";
@@ -61,6 +62,8 @@ import cardProject6 from "assets/img/examples/card-project6.jpg";
 
 import sectionPillsStyle from "assets/jss/material-kit-pro-react/views/blogPostsSections/sectionPillsStyle.js";
 import LazyLoad from "react-lazyload";
+import { useMediaQuery } from "@material-ui/core";
+import SmoothEntry from "components/SmoothEntry";
 
 const Home = () => {
   return (
@@ -77,7 +80,7 @@ const useStylesHeader = makeStyles(headersStyle);
 const HomeHeader = () => {
   const classes = useStylesHeader();
   return (
-    <>
+    <SmoothEntry>
       <div
         className={classes.pageHeader}
         style={{ backgroundImage: `url("${headerBg}")` }}
@@ -103,69 +106,69 @@ const HomeHeader = () => {
           </GridContainer>
         </div>
       </div>
-    </>
+    </SmoothEntry>
   );
 };
 
 const useStylesFeatures = makeStyles(featuresStyle);
-const useStylesImages = makeStyles(imagesStyles);
 const useStylesPills = makeStyles(sectionPillsStyle);
 
 const HomeFeatures = () => {
   const classes = useStylesFeatures();
-  const imageClasses = useStylesImages();
   const pillsClasses = useStylesPills();
   return (
     <>
-      <div className={classes.features1}>
-        <GridContainer>
-          <GridItem
-            xs={12}
-            sm={8}
-            md={8}
-            className={classes.mlAuto + " " + classes.mrAuto}
-          >
-            <h2 className={classes.title}>Introducing Canna Kool</h2>
-            <h3 className={classes.description}>
-              An all natural solution that makes it easy <br />
-              to get the relief that you need.
-            </h3>
-          </GridItem>
-        </GridContainer>
-        <GridContainer>
-          <GridItem xs={12} sm={4} md={4}>
-            <InfoArea
-              vertical
-              icon={LocalPharmacyIcon}
-              title="Lab Tested"
-              description="Developed sustainably with 100% natural ingredients and proven
+      <SmoothEntry>
+        <div className={classes.features1}>
+          <GridContainer>
+            <GridItem
+              xs={12}
+              sm={8}
+              md={8}
+              className={classes.mlAuto + " " + classes.mrAuto}
+            >
+              <h2 className={classes.title}>Introducing Canna Kool</h2>
+              <h3 className={classes.description}>
+                An all natural solution that makes it easy <br />
+                to get the relief that you need.
+              </h3>
+            </GridItem>
+          </GridContainer>
+          <GridContainer>
+            <GridItem xs={12} sm={4} md={4}>
+              <InfoArea
+                vertical
+                icon={LocalPharmacyIcon}
+                title="Lab Tested"
+                description="Developed sustainably with 100% natural ingredients and proven
               refinery techniques to provide a safe and satisfying experience."
-              iconColor="info"
-            />
-          </GridItem>
-          <GridItem xs={12} sm={4} md={4}>
-            <InfoArea
-              vertical
-              icon={MonetizationOnIcon}
-              title="Wallet Friendly"
-              description="Never overpay again for the relief that you deserve. Achieve
+                iconColor="info"
+              />
+            </GridItem>
+            <GridItem xs={12} sm={4} md={4}>
+              <InfoArea
+                vertical
+                icon={MonetizationOnIcon}
+                title="Wallet Friendly"
+                description="Never overpay again for the relief that you deserve. Achieve
               ultimate relaxation at a bargain with our product."
-              iconColor="success"
-            />
-          </GridItem>
-          <GridItem xs={12} sm={4} md={4}>
-            <InfoArea
-              vertical
-              icon={DirectionsRunIcon}
-              title="Powerful Results"
-              description="Over 100x stronger than the average CBD Roll-on and designed
+                iconColor="success"
+              />
+            </GridItem>
+            <GridItem xs={12} sm={4} md={4}>
+              <InfoArea
+                vertical
+                icon={DirectionsRunIcon}
+                title="Powerful Results"
+                description="Over 100x stronger than the average CBD Roll-on and designed
               with hard workers in mind, you won't find a more powerful relief
               solution."
-              iconColor="danger"
-            />
-          </GridItem>
-        </GridContainer>
-      </div>
+                iconColor="danger"
+              />
+            </GridItem>
+          </GridContainer>
+        </div>
+      </SmoothEntry>
       <div className={classes.subscribeContainer}>
         <GridContainer>
           <GridItem
@@ -216,58 +219,7 @@ const HomeFeatures = () => {
           </GridItem>
         </GridContainer>
       </div>
-      <div className={classes.container} style={{ marginTop: "3%" }}>
-        <Paper elevation={3} className={classes.textCenter}>
-          <GridContainer
-            justify="center"
-            alignItems="center"
-            style={{ padding: "0 5% 0 5%" }}
-          >
-            <GridItem xs={12} sm={4} md={4}>
-              <Card style={{ height: "30rem" }}>
-                <img
-                  style={{ height: "60%", width: "100%", display: "block" }}
-                  className={imageClasses.imgCardTop}
-                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                  alt="Card-img-cap"
-                />
-                <CardBody>
-                  <h3>Buy this one please</h3>
-                  <Button color="primary">Buy Now</Button>
-                </CardBody>
-              </Card>
-            </GridItem>
-            <GridItem xs={12} sm={4} md={4}>
-              <Card style={{ height: "30rem" }}>
-                <img
-                  style={{ height: "60%", width: "100%", display: "block" }}
-                  className={imageClasses.imgCardTop}
-                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                  alt="Card-img-cap"
-                />
-                <CardBody>
-                  <h3>No buy this one instead</h3>
-                  <Button color="primary">Buy Now</Button>
-                </CardBody>
-              </Card>
-            </GridItem>
-            <GridItem xs={12} sm={4} md={4}>
-              <Card style={{ height: "30rem" }}>
-                <img
-                  style={{ height: "60%", width: "100%", display: "block" }}
-                  className={imageClasses.imgCardTop}
-                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                  alt="Card-img-cap"
-                />
-                <CardBody>
-                  <h3>But wait, please pick me</h3>
-                  <Button color="primary">Buy Now</Button>
-                </CardBody>
-              </Card>
-            </GridItem>
-          </GridContainer>
-        </Paper>
-      </div>
+      <HomeProducts />
       <div className={classes.container}>
         <GridContainer>
           <GridItem xs={12} sm={6} md={6}>
@@ -660,6 +612,138 @@ const HomeTestamonials = () => {
       </div>
     </>
   );
+};
+
+const useStylesImages = makeStyles(imagesStyles);
+
+const HomeProducts = () => {
+  const isBig = useMediaQuery("(min-width: 600px)");
+  const classes = useStylesFeatures();
+  const imageClasses = useStylesImages();
+
+  const HorizontalScrollContainer = styled.div`
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding: "0 5% 0 5%";
+
+    .card {
+      display: inline-block;
+    }
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `;
+
+  if (isBig) {
+    return (
+      <div className={classes.container} style={{ marginTop: "3%" }}>
+        <Paper elevation={3} className={classes.textCenter}>
+          <GridContainer
+            justify="center"
+            alignItems="center"
+            style={{ padding: "0 5% 0 5%" }}
+          >
+            <GridItem xs={12} sm={4} md={4}>
+              <Card style={{ height: "30rem" }}>
+                <img
+                  style={{ height: "60%", width: "100%", display: "block" }}
+                  className={imageClasses.imgCardTop}
+                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+                  alt="Card-img-cap"
+                />
+                <CardBody>
+                  <h3>Buy this one please</h3>
+                  <Button color="primary">Buy Now</Button>
+                </CardBody>
+              </Card>
+            </GridItem>
+            <GridItem xs={12} sm={4} md={4}>
+              <Card style={{ height: "30rem" }}>
+                <img
+                  style={{ height: "60%", width: "100%", display: "block" }}
+                  className={imageClasses.imgCardTop}
+                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+                  alt="Card-img-cap"
+                />
+                <CardBody>
+                  <h3>No buy this one instead</h3>
+                  <Button color="primary">Buy Now</Button>
+                </CardBody>
+              </Card>
+            </GridItem>
+            <GridItem xs={12} sm={4} md={4}>
+              <Card style={{ height: "30rem" }}>
+                <img
+                  style={{ height: "60%", width: "100%", display: "block" }}
+                  className={imageClasses.imgCardTop}
+                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+                  alt="Card-img-cap"
+                />
+                <CardBody>
+                  <h3>But wait, please pick me</h3>
+                  <Button color="primary">Buy Now</Button>
+                </CardBody>
+              </Card>
+            </GridItem>
+          </GridContainer>
+        </Paper>
+      </div>
+    );
+  } else {
+    return (
+      <div className={classes.container} style={{ marginTop: "3%" }}>
+        <HorizontalScrollContainer className={classes.textCenter}>
+          <Card
+            style={{ height: "30rem", width: "80%", margin: "0 3% 0 3%" }}
+            className="card"
+          >
+            <img
+              style={{ height: "60%", width: "100%", display: "block" }}
+              className={imageClasses.imgCardTop}
+              src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+              alt="Card-img-cap"
+            />
+            <CardBody>
+              <h3>Buy this one please</h3>
+              <Button color="primary">Buy Now</Button>
+            </CardBody>
+          </Card>
+          <Card
+            style={{ height: "30rem", width: "80%", margin: "0 3% 0 3%" }}
+            className="card"
+          >
+            <img
+              style={{ height: "60%", width: "100%", display: "block" }}
+              className={imageClasses.imgCardTop}
+              src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+              alt="Card-img-cap"
+            />
+            <CardBody>
+              <h3>No buy this one instead</h3>
+              <Button color="primary">Buy Now</Button>
+            </CardBody>
+          </Card>
+          <Card
+            style={{ height: "30rem", width: "80%", margin: "0 3% 0 3%" }}
+            className="card"
+          >
+            <img
+              style={{ height: "60%", width: "100%", display: "block" }}
+              className={imageClasses.imgCardTop}
+              src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+              alt="Card-img-cap"
+            />
+            <CardBody>
+              <h3>But wait, please pick me</h3>
+              <Button color="primary">Buy Now</Button>
+            </CardBody>
+          </Card>
+        </HorizontalScrollContainer>
+      </div>
+    );
+  }
 };
 
 export default Home;

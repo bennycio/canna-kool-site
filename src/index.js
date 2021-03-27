@@ -209,10 +209,6 @@ const BigNavbar = () => {
   const isBig = useMediaQuery("(min-width: 600px)");
   const { x, y } = useWindowScroll();
 
-  useEffect(() => {
-    console.log(x, y);
-  }, [y]);
-
   return (
     isBig && (
       <Fade in={y > 700}>

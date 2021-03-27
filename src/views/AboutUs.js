@@ -36,6 +36,7 @@ import CardMembership from "@material-ui/icons/CardMembership";
 import CardGiftCard from "@material-ui/icons/CardGiftcard";
 import AttachMoney from "@material-ui/icons/AttachMoney";
 import QuestionAnswer from "@material-ui/icons/QuestionAnswer";
+import SmoothEntry from "components/SmoothEntry";
 
 const useStyles = makeStyles(aboutUsStyle);
 
