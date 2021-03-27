@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
-import { createBrowserHistory } from "history";
 import {
   BrowserRouter,
   Route,
@@ -130,15 +129,15 @@ const Navbar = () => {
       <div className="front">
         <ClickAwayListener onClickAway={unselectHamburger}>
           <div>
-            <input id="hamburger" class="hamburger" type="checkbox" />
-            <label class="hamburger" for="hamburger">
+            <input id="hamburger" className="hamburger" type="checkbox" />
+            <label className="hamburger" htmlFor="hamburger">
               <i />
-              <text>
-                <close>close</close>
-                <open>menu</open>
-              </text>
+              <div className="text">
+                <p className="close">close</p>
+                <p className="open">menu</p>
+              </div>
             </label>
-            <section class="drawer-list">
+            <section className="drawer-list">
               <ul>
                 <li>
                   <NavLink
@@ -276,8 +275,8 @@ const BigNavbar = () => {
 
 const Loading = () => {
   return (
-    <div class="loading-content">
-      <div class="loading">
+    <div className="loading-content">
+      <div className="loading">
         <p>loading</p>
         <span></span>
       </div>

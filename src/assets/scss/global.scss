@@ -123,11 +123,11 @@ input.hamburger {
           transform: translate(-50%, -50%) rotate(-315deg);
         }
       }
-      close {
+      .close {
         color: $text;
         width: 100%;
       }
-      open {
+      .open {
         color: rgba(0, 0, 0, 0);
         width: 0;
       }
@@ -144,9 +144,9 @@ label.hamburger {
   &:hover {
     cursor: pointer;
   }
-  text {
-    close,
-    open {
+  .text {
+    .close,
+    .open {
       text-transform: uppercase;
       font-size: 0.8em;
       text-align: center;
@@ -156,12 +156,12 @@ label.hamburger {
       overflow: hidden;
       transition: width 0.25s 0.35s, color 0.45s 0.35s;
     }
-    close {
+    .close {
       color: rgba(0, 0, 0, 0);
       right: 0;
       width: 0;
     }
-    open {
+    .open {
       color: $text;
       width: 100%;
     }

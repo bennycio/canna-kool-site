@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React, { useEffect, useContext, useState } from "react";
+import styled from "styled-components";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // core components
@@ -20,9 +21,6 @@ import prodcuctsStyles from "assets/jss/material-kit-pro-react/views/ecommerceSe
 import modalStyles from "assets/jss/material-kit-pro-react/modalStyle.js";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-// @material-ui icons
-import Mail from "@material-ui/icons/Mail";
 
 import storeStyles from "assets/jss/material-kit-pro-react/views/ecommerceStyle.js";
 
@@ -43,7 +41,7 @@ import {
 } from "react-square-payment-form";
 
 import { v4 as uuidv4 } from "uuid";
-import { useToggle } from "react-use";
+import { useToggle, useMap } from "react-use";
 import {
   Dialog,
   DialogTitle,
@@ -52,9 +50,11 @@ import {
   Input,
   Switch,
   TextField,
+  CircularProgress,
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import { BiCart } from "react-icons/bi";
+import Oil from "assets/img/oilbg.jpg";
 
 const useStyles = makeStyles(storeStyles);
 const useProductStyles = makeStyles(prodcuctsStyles);
@@ -88,7 +88,7 @@ const Store = () => {
   const productClasses = useProductStyles();
   return (
     <>
-      <Parallax image={require("assets/img/oilbg.jpg")} filter="dark" small>
+      <Parallax image={Oil} filter="dark" small>
         <div className={classes.container}>
           <GridContainer>
             <GridItem
@@ -393,8 +393,24 @@ const Checkout = () => {
   const classes = useModalStyles();
   const { cart, clear } = useContext(CartContext);
 
-  const [shippingDetails, setShippingDetails] = useState({});
-  const [billingDetails, setBillingDetails] = useState({});
+  const [
+    shippingDetails,
+    {
+      set: setShipping,
+      setAll: setAllShipping,
+      remove: removeShipping,
+      reset: resetShipping,
+    },
+  ] = useMap({});
+  const [
+    billingDetails,
+    {
+      set: setBilling,
+      setAll: setAllBilling,
+      remove: removeBilling,
+      reset: resetBilling,
+    },
+  ] = useMap({});
 
   const [isModalVisible, setIsModalVisible] = useToggle(false);
   const [isResultVisible, setResultVisible] = useToggle(false);
@@ -513,8 +529,8 @@ const Checkout = () => {
   }
 
   function resetCheckout() {
-    setShippingDetails({});
-    setBillingDetails({});
+    resetShipping();
+    resetBilling();
     setShippingAndBillingFilled(false);
   }
 
@@ -524,21 +540,9 @@ const Checkout = () => {
     }
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-    setResultVisible(true);
-    resetCheckout();
-  };
-
   const handleCancel = () => {
     setIsModalVisible(false);
     resetCheckout();
-  };
-
-  const handleOkResult = () => {
-    setResultVisible(false);
-    resetCheckout();
-    clear();
   };
 
   const handleCancelResult = () => {
@@ -547,225 +551,22 @@ const Checkout = () => {
     clear();
   };
 
-  const ShippingAndBillingForm = () => {
-    var shippingDetails = {};
-    var billingDetails = {};
-
-    const onFinish = () => {
-      setShippingDetails(shippingDetails);
-      if (shippingBillingEqual) {
-        billingDetails = shippingBillingEqual;
-      }
-      setBillingDetails(billingDetails);
-      setShippingAndBillingFilled(true);
-      console.log(shippingDetails);
-      console.log(billingDetails);
-    };
-
-    useEffect(() => {}, [shippingBillingEqual]);
-
-    const onSwitch = (e) => {
-      setShippingBillingEqual(e.target.checked);
-    };
-
-    return (
-      <form onSubmit={onFinish}>
-        <h4>Shipping Details</h4>
-        <TextField
-          autoFocus
-          required
-          margin="dense"
-          id="fname"
-          label="First Name"
-          fullWidth
-          onChange={(e) => (shippingDetails.first_name = e.target.value)}
-        />
-        <TextField
-          required
-          margin="dense"
-          id="lname"
-          label="Last Name"
-          fullWidth
-          onChange={(e) => (shippingDetails.last_name = e.target.value)}
-        />
-        <TextField
-          required
-          margin="dense"
-          id="email"
-          label="Email"
-          type="email"
-          fullWidth
-          onChange={(e) => (shippingDetails.email = e.target.value)}
-        />
-        <TextField
-          required
-          margin="dense"
-          id="add1"
-          label="Address Line 1"
-          fullWidth
-          onChange={(e) => (shippingDetails.address_line_1 = e.target.value)}
-        />
-        <TextField
-          margin="dense"
-          id="add2"
-          label="Address Line 2"
-          fullWidth
-          onChange={(e) => (shippingDetails.address_line_2 = e.target.value)}
-        />
-        <TextField
-          required
-          margin="dense"
-          id="city"
-          label="City"
-          type="city"
-          fullWidth
-          onChange={(e) => (shippingDetails.locality = e.target.value)}
-        />
-        <TextField
-          required
-          margin="dense"
-          id="state"
-          label="State"
-          fullWidth
-          onChange={(e) =>
-            (shippingDetails.administrative_district_1 = e.target.value)
-          }
-        />
-        <TextField
-          required
-          margin="dense"
-          id="zip"
-          label="Zip Code/Postal Code"
-          fullWidth
-          onChange={(e) => (shippingDetails.zip = e.target.value)}
-        />
-        {/*this makes everything go wrong :( */}
-        <FormControlLabel
-          control={
-            <Switch
-              checked={shippingBillingEqual}
-              onChange={onSwitch}
-              name="equal"
-              color="primary"
-            />
-          }
-          label="Billing same as Shipping?"
-        />
-        <h4>Billing Details</h4>
-        <TextField
-          autoFocus
-          required
-          margin="dense"
-          id="fname-billing"
-          label="First Name"
-          fullWidth
-          disabled={shippingBillingEqual}
-          onChange={(e) => (billingDetails.first_name = e.target.value)}
-        />
-        <TextField
-          required
-          margin="dense"
-          id="lname-billing"
-          label="Last Name"
-          fullWidth
-          disabled={shippingBillingEqual}
-          onChange={(e) => (billingDetails.last_name = e.target.value)}
-        />
-        <TextField
-          required
-          margin="dense"
-          id="add1-billing"
-          label="Address Line 1"
-          fullWidth
-          disabled={shippingBillingEqual}
-          onChange={(e) => (billingDetails.address_line_1 = e.target.value)}
-        />
-        <TextField
-          margin="dense"
-          id="add2-billing"
-          label="Address Line 2"
-          fullWidth
-          disabled={shippingBillingEqual}
-          onChange={(e) => (billingDetails.address_line_2 = e.target.value)}
-        />
-        <TextField
-          required
-          margin="dense"
-          id="city-billing"
-          label="City"
-          type="city"
-          fullWidth
-          disabled={shippingBillingEqual}
-          onChange={(e) => (billingDetails.locality = e.target.value)}
-        />
-        <TextField
-          required
-          margin="dense"
-          id="state-billing"
-          label="State"
-          fullWidth
-          disabled={shippingBillingEqual}
-          onChange={(e) =>
-            (billingDetails.administrative_district_1 = e.target.value)
-          }
-        />
-        <TextField
-          required
-          margin="dense"
-          id="zip-billing"
-          label="Zip Code/Postal Code"
-          fullWidth
-          disabled={shippingBillingEqual}
-          onChange={(e) => (billingDetails.zip = e.target.value)}
-        />
-        <Input type="submit">
-          <Button type="button" color="primary">
-            Submit
-          </Button>
-        </Input>
-      </form>
-    );
+  const onFinish = () => {
+    if (shippingBillingEqual) {
+      setAllBilling(shippingDetails);
+    }
+    setShippingAndBillingFilled(true);
   };
 
-  const CheckoutForm = () => {
-    return (
-      <SquarePaymentForm
-        sandbox={true}
-        applicationId={APPLICATION_ID}
-        locationId={LOCATION_ID}
-        cardNonceResponseReceived={cardNonceResponseReceived}
-        createPaymentRequest={createPaymentRequest}
-        createVerificationDetails={createVerificationDetails}
-        postalCode={postalCode}
-        focusField={focusField}
-      >
-        <div
-          style={{
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
-          <fieldset className="sq-fieldset">
-            <CreditCardNumberInput />
+  const onSwitch = (event) => {
+    setShippingBillingEqual(event.target.checked);
+  };
 
-            <div className="sq-form-third">
-              <CreditCardExpirationDateInput />
-            </div>
-
-            <div className="sq-form-third">
-              <CreditCardPostalCodeInput />
-            </div>
-
-            <div className="sq-form-third">
-              <CreditCardCVVInput />
-            </div>
-          </fieldset>
-          <CreditCardSubmitButton id="checkout-button">
-            Pay ${total}
-          </CreditCardSubmitButton>
-        </div>
-      </SquarePaymentForm>
-    );
+  const handleChangeShipping = (event, field) => {
+    setShipping(field, event.target.value);
+  };
+  const handleChangeBilling = (event, field) => {
+    setBilling(field, event.target.value);
   };
 
   return (
@@ -773,7 +574,6 @@ const Checkout = () => {
       <Button color="primary" onClick={showModal}>
         Checkout
       </Button>
-
       <Dialog
         classes={{
           root: classes.modalRoot,
@@ -782,7 +582,7 @@ const Checkout = () => {
         open={isModalVisible}
         TransitionComponent={Transition}
         keepMounted
-        scroll="paper"
+        scroll="body"
         onClose={handleCancel}
         aria-labelledby="large-modal-slide-title"
         aria-describedby="large-modal-slide-description"
@@ -802,9 +602,225 @@ const Checkout = () => {
         </DialogTitle>
         <DialogContent>
           {isShippingAndBillingFilled ? (
-            <CheckoutForm />
+            <SquarePaymentForm
+              sandbox={true}
+              applicationId={APPLICATION_ID}
+              locationId={LOCATION_ID}
+              cardNonceResponseReceived={cardNonceResponseReceived}
+              createPaymentRequest={createPaymentRequest}
+              createVerificationDetails={createVerificationDetails}
+              postalCode={postalCode}
+              focusField={focusField}
+            >
+              <div
+                style={{
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <fieldset className="sq-fieldset">
+                  <CreditCardNumberInput />
+
+                  <div className="sq-form-third">
+                    <CreditCardExpirationDateInput />
+                  </div>
+
+                  <div className="sq-form-third">
+                    <CreditCardPostalCodeInput />
+                  </div>
+
+                  <div className="sq-form-third">
+                    <CreditCardCVVInput />
+                  </div>
+                </fieldset>
+                <CreditCardSubmitButton id="checkout-button">
+                  {loading ? <CircularProgress color="primary"/> : "Pay $" + total}
+                </CreditCardSubmitButton>
+              </div>
+            </SquarePaymentForm>
           ) : (
-            <ShippingAndBillingForm />
+            <form onSubmit={onFinish} autoComplete="off">
+              <h4>Shipping Details</h4>
+              <TextField
+                autoComplete="off"
+                required
+                margin="dense"
+                id="fname"
+                label="First Name"
+                fullWidth
+                value={shippingDetails.first_name}
+                onChange={(e) => handleChangeShipping(e, "first_name")}
+              />
+              <TextField
+                autoComplete="off"
+                required
+                margin="dense"
+                id="lname"
+                label="Last Name"
+                fullWidth
+                value={shippingDetails.last_name}
+                onChange={(e) => handleChangeShipping(e, "last_name")}
+              />
+              <TextField
+                autoComplete="off"
+                required
+                margin="dense"
+                id="email"
+                label="Email"
+                type="email"
+                fullWidth
+                value={shippingDetails.email}
+                onChange={(e) => handleChangeShipping(e, "email")}
+              />
+              <TextField
+                autoComplete="off"
+                required
+                margin="dense"
+                id="add1"
+                label="Address Line 1"
+                fullWidth
+                value={shippingDetails.address_line_1}
+                onChange={(e) => handleChangeShipping(e, "address_line_1")}
+              />
+              <TextField
+                autoComplete="off"
+                margin="dense"
+                id="add2"
+                label="Address Line 2"
+                fullWidth
+                value={shippingDetails.address_line_2}
+                onChange={(e) => handleChangeShipping(e, "address_line_2")}
+              />
+              <TextField
+                autoComplete="off"
+                required
+                margin="dense"
+                id="city"
+                label="City"
+                type="city"
+                fullWidth
+                value={shippingDetails.locality}
+                onChange={(e) => handleChangeShipping(e, "locality")}
+              />
+              <TextField
+                autoComplete="off"
+                required
+                margin="dense"
+                id="state"
+                label="State"
+                fullWidth
+                value={shippingDetails.administrative_district_level_1}
+                onChange={(e) =>
+                  handleChangeShipping(e, "administrative_district_level_1")
+                }
+              />
+              <TextField
+                autoComplete="off"
+                required
+                margin="dense"
+                id="zip"
+                label="Zip Code/Postal Code"
+                fullWidth
+                value={shippingDetails.postal_code}
+                onChange={(e) => handleChangeShipping(e, "postal_code")}
+              />
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={shippingBillingEqual}
+                    onChange={onSwitch}
+                    name="equal"
+                    color="primary"
+                  />
+                }
+                label="Billing same as Shipping?"
+              />
+              <h4>Billing Details</h4>
+              <TextField
+                autoComplete="off"
+                required={!shippingBillingEqual}
+                margin="dense"
+                id="fname-billing"
+                label="First Name"
+                fullWidth
+                disabled={shippingBillingEqual}
+                value={billingDetails.first_name}
+                onChange={(e) => handleChangeBilling(e, "first_name")}
+              />
+              <TextField
+                autoComplete="off"
+                required={!shippingBillingEqual}
+                margin="dense"
+                id="lname-billing"
+                label="Last Name"
+                fullWidth
+                disabled={shippingBillingEqual}
+                value={billingDetails.last_name}
+                onChange={(e) => handleChangeBilling(e, "last_name")}
+              />
+              <TextField
+                autoComplete="off"
+                required={!shippingBillingEqual}
+                margin="dense"
+                id="add1-billing"
+                label="Address Line 1"
+                fullWidth
+                disabled={shippingBillingEqual}
+                value={billingDetails.address_line_1}
+                onChange={(e) => handleChangeBilling(e, "address_line_1")}
+              />
+              <TextField
+                autoComplete="off"
+                margin="dense"
+                id="add2-billing"
+                label="Address Line 2"
+                fullWidth
+                disabled={shippingBillingEqual}
+                value={billingDetails.address_line_2}
+                onChange={(e) => handleChangeBilling(e, "address_line_2")}
+              />
+              <TextField
+                autoComplete="off"
+                required={!shippingBillingEqual}
+                margin="dense"
+                id="city-billing"
+                label="City"
+                type="city"
+                fullWidth
+                disabled={shippingBillingEqual}
+                value={billingDetails.locality}
+                onChange={(e) => handleChangeBilling(e, "locality")}
+              />
+              <TextField
+                autoComplete="off"
+                required={!shippingBillingEqual}
+                margin="dense"
+                id="state-billing"
+                label="State"
+                fullWidth
+                disabled={shippingBillingEqual}
+                value={billingDetails.administrative_district_level_1}
+                onChange={(e) =>
+                  handleChangeBilling(e, "administrative_district_level_1")
+                }
+              />
+              <TextField
+                autoComplete="off"
+                required={!shippingBillingEqual}
+                margin="dense"
+                id="zip-billing"
+                label="Zip Code/Postal Code"
+                fullWidth
+                disabled={shippingBillingEqual}
+                value={billingDetails.postal_code}
+                onChange={(e) => handleChangeBilling(e, "postal_code")}
+              />
+              <Input type="submit">
+                <Button type="button" color="primary">
+                  Submit
+                </Button>
+              </Input>
+            </form>
           )}
         </DialogContent>
       </Dialog>

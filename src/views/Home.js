@@ -1,9 +1,6 @@
 import React from "react";
-// nodejs library that concatenates classes
 import classNames from "classnames";
-// react component for creating beautiful carousel
 import Carousel from "react-slick";
-// @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
 import headersStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/headersStyle.js";
@@ -12,7 +9,6 @@ import headerBg from "assets/img/home.jpg";
 
 import styled from "styled-components";
 
-// @material-ui/icons
 import LocalPharmacyIcon from "@material-ui/icons/LocalPharmacy";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
@@ -21,7 +17,7 @@ import EcoIcon from "@material-ui/icons/Eco";
 import { FaBone, FaHeart } from "react-icons/fa";
 import { GiWaterFountain, GiBackPain, GiHealthNormal } from "react-icons/gi";
 import { RiMentalHealthFill } from "react-icons/ri";
-// core components
+
 import {
   InfoArea,
   CustomInput,
@@ -51,10 +47,9 @@ import cardProfile4Square from "assets/img/faces/card-profile4-square.jpg";
 import cardProfile6Square from "assets/img/faces/card-profile6-square.jpg";
 import kendall from "assets/img/faces/kendall.jpg";
 import christian from "assets/img/faces/christian.jpg";
-import { Fade, Paper } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
 
 import imagesStyles from "assets/jss/material-kit-pro-react/imagesStyles.js";
-// @material-ui/icons
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
 import office2 from "assets/img/examples/office2.jpg";
 import blog8 from "assets/img/examples/blog8.jpg";
@@ -464,7 +459,9 @@ const HomeTestamonials = () => {
             <GridItem xs={12} sm={4} md={4}>
               <Card testimonial plain>
                 <CardAvatar testimonial plain>
-                  <img src={cardProfile1Square} alt="..." />
+                  <LazyLoad>
+                    <img src={cardProfile1Square} alt="..." />
+                  </LazyLoad>
                 </CardAvatar>
                 <CardBody plain>
                   <h4 className={classes.title}>Jimmy Neutron</h4>
@@ -482,7 +479,9 @@ const HomeTestamonials = () => {
             <GridItem xs={12} sm={4} md={4}>
               <Card testimonial plain>
                 <CardAvatar testimonial plain>
-                  <img src={cardProfile4Square} alt="..." />
+                  <LazyLoad>
+                    <img src={cardProfile4Square} alt="..." />
+                  </LazyLoad>
                 </CardAvatar>
                 <CardBody plain>
                   <h4 className={classes.title}>Sandy Cheeks</h4>
@@ -501,7 +500,9 @@ const HomeTestamonials = () => {
             <GridItem xs={12} sm={4} md={4}>
               <Card testimonial plain>
                 <CardAvatar testimonial plain>
-                  <img src={cardProfile6Square} alt="..." />
+                  <LazyLoad>
+                    <img src={cardProfile6Square} alt="..." />
+                  </LazyLoad>
                 </CardAvatar>
                 <CardBody plain>
                   <h4 className={classes.title}>Lois Griffin</h4>
@@ -535,7 +536,9 @@ const HomeTestamonials = () => {
                 <div>
                   <Card testimonial plain className={classes.card2}>
                     <CardAvatar testimonial plain>
-                      <img src={kendall} alt="..." />
+                      <LazyLoad>
+                        <img src={kendall} alt="..." />
+                      </LazyLoad>
                     </CardAvatar>
                     <CardBody plain>
                       <h5 className={classes.cardDescription}>
@@ -572,7 +575,9 @@ const HomeTestamonials = () => {
                 <div>
                   <Card testimonial plain className={classes.card2}>
                     <CardAvatar testimonial plain>
-                      <img src={christian} alt="..." />
+                      <LazyLoad>
+                        <img src={christian} alt="..." />
+                      </LazyLoad>
                     </CardAvatar>
                     <CardBody plain>
                       <h5 className={classes.cardDescription}>
@@ -636,6 +641,16 @@ const HomeProducts = () => {
     }
   `;
 
+  const LazyImage = styled(LazyLoad)`
+    height: 100%;
+    width: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+      display: "block";
+    }
+  `;
+
   if (isBig) {
     return (
       <div className={classes.container} style={{ marginTop: "3%" }}>
@@ -647,12 +662,13 @@ const HomeProducts = () => {
           >
             <GridItem xs={12} sm={4} md={4}>
               <Card style={{ height: "30rem" }}>
-                <img
-                  style={{ height: "60%", width: "100%", display: "block" }}
-                  className={imageClasses.imgCardTop}
-                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                  alt="Card-img-cap"
-                />
+                <LazyImage>
+                  <img
+                    className={imageClasses.imgCardTop}
+                    src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                    alt="Card-img-cap"
+                  />
+                </LazyImage>
                 <CardBody>
                   <h3>Buy this one please</h3>
                   <Button color="primary">Buy Now</Button>
@@ -661,12 +677,13 @@ const HomeProducts = () => {
             </GridItem>
             <GridItem xs={12} sm={4} md={4}>
               <Card style={{ height: "30rem" }}>
-                <img
-                  style={{ height: "60%", width: "100%", display: "block" }}
-                  className={imageClasses.imgCardTop}
-                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                  alt="Card-img-cap"
-                />
+                <LazyImage>
+                  <img
+                    className={imageClasses.imgCardTop}
+                    src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                    alt="Card-img-cap"
+                  />
+                </LazyImage>
                 <CardBody>
                   <h3>No buy this one instead</h3>
                   <Button color="primary">Buy Now</Button>
@@ -675,12 +692,13 @@ const HomeProducts = () => {
             </GridItem>
             <GridItem xs={12} sm={4} md={4}>
               <Card style={{ height: "30rem" }}>
-                <img
-                  style={{ height: "60%", width: "100%", display: "block" }}
-                  className={imageClasses.imgCardTop}
-                  src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
-                  alt="Card-img-cap"
-                />
+                <LazyImage>
+                  <img
+                    className={imageClasses.imgCardTop}
+                    src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                    alt="Card-img-cap"
+                  />
+                </LazyImage>
                 <CardBody>
                   <h3>But wait, please pick me</h3>
                   <Button color="primary">Buy Now</Button>
@@ -702,7 +720,7 @@ const HomeProducts = () => {
             <img
               style={{ height: "60%", width: "100%", display: "block" }}
               className={imageClasses.imgCardTop}
-              src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+              src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
               alt="Card-img-cap"
             />
             <CardBody>
@@ -717,7 +735,7 @@ const HomeProducts = () => {
             <img
               style={{ height: "60%", width: "100%", display: "block" }}
               className={imageClasses.imgCardTop}
-              src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+              src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
               alt="Card-img-cap"
             />
             <CardBody>
@@ -732,7 +750,7 @@ const HomeProducts = () => {
             <img
               style={{ height: "60%", width: "100%", display: "block" }}
               className={imageClasses.imgCardTop}
-              src="https://images.unsplash.com/photo-1517303650219-83c8b1788c4c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd4c162d27ea317ff8c67255e955e3c8&auto=format&fit=crop&w=2691&q=80"
+              src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
               alt="Card-img-cap"
             />
             <CardBody>
