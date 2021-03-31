@@ -122,7 +122,7 @@ const Navbar = () => {
     document.getElementById("hamburger").checked = false;
   };
 
-  const isShown = useHamburger(500);
+  const isShown = useHamburger(450);
 
   return (
     <Fade in={isShown}>
@@ -210,7 +210,7 @@ const BigNavbar = () => {
 
   return (
     isBig && (
-      <Fade in={y > 700}>
+      <Fade in={y > 450}>
         <div className="front">
           <Header
             brand="Canna Kool"
@@ -222,7 +222,7 @@ const BigNavbar = () => {
                 <ListItem className={classes.listItem}>
                   <NavLink
                     to="/"
-                    className={classes.navLink}
+                    className={classes.textCenter}
                     style={{ color: "white" }}
                   >
                     Home
@@ -231,7 +231,7 @@ const BigNavbar = () => {
                 <ListItem className={classes.listItem}>
                   <NavLink
                     to="/store"
-                    className={classes.navLink}
+                    className={classes.textCenter}
                     style={{ color: "white" }}
                   >
                     Store
@@ -240,7 +240,7 @@ const BigNavbar = () => {
                 <ListItem className={classes.listItem}>
                   <NavLink
                     to="/aboutus"
-                    className={classes.navLink}
+                    className={classes.textCenter}
                     style={{ color: "white" }}
                   >
                     About
@@ -249,7 +249,7 @@ const BigNavbar = () => {
                 <ListItem className={classes.listItem}>
                   <NavLink
                     to="/blog"
-                    className={classes.navLink}
+                    className={classes.textCenter}
                     style={{ color: "white" }}
                   >
                     Blog
@@ -258,7 +258,7 @@ const BigNavbar = () => {
                 <ListItem className={classes.listItem}>
                   <NavLink
                     to="/labresults"
-                    className={classes.navLink}
+                    className={classes.textCenter}
                     style={{ color: "white" }}
                   >
                     Lab Results

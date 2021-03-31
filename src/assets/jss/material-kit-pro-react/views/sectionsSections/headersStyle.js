@@ -89,6 +89,8 @@ const headersSection = () => ({
   },
   list: {
     display: "inline",
+    alignItems: "center",
+    justifyContent: "center",
   },
   listItem: {
     display: "inline",
