@@ -652,7 +652,16 @@ const HomeProducts = () => {
   `;
 
   const ProductCard = styled(Card)`
-    height: "30rem";
+    height: 30rem;
+    width: 100%;
+    background: white;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0;
+    transform: scale(0.95);
+    transition: box-shadow 0.5s, transform 0.5s;
     &:hover {
       transform: scale(1);
       box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
@@ -660,9 +669,16 @@ const HomeProducts = () => {
   `;
 
   const ProductCardMobile = styled(Card)`
-    height: "30rem";
-    width: "80%";
+    height: 30rem;
+    width: 80%;
     margin: "0 3% 0 3%";
+    background: white;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0;
+    transform: scale(0.95);
+    transition: box-shadow 0.5s, transform 0.5s;
     &:hover {
       transform: scale(1);
       box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);

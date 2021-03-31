@@ -122,7 +122,7 @@ const Navbar = () => {
     document.getElementById("hamburger").checked = false;
   };
 
-  const isShown = useHamburger(450);
+  const isShown = useHamburger(350);
 
   return (
     <Fade in={isShown}>
@@ -210,7 +210,7 @@ const BigNavbar = () => {
 
   return (
     isBig && (
-      <Fade in={y > 450}>
+      <Fade in={y > 350}>
         <div className="front">
           <Header
             brand="Canna Kool"
