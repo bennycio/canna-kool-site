@@ -288,7 +288,7 @@ const HomeFeatures = () => {
           </GridItem>
         </GridContainer>
       </div>
-      <div className={classes.features3}>
+      {/* <div className={classes.features3}>
         <GridContainer justify="center" alignItems="center">
           <GridItem xs={12} sm={6} md={6}>
             <div className={classes.imgContainer}>
@@ -317,8 +317,8 @@ const HomeFeatures = () => {
             />
           </GridItem>
         </GridContainer>
-      </div>
-      <div className={classes.features5}>
+      </div> */}
+      {/* <div className={classes.features5}>
         <GridContainer>
           <GridItem
             xs={12}
@@ -422,7 +422,7 @@ const HomeFeatures = () => {
             </GridContainer>
           </div>
         </GridContainer>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -122,7 +122,7 @@ const Navbar = () => {
     document.getElementById("hamburger").checked = false;
   };
 
-  const isShown = useHamburger(700);
+  const isShown = useHamburger(500);
 
   return (
     <Fade in={isShown}>
