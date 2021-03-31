@@ -174,8 +174,8 @@ const HomeFeatures = () => {
           >
             <div className={classes.textCenter}>
               <h3 className={classes.title}>
-                Subscribe to our Newsletter for <br /> weekly discounts on all
-                products!
+                Subscribe to our Newsletter for <br />
+                immediate discounts on all products!
               </h3>
             </div>
             <Card raised>
@@ -626,20 +626,16 @@ const HomeProducts = () => {
   const classes = useStylesFeatures();
   const imageClasses = useStylesImages();
 
-  const HorizontalScrollContainer = styled.div`
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding: "0 5% 0 5%";
-
-    .card {
-      display: inline-block;
-    }
-    -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  `;
+  const settings = {
+    infinite: true,
+    speed: 20000,
+    autoplaySpeed: 0,
+    arrows: false,
+    cssEase: "linear",
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+  };
 
   const LazyImage = styled(LazyLoad)`
     height: 100%;
@@ -685,68 +681,174 @@ const HomeProducts = () => {
     }
   `;
 
+  const HorizontalScrollContainer = styled.div`
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    ${ProductCardMobile} {
+      display: inline-block;
+    }
+
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `;
+
+  const CarouselContainer = styled.div`
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+  `;
+
   if (isBig) {
     return (
-      <div className={classes.container} style={{ marginTop: "3%" }}>
-        <GridContainer
-          justify="center"
-          alignItems="center"
-          style={{ padding: "0 5% 0 5%" }}
-          className={classes.textCenter}
-        >
-          <GridItem xs={12} sm={4} md={4}>
-            <ProductCard>
-              <LazyImage>
-                <img
-                  className={imageClasses.imgCardTop}
-                  src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
-                  alt="Card-img-cap"
-                />
-              </LazyImage>
-              <CardBody>
-                <h3>Buy this one please</h3>
-                <Button color="primary">Buy Now</Button>
-              </CardBody>
-            </ProductCard>
-          </GridItem>
-          <GridItem xs={12} sm={4} md={4}>
-            <ProductCard>
-              <LazyImage>
-                <img
-                  className={imageClasses.imgCardTop}
-                  src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
-                  alt="Card-img-cap"
-                />
-              </LazyImage>
-              <CardBody>
-                <h3>No buy this one instead</h3>
-                <Button color="primary">Buy Now</Button>
-              </CardBody>
-            </ProductCard>
-          </GridItem>
-          <GridItem xs={12} sm={4} md={4}>
-            <ProductCard>
-              <LazyImage>
-                <img
-                  className={imageClasses.imgCardTop}
-                  src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
-                  alt="Card-img-cap"
-                />
-              </LazyImage>
-              <CardBody>
-                <h3>But wait, please pick me</h3>
-                <Button color="primary">Buy Now</Button>
-              </CardBody>
-            </ProductCard>
-          </GridItem>
-        </GridContainer>
-      </div>
+      <CarouselContainer style={{ marginTop: "3%" }}>
+        <Carousel {...settings}>
+          <CarouselContainer>
+            <GridContainer
+              justify="center"
+              alignItems="center"
+              className={classes.textCenter}
+            >
+              <GridItem xs={12} sm={3} md={3}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>Buy this one please</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={3} md={3}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>No buy this one instead</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={3} md={3}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>But wait, please pick me</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={3} md={3}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>But wait, please pick me</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+            </GridContainer>
+          </CarouselContainer>
+          <CarouselContainer>
+            <GridContainer
+              justify="center"
+              alignItems="center"
+              className={classes.textCenter}
+            >
+              <GridItem xs={12} sm={3} md={3}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>Buy this one please</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={3} md={3}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>No buy this one instead</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={3} md={3}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>But wait, please pick me</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={3} md={3}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>But wait, please pick me</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+            </GridContainer>
+          </CarouselContainer>
+        </Carousel>
+      </CarouselContainer>
     );
   } else {
     return (
       <div className={classes.container} style={{ marginTop: "3%" }}>
         <HorizontalScrollContainer className={classes.textCenter}>
-          <ProductCardMobile className="card">
+          <ProductCardMobile>
             <img
               style={{ height: "60%", width: "100%", display: "block" }}
               className={imageClasses.imgCardTop}
@@ -758,7 +860,7 @@ const HomeProducts = () => {
               <Button color="primary">Buy Now</Button>
             </CardBody>
           </ProductCardMobile>
-          <ProductCardMobile className="card">
+          <ProductCardMobile>
             <img
               style={{ height: "60%", width: "100%", display: "block" }}
               className={imageClasses.imgCardTop}
@@ -770,7 +872,7 @@ const HomeProducts = () => {
               <Button color="primary">Buy Now</Button>
             </CardBody>
           </ProductCardMobile>
-          <ProductCardMobile className="card">
+          <ProductCardMobile>
             <img
               style={{ height: "60%", width: "100%", display: "block" }}
               className={imageClasses.imgCardTop}

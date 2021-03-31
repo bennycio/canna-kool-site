@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,6 +18,7 @@ const useStylesFooter = makeStyles(footerStyles);
 
 const PageFooter = () => {
   const classes = useStylesFooter();
+
   return (
     <>
       <Footer
@@ -92,8 +93,8 @@ const PageFooter = () => {
             <GridItem xs={12} sm={3} md={3}>
               <h5>Subscribe to Newsletter</h5>
               <p>
-                Join our newsletter and get news in your inbox every week! We
-                hate spam too, so no worries about this.
+                Join our newsletter and get discounts immediately upon signing
+                up!
               </p>
               <form>
                 <CustomInput

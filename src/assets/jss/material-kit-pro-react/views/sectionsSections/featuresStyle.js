@@ -5,6 +5,7 @@ import {
   mrAuto,
   title,
   description,
+  containerFluid,
   blackColor,
   whiteColor,
   hexToRgb
@@ -12,6 +13,7 @@ import {
 
 const features = {
   container,
+  containerFluid,
   mlAuto,
   mrAuto,
   title,

@@ -13,6 +13,7 @@ import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
 import { Header } from "@bennycio/material-ui-pro";
+import styled from "styled-components";
 
 import {
   ClickAwayListener,
@@ -29,6 +30,7 @@ import PageFooter from "components/PageFooter";
 import useHamburger from "hooks/useHamburger";
 
 import headersStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/headersStyle.js";
+import TimerPopup from "components/TimerPopup";
 
 const Home = lazy(() => import("./views/Home"));
 const Store = lazy(() => import("./views/Store"));
@@ -110,6 +112,7 @@ const App = () => {
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/contact" component={Contact} />
           </Switch>
+          <TimerPopup />
           <PageFooter />
         </Suspense>
       </CartContext.Provider>
@@ -208,15 +211,63 @@ const BigNavbar = () => {
   const isBig = useMediaQuery("(min-width: 600px)");
   const { x, y } = useWindowScroll();
 
+  const HeaderContainer = styled.div`
+    width: 100%;
+    height: 4rem;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    display: inline-flex;
+    vertical-align: middle;
+    color: white;
+    background: #05c7f2;
+    position: fixed;
+    z-index: 10000;
+
+    .list-item {
+      margin: auto 0;
+      font-size: 1.3rem;
+    }
+  `;
+
   return (
     isBig && (
       <Fade in={y > 350}>
         <div className="front">
-          <Header
+          <HeaderContainer>
+            <List className={classes.list + " " + classes.mlAuto}>
+              <ListItem className={classes.listItem + " list-item"}>
+                <NavLink to="/" style={{ color: "white" }}>
+                  Home
+                </NavLink>
+              </ListItem>
+              <ListItem className={classes.listItem + " list-item"}>
+                <NavLink to="/store" style={{ color: "white" }}>
+                  Store
+                </NavLink>
+              </ListItem>
+              <ListItem className={classes.listItem + " list-item"}>
+                <NavLink to="/aboutus" style={{ color: "white" }}>
+                  About
+                </NavLink>
+              </ListItem>
+              <ListItem className={classes.listItem + " list-item"}>
+                <NavLink to="/blog" style={{ color: "white" }}>
+                  Blog
+                </NavLink>
+              </ListItem>
+              <ListItem className={classes.listItem + " list-item"}>
+                <NavLink to="/labresults" style={{ color: "white" }}>
+                  Lab Results
+                </NavLink>
+              </ListItem>
+            </List>
+          </HeaderContainer>
+          {/* <Header
             brand="Canna Kool"
             color="primary"
             fixed
-            style={{ width: "100%" }}
+            style={{ width: "100%", alignItems: "center", textAlign: "center" }}
             links={
               <List className={classes.list + " " + classes.mlAuto}>
                 <ListItem className={classes.listItem}>
@@ -266,7 +317,7 @@ const BigNavbar = () => {
                 </ListItem>
               </List>
             }
-          />
+          /> */}
         </div>
       </Fade>
     )
