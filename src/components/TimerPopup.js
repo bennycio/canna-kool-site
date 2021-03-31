@@ -14,22 +14,25 @@ const TimerPopup = () => {
     }, 30e3);
   }, []);
 
+  const onClose = () => {
+      toggle(false)
+  }
+
   return (
-    <Snackbar open={complete} TransitionComponent={Slide}>
+    <Snackbar open={complete} TransitionComponent={Slide} onClose={onClose}>
       <Button
         color="transparent"
         style={{ textAlign: "center", padding: "0", margin: "0" }}
       >
         <SnackbarContent
           message={
-            <h5>
+            <p style={{fontSize: "0.9rem"}}>
               <b>
                 <LocalAtmIcon /> Hey Buddy! Click here for some legendary once
                 in a lifetime deals!
               </b>
-            </h5>
+            </p>
           }
-          close
           color="info"
         />
       </Button>

@@ -876,6 +876,51 @@ const HomeProducts = () => {
               <Button color="primary">Buy Now</Button>
             </CardBody>
           </Card>
+          <Card
+            style={{ height: "30rem", width: "80%", margin: "0 3% 0 3%" }}
+            className="card"
+          >
+            <img
+              style={{ height: "60%", width: "100%", display: "block" }}
+              className={imageClasses.imgCardTop}
+              src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+              alt="Card-img-cap"
+            />
+            <CardBody>
+              <h3>Buy this one please</h3>
+              <Button color="primary">Buy Now</Button>
+            </CardBody>
+          </Card>
+          <Card
+            style={{ height: "30rem", width: "80%", margin: "0 3% 0 3%" }}
+            className="card"
+          >
+            <img
+              style={{ height: "60%", width: "100%", display: "block" }}
+              className={imageClasses.imgCardTop}
+              src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+              alt="Card-img-cap"
+            />
+            <CardBody>
+              <h3>No buy this one instead</h3>
+              <Button color="primary">Buy Now</Button>
+            </CardBody>
+          </Card>
+          <Card
+            style={{ height: "30rem", width: "80%", margin: "0 3% 0 3%" }}
+            className="card"
+          >
+            <img
+              style={{ height: "60%", width: "100%", display: "block" }}
+              className={imageClasses.imgCardTop}
+              src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+              alt="Card-img-cap"
+            />
+            <CardBody>
+              <h3>But wait, please pick me</h3>
+              <Button color="primary">Buy Now</Button>
+            </CardBody>
+          </Card>
         </HorizontalScrollContainer>
       </div>
     );
