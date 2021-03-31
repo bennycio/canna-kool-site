@@ -664,31 +664,14 @@ const HomeProducts = () => {
     }
   `;
 
-  const ProductCardMobile = styled(Card)`
-    height: 30rem;
-    width: 80%;
-    margin: "0 3% 0 3%";
-    background: white;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0;
-    transform: scale(0.95);
-    transition: box-shadow 0.5s, transform 0.5s;
-    &:hover {
-      transform: scale(1);
-      box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
-    }
-  `;
-
   const HorizontalScrollContainer = styled.div`
     overflow-x: scroll;
     overflow-y: hidden;
-
-    ${ProductCardMobile} {
+    white-space: nowrap;
+    padding: "0 5% 0 5%";
+    .card {
       display: inline-block;
     }
-
     -webkit-overflow-scrolling: touch;
     &::-webkit-scrollbar {
       display: none;
@@ -848,7 +831,10 @@ const HomeProducts = () => {
     return (
       <div className={classes.container} style={{ marginTop: "3%" }}>
         <HorizontalScrollContainer className={classes.textCenter}>
-          <ProductCardMobile>
+          <Card
+            style={{ height: "30rem", width: "80%", margin: "0 3% 0 3%" }}
+            className="card"
+          >
             <img
               style={{ height: "60%", width: "100%", display: "block" }}
               className={imageClasses.imgCardTop}
@@ -859,8 +845,11 @@ const HomeProducts = () => {
               <h3>Buy this one please</h3>
               <Button color="primary">Buy Now</Button>
             </CardBody>
-          </ProductCardMobile>
-          <ProductCardMobile>
+          </Card>
+          <Card
+            style={{ height: "30rem", width: "80%", margin: "0 3% 0 3%" }}
+            className="card"
+          >
             <img
               style={{ height: "60%", width: "100%", display: "block" }}
               className={imageClasses.imgCardTop}
@@ -871,8 +860,11 @@ const HomeProducts = () => {
               <h3>No buy this one instead</h3>
               <Button color="primary">Buy Now</Button>
             </CardBody>
-          </ProductCardMobile>
-          <ProductCardMobile>
+          </Card>
+          <Card
+            style={{ height: "30rem", width: "80%", margin: "0 3% 0 3%" }}
+            className="card"
+          >
             <img
               style={{ height: "60%", width: "100%", display: "block" }}
               className={imageClasses.imgCardTop}
@@ -883,7 +875,7 @@ const HomeProducts = () => {
               <h3>But wait, please pick me</h3>
               <Button color="primary">Buy Now</Button>
             </CardBody>
-          </ProductCardMobile>
+          </Card>
         </HorizontalScrollContainer>
       </div>
     );
