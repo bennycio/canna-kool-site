@@ -35,12 +35,14 @@ import AttachMoney from "@material-ui/icons/AttachMoney";
 import QuestionAnswer from "@material-ui/icons/QuestionAnswer";
 import SmoothEntry from "components/SmoothEntry";
 
+import bg from "assets/img/hexs.webp";
+
 const useStyles = makeStyles(aboutUsStyle);
 
 const AboutUs = () => {
   const classes = useStyles();
   return (
-    <>
+    <body>
       <Parallax image={Troll} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
@@ -58,14 +60,21 @@ const AboutUs = () => {
           </GridContainer>
         </div>
       </Parallax>
-      <div className={classNames(classes.main, classes.mainRaised)}>
+      <div
+        className={classNames(classes.main, classes.mainRaised)}
+        style={{
+          backgroundImage: "url(" + bg + ")",
+          backgroundRepeat: "repeat-y",
+          backgroundSize: "100% 40%",
+        }}
+      >
         <div className={classes.container}>
           <SectionProcess />
           <SectionPricing />
           <SectionFeatures />
         </div>
       </div>
-    </>
+    </body>
   );
 };
 

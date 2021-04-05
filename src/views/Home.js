@@ -59,14 +59,21 @@ import sectionPillsStyle from "assets/jss/material-kit-pro-react/views/blogPosts
 import LazyLoad from "react-lazyload";
 import { useMediaQuery } from "@material-ui/core";
 import SmoothEntry from "components/SmoothEntry";
+import bg from "assets/img/hexs.webp";
 
 const Home = () => {
   return (
-    <>
+    <body
+      style={{
+        backgroundImage: "url(" + bg + ")",
+        backgroundRepeat: "repeat-y",
+        backgroundSize: "100% 60%",
+      }}
+    >
       <HomeHeader />
       <HomeFeatures />
       <HomeTestamonials />
-    </>
+    </body>
   );
 };
 
