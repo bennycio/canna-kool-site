@@ -101,7 +101,7 @@ const Store = () => {
               )}
             >
               <div className={classes.brand}>
-                <h1 className={classes.title}>Our Products</h1>
+                <h1 className={classes.title}>Canna Kool Products</h1>
               </div>
             </GridItem>
           </GridContainer>
@@ -634,7 +634,11 @@ const Checkout = () => {
                   </div>
                 </fieldset>
                 <CreditCardSubmitButton id="checkout-button">
-                  {loading ? <CircularProgress color="primary"/> : "Pay $" + total}
+                  {loading ? (
+                    <CircularProgress color="primary" />
+                  ) : (
+                    "Pay $" + total
+                  )}
                 </CreditCardSubmitButton>
               </div>
             </SquarePaymentForm>
