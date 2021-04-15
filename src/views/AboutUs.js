@@ -12,8 +12,11 @@ import {
   CardAvatar,
   CardBody,
   CardFooter,
+  CardHeader,
   Button,
   InfoArea,
+  Info,
+  Danger,
 } from "@bennycio/material-ui-pro";
 // sections for this page
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
@@ -23,6 +26,8 @@ import featuresStyle from "assets/jss/material-kit-pro-react/views/pricingSectio
 import pricingStyle from "assets/jss/material-kit-pro-react/views/pricingSections/pricingStyle.js";
 
 import processStyle from "assets/jss/material-kit-pro-react/views/processStyle.js";
+
+import blogsStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/blogsStyle.js";
 
 import Troll from "assets/img/troll.png";
 import Benny from "assets/img/Benny.jpg";
@@ -34,6 +39,7 @@ import CardGiftCard from "@material-ui/icons/CardGiftcard";
 import AttachMoney from "@material-ui/icons/AttachMoney";
 import QuestionAnswer from "@material-ui/icons/QuestionAnswer";
 import SmoothEntry from "components/SmoothEntry";
+import TrendingUp from "@material-ui/icons/TrendingUp";
 
 import bg from "assets/img/hexs.webp";
 
@@ -55,7 +61,9 @@ const AboutUs = () => {
                 classes.textCenter
               )}
             >
-              <h1 className={classes.title}>About Us</h1>
+              <h1 className={classes.title} style={{ fontSize: "3em" }}>
+                About Us
+              </h1>
             </GridItem>
           </GridContainer>
         </div>
@@ -72,6 +80,7 @@ const AboutUs = () => {
           <SectionProcess />
           <SectionPricing />
           <SectionFeatures />
+          <SectionBlogs />
         </div>
       </div>
     </body>
@@ -319,5 +328,116 @@ function SectionFeatures() {
     </div>
   );
 }
+
+const useBlogStyles = makeStyles(blogsStyle);
+
+const SectionBlogs = () => {
+  const classes = useBlogStyles();
+  return (
+    <div className={classes.blog}>
+      <div className={classes.container}>
+        <GridContainer>
+          <GridItem
+            xs={12}
+            sm={10}
+            md={10}
+            className={classes.mlAuto + " " + classes.mrAuto}
+          >
+            <h2 className={classes.title}>Latest Blogposts</h2>
+            <br />
+            <Card plain blog className={classes.card}>
+              <GridContainer>
+                <GridItem xs={12} sm={5} md={5}>
+                  <CardHeader image plain>
+                    <a href="#pablito" onClick={(e) => e.preventDefault()}>
+                      <img src={Troll} alt="..." />
+                    </a>
+                    <div
+                      className={classes.coloredShadow}
+                      style={{
+                        backgroundImage: `url(${Troll})`,
+                        opacity: "1",
+                      }}
+                    />
+                  </CardHeader>
+                </GridItem>
+                <GridItem xs={12} sm={7} md={7}>
+                  <Info>
+                    <h6 className={classes.cardCategory}>Relax</h6>
+                  </Info>
+                  <h3 className={classes.cardTitle}>
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      What does it feel like to chill?
+                    </a>
+                  </h3>
+                  <p className={classes.description1}>
+                    We tried every CBD roll-on in the public market and
+                    determined what really makes Canna-Kool so relaxing when
+                    compared to every other product. You won't believe the
+                    results!
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      {" "}
+                      Read More{" "}
+                    </a>
+                  </p>
+                  <p className={classes.author}>
+                    by{" "}
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      <b>John Cena</b>
+                    </a>{" "}
+                    , 2 days ago
+                  </p>
+                </GridItem>
+              </GridContainer>
+            </Card>
+            <Card plain blog className={classes.card}>
+              <GridContainer>
+                <GridItem xs={12} sm={7} md={7}>
+                  <Danger>
+                    <h6 className={classes.cardCategory}>Health</h6>
+                  </Danger>
+                  <h3 className={classes.cardTitle}>
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      What Canna Kool REALLY does for your muscles
+                    </a>
+                  </h3>
+                  <p className={classes.description1}>
+                    It seeps into your muscles and makes them relax. That's it.
+                    That's the secret.
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      {" "}
+                      Read More{" "}
+                    </a>
+                  </p>
+                  <p className={classes.author}>
+                    by{" "}
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      <b>Michael Scott</b>
+                    </a>{" "}
+                    , 2 days ago
+                  </p>
+                </GridItem>
+                <GridItem xs={12} sm={5} md={5}>
+                  <CardHeader image plain>
+                    <a href="#pablito" onClick={(e) => e.preventDefault()}>
+                      <img src={Troll} alt="..." />
+                    </a>
+                    <div
+                      className={classes.coloredShadow}
+                      style={{
+                        backgroundImage: `url(${Troll})`,
+                        opacity: "1",
+                      }}
+                    />
+                  </CardHeader>
+                </GridItem>
+              </GridContainer>
+            </Card>
+          </GridItem>
+        </GridContainer>
+      </div>
+    </div>
+  );
+};
 
 export default AboutUs;

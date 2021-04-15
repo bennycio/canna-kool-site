@@ -36,6 +36,7 @@ const Home = lazy(() => import("./views/Home"));
 const Store = lazy(() => import("./views/Store"));
 const AboutUs = lazy(() => import("./views/AboutUs"));
 const Contact = lazy(() => import("./views/Contact"));
+const LabResults = lazy(() => import("./views/LabResults"));
 
 export const CartContext = createContext({
   cart: [],
@@ -111,6 +112,7 @@ const App = () => {
             <Route exact path="/store" component={Store} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/contact" component={Contact} />
+            <Route exact path="/labresults" component={LabResults} />
           </Switch>
           <TimerPopup />
           <PageFooter />
@@ -167,15 +169,6 @@ const Navbar = () => {
                     onClick={unselectHamburger}
                   >
                     About Us
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="nav-item"
-                    to="/blog"
-                    onClick={unselectHamburger}
-                  >
-                    Blog
                   </NavLink>
                 </li>
                 <li>
@@ -252,72 +245,12 @@ const BigNavbar = () => {
                 </NavLink>
               </ListItem>
               <ListItem className={classes.listItem + " list-item"}>
-                <NavLink to="/blog" style={{ color: "white" }}>
-                  Blog
-                </NavLink>
-              </ListItem>
-              <ListItem className={classes.listItem + " list-item"}>
                 <NavLink to="/labresults" style={{ color: "white" }}>
                   Lab Results
                 </NavLink>
               </ListItem>
             </List>
           </HeaderContainer>
-          {/* <Header
-            brand="Canna Kool"
-            color="primary"
-            fixed
-            style={{ width: "100%", alignItems: "center", textAlign: "center" }}
-            links={
-              <List className={classes.list + " " + classes.mlAuto}>
-                <ListItem className={classes.listItem}>
-                  <NavLink
-                    to="/"
-                    className={classes.textCenter}
-                    style={{ color: "white" }}
-                  >
-                    Home
-                  </NavLink>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                  <NavLink
-                    to="/store"
-                    className={classes.textCenter}
-                    style={{ color: "white" }}
-                  >
-                    Store
-                  </NavLink>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                  <NavLink
-                    to="/aboutus"
-                    className={classes.textCenter}
-                    style={{ color: "white" }}
-                  >
-                    About
-                  </NavLink>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                  <NavLink
-                    to="/blog"
-                    className={classes.textCenter}
-                    style={{ color: "white" }}
-                  >
-                    Blog
-                  </NavLink>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                  <NavLink
-                    to="/labresults"
-                    className={classes.textCenter}
-                    style={{ color: "white" }}
-                  >
-                    Lab Results
-                  </NavLink>
-                </ListItem>
-              </List>
-            }
-          /> */}
         </div>
       </Fade>
     )

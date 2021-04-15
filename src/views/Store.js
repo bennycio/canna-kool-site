@@ -101,7 +101,9 @@ const Store = () => {
               )}
             >
               <div className={classes.brand}>
-                <h1 className={classes.title}>Canna Kool Products</h1>
+                <h1 className={classes.title} style={{ fontSize: "3em" }}>
+                  Canna Kool Products
+                </h1>
               </div>
             </GridItem>
           </GridContainer>

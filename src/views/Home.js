@@ -82,33 +82,31 @@ const useStylesHeader = makeStyles(headersStyle);
 const HomeHeader = () => {
   const classes = useStylesHeader();
   return (
-    <SmoothEntry>
-      <div
-        className={classes.pageHeader}
-        style={{ backgroundImage: `url("${headerBg}")` }}
-      >
-        <div className={classes.container}>
-          <GridContainer>
-            <GridItem xs={12} sm={8} md={8}>
-              <h1 className={classes.title} style={{ fontSize: "4.5em" }}>
-                Find your peace again with Canna Kool
-              </h1>
-              <br />
-              <Button
-                color="primary"
-                size="lg"
-                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ref=creativetim"
-                target="_blank"
-                rel=""
-              >
-                <i className="fas fa-ticket-alt" />
-                Buy Now
-              </Button>
-            </GridItem>
-          </GridContainer>
-        </div>
+    <div
+      className={classes.pageHeader}
+      style={{ backgroundImage: `url("${headerBg}")` }}
+    >
+      <div className={classes.container}>
+        <GridContainer>
+          <GridItem xs={12} sm={8} md={8}>
+            <h1 className={classes.title} style={{ fontSize: "6em" }}>
+              Find your peace again with Canna Kool
+            </h1>
+            <br />
+            <Button
+              color="primary"
+              size="lg"
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ref=creativetim"
+              target="_blank"
+              rel=""
+            >
+              <i className="fas fa-ticket-alt" />
+              Buy Now
+            </Button>
+          </GridItem>
+        </GridContainer>
       </div>
-    </SmoothEntry>
+    </div>
   );
 };
 
