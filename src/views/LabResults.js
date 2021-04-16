@@ -42,7 +42,6 @@ const LabResults = () => {
         }}
       >
         <div className={classes.container}>
-          <SectionHeader />
           <SectionTable />
         </div>
       </div>
