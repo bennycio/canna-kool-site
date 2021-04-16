@@ -116,11 +116,7 @@ const LabResultsTable = ({ columns, data }) => {
           {headerGroups.map((headerGroup) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <TableCell
-                  {...(column.id === "selection"
-                    ? column.getHeaderProps()
-                    : column.getHeaderProps(column.getSortByToggleProps()))}
-                >
+                <TableCell {...column.getHeaderProps()}>
                   {column.render("Header")}
                   {column.id !== "selection" ? (
                     <TableSortLabel
