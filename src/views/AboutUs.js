@@ -48,7 +48,7 @@ const useStyles = makeStyles(aboutUsStyle);
 const AboutUs = () => {
   const classes = useStyles();
   return (
-    <body>
+    <>
       <Parallax image={Troll} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
@@ -62,7 +62,7 @@ const AboutUs = () => {
               )}
             >
               <h1 className={classes.title} style={{ fontSize: "3em" }}>
-                About Us
+                Why CannaKool?
               </h1>
             </GridItem>
           </GridContainer>
@@ -83,7 +83,7 @@ const AboutUs = () => {
           <SectionBlogs />
         </div>
       </div>
-    </body>
+    </>
   );
 };
 

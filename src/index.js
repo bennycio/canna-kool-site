@@ -7,12 +7,17 @@ import {
   Switch,
   useLocation,
 } from "react-router-dom";
-import { useList, useWindowScroll } from "react-use";
+import { useList, useToggle, useWindowScroll } from "react-use";
 
 import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
 import styled from "styled-components";
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from "body-scroll-lock";
 
 import {
   ClickAwayListener,
@@ -22,7 +27,11 @@ import {
   ListItem,
   makeStyles,
   useMediaQuery,
+  Menu,
+  MenuItem,
 } from "@material-ui/core";
+
+import { GridItem, GridContainer } from "@bennycio/material-ui-pro";
 
 import PageFooter from "components/PageFooter";
 
@@ -30,6 +39,7 @@ import useHamburger from "hooks/useHamburger";
 
 import headersStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/headersStyle.js";
 import TimerPopup from "components/TimerPopup";
+import Dropdown from "components/Dropdown";
 
 const Home = lazy(() => import("./views/Home"));
 const Store = lazy(() => import("./views/Store"));
@@ -65,6 +75,27 @@ const ScrollToTop = () => {
 };
 
 const App = () => {
+  const isBig = useMediaQuery("(min-width: 600px)");
+
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <CssBaseline />
+      {isBig ? (
+        <>
+          <Navbar />
+          <BigNavbar /> <WebPageContent />
+        </>
+      ) : (
+        <MobileView>
+          <WebPageContent />
+        </MobileView>
+      )}
+    </BrowserRouter>
+  );
+};
+
+const WebPageContent = () => {
   const [
     cart,
     {
@@ -100,28 +131,22 @@ const App = () => {
   };
 
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <CssBaseline />
-      <Navbar />
-      <BigNavbar />
-      <CartContext.Provider value={value}>
-        <Suspense fallback={<Loading />}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/store" component={Store} />
-            <Route exact path="/aboutus" component={AboutUs} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/labresults" component={LabResults} />
-            <Route exact path="/blog/initial" component={BlogPostInitial} />
-            <Route exact path="/blog/second" component={BlogPostInitial} />
-            <Route exact path="/blog/third" component={BlogPostInitial} />
-          </Switch>
-          <TimerPopup />
-          <PageFooter />
-        </Suspense>
-      </CartContext.Provider>
-    </BrowserRouter>
+    <CartContext.Provider value={value}>
+      <Suspense fallback={<Loading />}>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/store" component={Store} />
+          <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/labresults" component={LabResults} />
+          <Route exact path="/blog/initial" component={BlogPostInitial} />
+          <Route exact path="/blog/second" component={BlogPostInitial} />
+          <Route exact path="/blog/third" component={BlogPostInitial} />
+        </Switch>
+        <TimerPopup />
+        <PageFooter />
+      </Suspense>
+    </CartContext.Provider>
   );
 };
 
@@ -183,15 +208,6 @@ const Navbar = () => {
                     Contact
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    className="nav-item"
-                    to="/labresults"
-                    onClick={unselectHamburger}
-                  >
-                    Lab Results
-                  </NavLink>
-                </li>
               </ul>
             </section>
           </div>
@@ -201,62 +217,181 @@ const Navbar = () => {
   );
 };
 
+const HeaderContainer = styled.div`
+  width: 100%;
+  height: 4rem;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+  display: inline-flex;
+  vertical-align: middle;
+  color: white;
+  background: #05c7f2;
+  position: fixed;
+  z-index: 10000;
+
+  .list-item {
+    margin: auto 0;
+    font-size: 1.3rem;
+  }
+`;
+
 const useStyles = makeStyles(headersStyle);
 const BigNavbar = () => {
   const classes = useStyles();
   const isBig = useMediaQuery("(min-width: 600px)");
   const { x, y } = useWindowScroll();
 
-  const HeaderContainer = styled.div`
-    width: 100%;
-    height: 4rem;
-    align-items: center;
-    text-align: center;
-    justify-content: space-around;
-    display: inline-flex;
-    vertical-align: middle;
-    color: white;
-    background: #05c7f2;
-    position: fixed;
-    z-index: 10000;
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-    .list-item {
-      margin: auto 0;
-      font-size: 1.3rem;
-    }
-  `;
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     isBig && (
       <Fade in={y > 350}>
         <div className="front">
           <HeaderContainer>
-            <List className={classes.list + " " + classes.mlAuto}>
-              <ListItem className={classes.listItem + " list-item"}>
+            <GridContainer justify="space-around" align="center" spacing={10}>
+              <GridItem
+                sm={4}
+                md={4}
+                className={classes.listItem + " list-item"}
+              >
                 <NavLink to="/" style={{ color: "white" }}>
                   Home
                 </NavLink>
-              </ListItem>
-              <ListItem className={classes.listItem + " list-item"}>
+              </GridItem>
+              <GridItem
+                sm={4}
+                md={4}
+                className={classes.listItem + " list-item"}
+              >
                 <NavLink to="/store" style={{ color: "white" }}>
                   Store
                 </NavLink>
-              </ListItem>
-              <ListItem className={classes.listItem + " list-item"}>
-                <NavLink to="/aboutus" style={{ color: "white" }}>
-                  About
+              </GridItem>
+              <GridItem
+                sm={4}
+                md={4}
+                className={classes.listItem + " list-item"}
+              >
+                <Dropdown
+                  title="About"
+                  links={[
+                    ["/aboutus", "Why CannaKool?"],
+                    ["/labresults", "Lab Results"],
+                  ]}
+                  style={{ display: "inline" }}
+                />
+              </GridItem>
+              <GridItem
+                sm={4}
+                md={4}
+                className={classes.listItem + " list-item"}
+              >
+                <NavLink to="/contact" style={{ color: "white" }}>
+                  Contact
                 </NavLink>
-              </ListItem>
-              <ListItem className={classes.listItem + " list-item"}>
-                <NavLink to="/labresults" style={{ color: "white" }}>
-                  Lab Results
-                </NavLink>
-              </ListItem>
-            </List>
+              </GridItem>
+            </GridContainer>
           </HeaderContainer>
         </div>
       </Fade>
     )
+  );
+};
+
+const MobileView = ({ children }) => {
+  function toggle(element, clazz) {
+    document.getElementById(element).classList.toggle(clazz);
+  }
+  function remove(element, clazz) {
+    document.getElementById(element).classList.remove(clazz);
+  }
+
+  function toggleScroll(canScroll) {
+    const element = document.getElementById("mobile");
+    if (element.classList.contains("navigation")) {
+      disableBodyScroll(element);
+    } else {
+      enableBodyScroll(element);
+    }
+  }
+  return (
+    <div id="mobile">
+      <div
+        id="burgerBtn"
+        onClick={() => {
+          toggle("mobile", "navigation");
+          toggleScroll(scroll);
+        }}
+      ></div>
+      <ul id="nav">
+        <li>
+          <NavLink
+            className="nav-item"
+            to="/"
+            onClick={() => {
+              remove("mobile", "navigation");
+              clearAllBodyScrollLocks();
+            }}
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className="nav-item"
+            to="/store"
+            onClick={() => {
+              remove("mobile", "navigation");
+              clearAllBodyScrollLocks();
+            }}
+          >
+            Store
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className="nav-item"
+            to="/aboutus"
+            onClick={() => {
+              remove("mobile", "navigation");
+              clearAllBodyScrollLocks();
+            }}
+          >
+            About Us
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            className="nav-item"
+            to="/contact"
+            onClick={() => {
+              remove("mobile", "navigation");
+              clearAllBodyScrollLocks();
+            }}
+          >
+            Contact
+          </NavLink>
+        </li>
+      </ul>
+      <div
+        id="mobileBodyContent"
+        onClick={() => {
+          remove("mobile", "navigation");
+          clearAllBodyScrollLocks();
+        }}
+      >
+        {children}
+      </div>
+    </div>
   );
 };
 

@@ -51,7 +51,7 @@ import { NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
-    <body
+    <div
       style={{
         backgroundImage: "url(" + bg + ")",
         backgroundRepeat: "repeat-y",
@@ -61,7 +61,7 @@ const Home = () => {
       <HomeHeader />
       <HomeFeatures />
       <HomeTestamonials />
-    </body>
+    </div>
   );
 };
 
@@ -75,9 +75,9 @@ const HomeHeader = () => {
       style={{ backgroundImage: `url("${headerBg}")` }}
     >
       <div className={classes.container}>
-        <GridContainer>
+        <GridContainer justify="center" align="center">
           <GridItem xs={12} sm={8} md={8}>
-            <h1 className={classes.title} style={{ fontSize: "6em" }}>
+            <h1 className={classes.title} style={{ fontSize: "4.5em" }}>
               Find your peace again with Canna Kool
             </h1>
             <br />
