@@ -13,12 +13,7 @@ import TablePaginationActions from "components/TablePaginationActions";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import TableToolbar from "components/TableToolbar";
-import {
-  useGlobalFilter,
-  usePagination,
-  useSortBy,
-  useTable,
-} from "react-table";
+import { useGlobalFilter, usePagination, useTable } from "react-table";
 
 const inputStyle = {
   padding: 0,
@@ -97,7 +92,6 @@ const LabResultsTable = ({ columns, data }) => {
       defaultColumn,
     },
     useGlobalFilter,
-    useSortBy,
     usePagination
   );
 

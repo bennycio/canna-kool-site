@@ -12,11 +12,6 @@ import styled from "styled-components";
 import LocalPharmacyIcon from "@material-ui/icons/LocalPharmacy";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
-import PeopleIcon from "@material-ui/icons/People";
-import EcoIcon from "@material-ui/icons/Eco";
-import { FaBone, FaHeart } from "react-icons/fa";
-import { GiWaterFountain, GiBackPain, GiHealthNormal } from "react-icons/gi";
-import { RiMentalHealthFill } from "react-icons/ri";
 
 import {
   InfoArea,
@@ -35,19 +30,11 @@ import Mail from "@material-ui/icons/Mail";
 
 import featuresStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/featuresStyle.js";
 
-import homegrown from "assets/img/homegrown.jpg";
-import strongman from "assets/img/strongman.jpg";
-
-import Star from "@material-ui/icons/Star";
-
 import testimonialsStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/testimonialsStyle.js";
 
 import cardProfile1Square from "assets/img/faces/card-profile1-square.jpg";
 import cardProfile4Square from "assets/img/faces/card-profile4-square.jpg";
 import cardProfile6Square from "assets/img/faces/card-profile6-square.jpg";
-import kendall from "assets/img/faces/kendall.jpg";
-import christian from "assets/img/faces/christian.jpg";
-import { Paper } from "@material-ui/core";
 
 import imagesStyles from "assets/jss/material-kit-pro-react/imagesStyles.js";
 import FormatAlignLeft from "@material-ui/icons/FormatAlignLeft";
@@ -60,6 +47,7 @@ import LazyLoad from "react-lazyload";
 import { useMediaQuery } from "@material-ui/core";
 import SmoothEntry from "components/SmoothEntry";
 import bg from "assets/img/hexs.webp";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -239,9 +227,12 @@ const HomeFeatures = () => {
                   This stuff really gives you wings, the kind of wings that make
                   you fly.
                 </p>
-                <Button round href="#pablo" color="danger">
-                  <FormatAlignLeft className={pillsClasses.icons} /> Read Story
-                </Button>
+                <NavLink to="/blog/initial">
+                  <Button round color="danger">
+                    <FormatAlignLeft className={pillsClasses.icons} /> Read
+                    Story
+                  </Button>
+                </NavLink>
               </CardBody>
             </Card>
           </GridItem>
@@ -262,9 +253,12 @@ const HomeFeatures = () => {
                   Don{"'"}t be scared of the truth and don't be scared of hemp
                   because both are very safe and very chill
                 </p>
-                <Button round href="#pablo" color="primary">
-                  <FormatAlignLeft className={pillsClasses.icons} /> Read Story
-                </Button>
+                <NavLink to="/blog/second">
+                  <Button round color="success">
+                    <FormatAlignLeft className={pillsClasses.icons} /> Read
+                    Story
+                  </Button>
+                </NavLink>
               </CardBody>
             </Card>
           </GridItem>
@@ -285,9 +279,12 @@ const HomeFeatures = () => {
                   Hear the story of a man who made big gains because of Canna
                   Kool.
                 </p>
-                <Button round href="#pablo" color="warning">
-                  <FormatAlignLeft className={pillsClasses.icons} /> Read Story
-                </Button>
+                <NavLink to="/blog/third">
+                  <Button round color="info">
+                    <FormatAlignLeft className={pillsClasses.icons} /> Read
+                    Story
+                  </Button>
+                </NavLink>
               </CardBody>
             </Card>
           </GridItem>

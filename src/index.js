@@ -12,7 +12,6 @@ import { useList, useWindowScroll } from "react-use";
 import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
-import { Header } from "@bennycio/material-ui-pro";
 import styled from "styled-components";
 
 import {
@@ -37,6 +36,7 @@ const Store = lazy(() => import("./views/Store"));
 const AboutUs = lazy(() => import("./views/AboutUs"));
 const Contact = lazy(() => import("./views/Contact"));
 const LabResults = lazy(() => import("./views/LabResults"));
+const BlogPostInitial = lazy(() => import("./views/BlogPostInitial"));
 
 export const CartContext = createContext({
   cart: [],
@@ -113,6 +113,9 @@ const App = () => {
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/labresults" component={LabResults} />
+            <Route exact path="/blog/initial" component={BlogPostInitial} />
+            <Route exact path="/blog/second" component={BlogPostInitial} />
+            <Route exact path="/blog/third" component={BlogPostInitial} />
           </Switch>
           <TimerPopup />
           <PageFooter />
