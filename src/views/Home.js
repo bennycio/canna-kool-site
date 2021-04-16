@@ -407,6 +407,8 @@ const HomeProducts = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+    pauseOnHover: false,
+    pauseOnFocus: false,
   };
 
   const LazyImage = styled(LazyLoad)`
@@ -466,7 +468,7 @@ const HomeProducts = () => {
               alignItems="center"
               className={classes.textCenter}
             >
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={12} sm={2} md={2}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -481,7 +483,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={12} sm={2} md={2}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -496,7 +498,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={12} sm={2} md={2}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -511,7 +513,37 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={12} sm={2} md={2}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>But wait, please pick me</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={2} md={2}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>But wait, please pick me</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={2} md={2}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -534,7 +566,7 @@ const HomeProducts = () => {
               alignItems="center"
               className={classes.textCenter}
             >
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={12} sm={2} md={2}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -549,7 +581,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={12} sm={2} md={2}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -564,7 +596,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={12} sm={2} md={2}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -579,7 +611,37 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={3} md={3}>
+              <GridItem xs={12} sm={2} md={2}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>But wait, please pick me</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={2} md={2}>
+                <ProductCard>
+                  <LazyImage>
+                    <img
+                      className={imageClasses.imgCardTop}
+                      src="https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430"
+                      alt="Card-img-cap"
+                    />
+                  </LazyImage>
+                  <CardBody>
+                    <h3>But wait, please pick me</h3>
+                    <Button color="primary">Buy Now</Button>
+                  </CardBody>
+                </ProductCard>
+              </GridItem>
+              <GridItem xs={12} sm={2} md={2}>
                 <ProductCard>
                   <LazyImage>
                     <img
