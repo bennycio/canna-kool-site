@@ -51,13 +51,7 @@ import { NavLink } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div
-      style={{
-        backgroundImage: "url(" + bg + ")",
-        backgroundRepeat: "repeat-y",
-        backgroundSize: "100% 60%",
-      }}
-    >
+    <div>
       <HomeHeader />
       <HomeFeatures />
       <HomeTestamonials />

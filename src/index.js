@@ -6,6 +6,7 @@ import {
   NavLink,
   Switch,
   useLocation,
+  Link,
 } from "react-router-dom";
 import { useList, useToggle, useWindowScroll } from "react-use";
 
@@ -136,9 +137,9 @@ const WebPageContent = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/store" component={Store} />
-          <Route exact path="/aboutus" component={AboutUs} />
+          <Route exact path="/about" component={AboutUs} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/labresults" component={LabResults} />
+          <Route exact path="/lab" component={LabResults} />
           <Route exact path="/blog/initial" component={BlogPostInitial} />
           <Route exact path="/blog/second" component={BlogPostInitial} />
           <Route exact path="/blog/third" component={BlogPostInitial} />
@@ -217,46 +218,65 @@ const Navbar = () => {
   );
 };
 
-const HeaderContainer = styled.div`
-  width: 100%;
-  height: 4rem;
-  align-items: center;
-  text-align: center;
-  justify-content: space-around;
-  display: inline-flex;
-  vertical-align: middle;
-  color: white;
-  background: #05c7f2;
-  position: fixed;
-  z-index: 10000;
-
-  .list-item {
-    margin: auto 0;
-    font-size: 1.3rem;
-  }
-`;
-
 const useStyles = makeStyles(headersStyle);
 const BigNavbar = () => {
   const classes = useStyles();
   const isBig = useMediaQuery("(min-width: 600px)");
   const { x, y } = useWindowScroll();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
     isBig && (
       <Fade in={y > 350}>
-        <div className="front">
-          <HeaderContainer>
+        <nav id="navigation">
+          <Link to="/" class="logo">
+            Canna Kool
+          </Link>
+          <ul class="links">
+            <li>
+              <Link to="/" class="top-link">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/store" class="top-link">
+                Store
+              </Link>
+            </li>
+            <li class="dropdown">
+              <Link to="/about" class="trigger-drop top-link">
+                About<i class="arrow"></i>
+              </Link>
+              <ul class="drop">
+                <li>
+                  <Link to="/lab" class="top-link">
+                    Lab
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" class="top-link">
+                    Production
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" class="top-link">
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/" class="top-link">
+                    ?
+                  </Link>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <NavLink to="/contact" class="top-link">
+                Contact
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+        {/* <HeaderContainer>
             <GridContainer justify="space-around" align="center" spacing={10}>
               <GridItem
                 sm={4}
@@ -280,6 +300,7 @@ const BigNavbar = () => {
                 sm={4}
                 md={4}
                 className={classes.listItem + " list-item"}
+                style={{ display: "inline" }}
               >
                 <Dropdown
                   title="About"
@@ -300,8 +321,7 @@ const BigNavbar = () => {
                 </NavLink>
               </GridItem>
             </GridContainer>
-          </HeaderContainer>
-        </div>
+          </HeaderContainer> */}
       </Fade>
     )
   );
