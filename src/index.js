@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, lazy, Suspense } from "react";
+import React, {
+  createContext,
+  useEffect,
+  lazy,
+  Suspense,
+  useState,
+} from "react";
 import ReactDOM from "react-dom";
 import {
   BrowserRouter,
@@ -13,26 +19,16 @@ import { useList, useToggle, useWindowScroll } from "react-use";
 import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
-import styled from "styled-components";
-import {
-  disableBodyScroll,
-  enableBodyScroll,
-  clearAllBodyScrollLocks,
-} from "body-scroll-lock";
+import { StyledOffCanvas, Menu, Overlay } from "styled-off-canvas";
 
 import {
   ClickAwayListener,
   CssBaseline,
   Fade,
-  List,
-  ListItem,
   makeStyles,
   useMediaQuery,
-  Menu,
-  MenuItem,
 } from "@material-ui/core";
-
-import { GridItem, GridContainer } from "@bennycio/material-ui-pro";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 
 import PageFooter from "components/PageFooter";
 
@@ -84,7 +80,7 @@ const App = () => {
       <CssBaseline />
       {isBig ? (
         <>
-          <Navbar />
+          {/* <Navbar /> */}
           <BigNavbar /> <WebPageContent />
         </>
       ) : (
@@ -194,10 +190,10 @@ const Navbar = () => {
                 <li>
                   <NavLink
                     className="nav-item"
-                    to="/aboutus"
+                    to="/about"
                     onClick={unselectHamburger}
                   >
-                    About Us
+                    About
                   </NavLink>
                 </li>
                 <li>
@@ -226,192 +222,145 @@ const BigNavbar = () => {
 
   return (
     isBig && (
-      <Fade in={y > 350}>
-        <nav id="navigation">
-          <Link to="/" class="logo">
-            Canna Kool
-          </Link>
-          <ul class="links">
-            <li>
-              <Link to="/" class="top-link">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/store" class="top-link">
-                Store
-              </Link>
-            </li>
-            <li class="dropdown">
-              <Link to="/about" class="trigger-drop top-link">
-                About<i class="arrow"></i>
-              </Link>
-              <ul class="drop">
-                <li>
-                  <Link to="/lab" class="top-link">
-                    Lab
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" class="top-link">
-                    Production
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/about" class="top-link">
-                    FAQ
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/" class="top-link">
-                    ?
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <NavLink to="/contact" class="top-link">
-                Contact
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-        {/* <HeaderContainer>
-            <GridContainer justify="space-around" align="center" spacing={10}>
-              <GridItem
-                sm={4}
-                md={4}
-                className={classes.listItem + " list-item"}
-              >
-                <NavLink to="/" style={{ color: "white" }}>
-                  Home
-                </NavLink>
-              </GridItem>
-              <GridItem
-                sm={4}
-                md={4}
-                className={classes.listItem + " list-item"}
-              >
-                <NavLink to="/store" style={{ color: "white" }}>
-                  Store
-                </NavLink>
-              </GridItem>
-              <GridItem
-                sm={4}
-                md={4}
-                className={classes.listItem + " list-item"}
-                style={{ display: "inline" }}
-              >
-                <Dropdown
-                  title="About"
-                  links={[
-                    ["/aboutus", "Why CannaKool?"],
-                    ["/labresults", "Lab Results"],
-                  ]}
-                  style={{ display: "inline" }}
-                />
-              </GridItem>
-              <GridItem
-                sm={4}
-                md={4}
-                className={classes.listItem + " list-item"}
-              >
-                <NavLink to="/contact" style={{ color: "white" }}>
-                  Contact
-                </NavLink>
-              </GridItem>
-            </GridContainer>
-          </HeaderContainer> */}
-      </Fade>
+      <nav id="navigation">
+        <Link to="/" class="logo">
+          Canna Kool
+        </Link>
+        <ul class="links">
+          <li>
+            <Link to="/" class="top-link">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/store" class="top-link">
+              Store
+            </Link>
+          </li>
+          <li class="dropdown">
+            <Link to="/about" class="trigger-drop top-link">
+              About<i class="arrow"></i>
+            </Link>
+            <ul class="drop">
+              <li>
+                <Link to="/lab" class="top-link">
+                  Lab
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" class="top-link">
+                  Production
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" class="top-link">
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <NavLink to="/contact" class="top-link">
+              Contact
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
     )
   );
 };
 
 const MobileView = ({ children }) => {
-  function toggle(element, clazz) {
-    document.getElementById(element).classList.toggle(clazz);
-  }
-  function remove(element, clazz) {
-    document.getElementById(element).classList.remove(clazz);
+  const [menuVisible, setMenuVisible] = useToggle(false);
+
+  useEffect(() => {
+    const navExpand = [].slice.call(document.querySelectorAll(".nav-expand"));
+    const backLink = `<li class="nav-item">
+	<a class="nav-link nav-back-link" href="javascript:;">
+		Back
+	</a>
+</li>`;
+
+    navExpand.forEach((item) => {
+      item
+        .querySelector(".nav-expand-content")
+        .insertAdjacentHTML("afterbegin", backLink);
+      item
+        .querySelector(".nav-link")
+        .addEventListener("click", () => item.classList.add("active"));
+      item
+        .querySelector(".nav-back-link")
+        .addEventListener("click", () => item.classList.remove("active"));
+    });
+
+    // ---------------------------------------
+    // not-so-important stuff starts here
+
+    const ham = document.getElementById("ham");
+    ham.addEventListener("click", function () {
+      document.body.classList.toggle("nav-is-toggled");
+    });
+  }, []);
+
+  function toggleNav() {
+    document.body.classList.toggle("nav-is-toggled");
   }
 
-  function toggleScroll(canScroll) {
-    const element = document.getElementById("mobile");
-    if (element.classList.contains("navigation")) {
-      disableBodyScroll(element);
-    } else {
-      enableBodyScroll(element);
-    }
-  }
   return (
-    <div id="mobile">
-      <div
-        id="burgerBtn"
-        onClick={() => {
-          toggle("mobile", "navigation");
-          toggleScroll(scroll);
-        }}
-      ></div>
-      <ul id="nav">
-        <li>
-          <NavLink
-            className="nav-item"
-            to="/"
-            onClick={() => {
-              remove("mobile", "navigation");
-              clearAllBodyScrollLocks();
-            }}
-          >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className="nav-item"
-            to="/store"
-            onClick={() => {
-              remove("mobile", "navigation");
-              clearAllBodyScrollLocks();
-            }}
-          >
-            Store
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className="nav-item"
-            to="/aboutus"
-            onClick={() => {
-              remove("mobile", "navigation");
-              clearAllBodyScrollLocks();
-            }}
-          >
-            About Us
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            className="nav-item"
-            to="/contact"
-            onClick={() => {
-              remove("mobile", "navigation");
-              clearAllBodyScrollLocks();
-            }}
-          >
-            Contact
-          </NavLink>
-        </li>
-      </ul>
-      <div
-        id="mobileBodyContent"
-        onClick={() => {
-          remove("mobile", "navigation");
-          clearAllBodyScrollLocks();
-        }}
-      >
-        {children}
-      </div>
-    </div>
+    <>
+      <header class="nav-top">
+        <span class="hamburger material-icons" id="ham">
+          menu
+        </span>
+      </header>
+
+      <nav class="nav-drill">
+        <ul class="nav-items nav-level-1">
+          <li class="nav-item">
+            <Link class="nav-link" to="/" onClick={toggleNav}>
+              Home
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link class="nav-link" to="/store" onClick={toggleNav}>
+              Store
+            </Link>
+          </li>
+          <li class="nav-item nav-expand">
+            <a class="nav-link nav-expand-link" href="#">
+              About <ArrowForwardIcon />
+            </a>
+            <ul class="nav-items nav-expand-content">
+              <li class="nav-item">
+                <Link class="nav-link" to="/lab" onClick={toggleNav}>
+                  Lab Results
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link
+                  class="nav-link"
+                  to="/about#production"
+                  onClick={toggleNav}
+                >
+                  Production
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/about#faq" onClick={toggleNav}>
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <Link class="nav-link" to="/contact" onClick={toggleNav}>
+              Contact
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      {children}
+    </>
   );
 };
 

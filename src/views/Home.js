@@ -462,7 +462,7 @@ const HomeProducts = () => {
               alignItems="center"
               className={classes.textCenter}
             >
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -477,7 +477,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -492,7 +492,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -507,7 +507,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -522,7 +522,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -537,7 +537,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -560,7 +560,7 @@ const HomeProducts = () => {
               alignItems="center"
               className={classes.textCenter}
             >
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -575,7 +575,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -590,7 +590,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -605,7 +605,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -620,7 +620,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img
@@ -635,7 +635,7 @@ const HomeProducts = () => {
                   </CardBody>
                 </ProductCard>
               </GridItem>
-              <GridItem xs={12} sm={2} md={2}>
+              <GridItem xs={12} sm={2} md={3}>
                 <ProductCard>
                   <LazyImage>
                     <img

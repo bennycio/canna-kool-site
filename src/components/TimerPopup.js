@@ -8,6 +8,7 @@ import { Button } from "@bennycio/material-ui-pro";
 const TimerPopup = () => {
   const [complete, toggle] = useToggle(false);
 
+  const isBig = useMediaQuery("(min-width: 600px)");
   useEffect(() => {
     setTimeout(() => {
       toggle(true);
@@ -18,32 +19,34 @@ const TimerPopup = () => {
     toggle(false);
   };
 
-  return (
-    <Snackbar open={complete} TransitionComponent={Slide} onClose={onClose}>
-      <Button
-        color="transparent"
-        style={{
-          textAlign: "center",
-          padding: "0",
-          margin: "0",
-          width: "100%",
-          wordWrap: "break-word",
-        }}
-      >
-        <SnackbarContent
-          message={
-            <p style={{ fontSize: "0.9rem" }}>
-              <b>
-                <LocalAtmIcon /> Hey Buddy! Click here for some legendary once
-                in a lifetime deals!
-              </b>
-            </p>
-          }
-          color="info"
-        />
-      </Button>
-    </Snackbar>
-  );
+  if (isBig) {
+    return (
+      <Snackbar open={complete} TransitionComponent={Slide} onClose={onClose}>
+        <Button
+          color="transparent"
+          style={{
+            textAlign: "center",
+            padding: "0",
+            margin: "0",
+            width: "100%",
+            wordWrap: "break-word",
+          }}
+        >
+          <SnackbarContent
+            message={
+              <p style={{ fontSize: "0.9rem" }}>
+                <b>
+                  <LocalAtmIcon /> Hey Buddy! Click here for some legendary once
+                  in a lifetime deals!
+                </b>
+              </p>
+            }
+            color="info"
+          />
+        </Button>
+      </Snackbar>
+    );
+  }
 };
 
 export default TimerPopup;
