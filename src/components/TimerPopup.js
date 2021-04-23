@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { SnackbarContent } from "@bennycio/material-ui-pro";
 import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import { useToggle } from "react-use";
-import { Slide, Snackbar } from "@material-ui/core";
+import { Slide, Snackbar, useMediaQuery } from "@material-ui/core";
 import { Button } from "@bennycio/material-ui-pro";
 
 const TimerPopup = () => {
@@ -46,6 +46,8 @@ const TimerPopup = () => {
         </Button>
       </Snackbar>
     );
+  } else {
+    return <></>;
   }
 };
 

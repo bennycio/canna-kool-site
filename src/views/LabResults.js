@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
 import Troll from "assets/img/troll.png";
@@ -7,6 +7,7 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import { Parallax, GridContainer, GridItem } from "@bennycio/material-ui-pro";
 import LabResultsTable from "components/LabResultsTable";
+import { S3Client, ListObjectsCommand } from "@aws-sdk/client-s3";
 
 const useStyles = makeStyles(aboutUsStyle);
 
@@ -93,6 +94,13 @@ const SectionTable = () => {
     ],
     []
   );
+
+  const REGION = "us-east-1";
+
+  const bucketParams = { Bucket: "canna-kool-lab-results" };
+
+  // Create S3 service object
+  const s3 = new S3Client({ region: REGION });
 
   const [data, setData] = React.useState(React.useMemo(() => makeData(40), []));
 

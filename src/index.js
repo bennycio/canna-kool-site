@@ -223,44 +223,44 @@ const BigNavbar = () => {
   return (
     isBig && (
       <nav id="navigation">
-        <Link to="/" class="logo">
+        <Link to="/" className="logo">
           Canna Kool
         </Link>
-        <ul class="links">
+        <ul className="links">
           <li>
-            <Link to="/" class="top-link">
+            <Link to="/" className="top-link">
               Home
             </Link>
           </li>
           <li>
-            <Link to="/store" class="top-link">
+            <Link to="/store" className="top-link">
               Store
             </Link>
           </li>
-          <li class="dropdown">
-            <Link to="/about" class="trigger-drop top-link">
-              About<i class="arrow"></i>
+          <li className="dropdown">
+            <Link to="/about" className="trigger-drop top-link">
+              About<i className="arrow"></i>
             </Link>
-            <ul class="drop">
+            <ul className="drop">
               <li>
-                <Link to="/lab" class="top-link">
+                <Link to="/lab" className="top-link">
                   Lab
                 </Link>
               </li>
               <li>
-                <Link to="/about" class="top-link">
+                <Link to="/about" className="top-link">
                   Production
                 </Link>
               </li>
               <li>
-                <Link to="/about" class="top-link">
+                <Link to="/about" className="top-link">
                   FAQ
                 </Link>
               </li>
             </ul>
           </li>
           <li>
-            <NavLink to="/contact" class="top-link">
+            <NavLink to="/contact" className="top-link">
               Contact
             </NavLink>
           </li>
@@ -271,20 +271,10 @@ const BigNavbar = () => {
 };
 
 const MobileView = ({ children }) => {
-  const [menuVisible, setMenuVisible] = useToggle(false);
-
   useEffect(() => {
     const navExpand = [].slice.call(document.querySelectorAll(".nav-expand"));
-    const backLink = `<li class="nav-item">
-	<a class="nav-link nav-back-link" href="javascript:;">
-		Back
-	</a>
-</li>`;
 
     navExpand.forEach((item) => {
-      item
-        .querySelector(".nav-expand-content")
-        .insertAdjacentHTML("afterbegin", backLink);
       item
         .querySelector(".nav-link")
         .addEventListener("click", () => item.classList.add("active"));
@@ -308,52 +298,59 @@ const MobileView = ({ children }) => {
 
   return (
     <>
-      <header class="nav-top">
-        <span class="hamburger material-icons" id="ham">
+      <header className="nav-top">
+        <span className="hamburger material-icons" id="ham">
           menu
         </span>
       </header>
 
-      <nav class="nav-drill">
-        <ul class="nav-items nav-level-1">
-          <li class="nav-item">
-            <Link class="nav-link" to="/" onClick={toggleNav}>
+      <nav className="nav-drill">
+        <ul className="nav-items nav-level-1">
+          <li className="nav-item">
+            <Link className="nav-link" to="/" onClick={toggleNav}>
               Home
             </Link>
           </li>
-          <li class="nav-item">
-            <Link class="nav-link" to="/store" onClick={toggleNav}>
+          <li className="nav-item">
+            <Link className="nav-link" to="/store" onClick={toggleNav}>
               Store
             </Link>
           </li>
-          <li class="nav-item nav-expand">
-            <a class="nav-link nav-expand-link" href="#">
+          <li className="nav-item nav-expand">
+            <a className="nav-link nav-expand-link" href="#">
               About <ArrowForwardIcon />
             </a>
-            <ul class="nav-items nav-expand-content">
-              <li class="nav-item">
-                <Link class="nav-link" to="/lab" onClick={toggleNav}>
+
+            <ul className="nav-items nav-expand-content">
+              <li className="nav-item">
+                <a className="nav-link nav-back-link" href="javascript:;">
+                  Back
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="/lab" onClick={toggleNav}>
                   Lab Results
                 </Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link
-                  class="nav-link"
+                  className="nav-link"
                   to="/about#production"
                   onClick={toggleNav}
                 >
                   Production
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/about#faq" onClick={toggleNav}>
+              <li className="nav-item">
+                <Link className="nav-link" to="/about#faq" onClick={toggleNav}>
                   FAQ
                 </Link>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <Link class="nav-link" to="/contact" onClick={toggleNav}>
+          <li className="nav-item">
+            <Link className="nav-link" to="/contact" onClick={toggleNav}>
               Contact
             </Link>
           </li>
