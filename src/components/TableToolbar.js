@@ -52,12 +52,4 @@ const TableToolbar = (props) => {
   );
 };
 
-TableToolbar.propTypes = {
-  addUserHandler: PropTypes.func.isRequired,
-  deleteUserHandler: PropTypes.func.isRequired,
-  setGlobalFilter: PropTypes.func.isRequired,
-  preGlobalFilteredRows: PropTypes.array.isRequired,
-  globalFilter: PropTypes.string.isRequired,
-};
-
 export default TableToolbar;

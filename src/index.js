@@ -77,6 +77,7 @@ const App = () => {
         {isBig ? (
           <>
             <BigNavbar /> <SiteContent />
+            <TimerPopup />
           </>
         ) : (
           <MobileView>
@@ -136,7 +137,6 @@ const SiteContent = () => {
           <Route exact path="/blog/second" component={BlogPostInitial} />
           <Route exact path="/blog/third" component={BlogPostInitial} />
         </Switch>
-        <TimerPopup />
         <PageFooter />
       </Suspense>
     </CartContext.Provider>
@@ -311,7 +311,7 @@ const MobileMenu = styled.ul`
   color: white;
   margin-right: 5%;
   list-style: none;
-  width: 100%;
+  width: 75%;
   overflow: hidden;
   transition: all 1s ease-in-out;
   span {

@@ -76,10 +76,4 @@ const GlobalFilter = ({
   );
 };
 
-GlobalFilter.propTypes = {
-  preGlobalFilteredRows: PropTypes.array.isRequired,
-  globalFilter: PropTypes.string.isRequired,
-  setGlobalFilter: PropTypes.func.isRequired,
-};
-
 export default GlobalFilter;

@@ -14,7 +14,7 @@ const useStyles = makeStyles(aboutUsStyle);
 const LabResults = () => {
   const classes = useStyles();
   return (
-    <body>
+    <>
       <Parallax image={Troll} filter="dark" small>
         <div className={classes.container}>
           <GridContainer justify="center">
@@ -46,7 +46,7 @@ const LabResults = () => {
           <SectionTable />
         </div>
       </div>
-    </body>
+    </>
   );
 };
 
@@ -95,12 +95,20 @@ const SectionTable = () => {
     []
   );
 
-  const REGION = "us-east-1";
+  const URL = process.env.REACT_APP_LAB_RESULTS_ENDPOINT;
 
-  const bucketParams = { Bucket: "canna-kool-lab-results" };
-
-  // Create S3 service object
-  const s3 = new S3Client({ region: REGION });
+  const getResults = async () => {
+    const response = await fetch(URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    console.log(response.ok);
+    return response;
+  };
 
   const [data, setData] = React.useState(React.useMemo(() => makeData(40), []));
 
@@ -124,6 +132,8 @@ const SectionTable = () => {
   function makeData(...lens) {
     const makeDataLevel = (depth = 0) => {
       const len = lens[depth];
+      let results = getResults();
+      console.log(results);
       return range(len).map((d) => {
         return {
           ...newPerson(),

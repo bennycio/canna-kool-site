@@ -78,11 +78,4 @@ const TablePaginationActions = (props) => {
   );
 };
 
-TablePaginationActions.propTypes = {
-  count: PropTypes.number.isRequired,
-  onChangePage: PropTypes.func.isRequired,
-  page: PropTypes.number.isRequired,
-  rowsPerPage: PropTypes.number.isRequired,
-};
-
 export default TablePaginationActions;
