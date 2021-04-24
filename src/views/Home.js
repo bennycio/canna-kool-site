@@ -18,7 +18,6 @@ import {
   CustomInput,
   CardAvatar,
   Muted,
-  Warning,
   Button,
   GridContainer,
   GridItem,
@@ -387,6 +386,53 @@ const HomeTestamonials = () => {
 
 const useStylesImages = makeStyles(imagesStyles);
 
+const LazyImage = styled(LazyLoad)`
+  height: 100%;
+  width: 100%;
+  img {
+    height: 100%;
+    width: 100%;
+    display: "block";
+  }
+`;
+
+const ProductCard = styled(Card)`
+  height: 30rem;
+  width: 100%;
+  background: white;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0;
+  transform: scale(0.95);
+  transition: box-shadow 0.5s, transform 0.5s;
+  &:hover {
+    transform: scale(1);
+    box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const HorizontalScrollContainer = styled.div`
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: "0 5% 0 5%";
+  .card {
+    display: inline-block;
+  }
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const CarouselContainer = styled.div`
+  width: 100%;
+  height: auto;
+  justify-content: space-between;
+`;
+
 const HomeProducts = () => {
   const isBig = useMediaQuery("(min-width: 600px)");
   const classes = useStylesFeatures();
@@ -404,53 +450,6 @@ const HomeProducts = () => {
     pauseOnHover: false,
     pauseOnFocus: false,
   };
-
-  const LazyImage = styled(LazyLoad)`
-    height: 100%;
-    width: 100%;
-    img {
-      height: 100%;
-      width: 100%;
-      display: "block";
-    }
-  `;
-
-  const ProductCard = styled(Card)`
-    height: 30rem;
-    width: 100%;
-    background: white;
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: 0;
-    transform: scale(0.95);
-    transition: box-shadow 0.5s, transform 0.5s;
-    &:hover {
-      transform: scale(1);
-      box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
-    }
-  `;
-
-  const HorizontalScrollContainer = styled.div`
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding: "0 5% 0 5%";
-    .card {
-      display: inline-block;
-    }
-    -webkit-overflow-scrolling: touch;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  `;
-
-  const CarouselContainer = styled.div`
-    width: 100%;
-    height: auto;
-    justify-content: space-between;
-  `;
 
   if (isBig) {
     return (

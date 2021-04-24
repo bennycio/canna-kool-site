@@ -3,7 +3,7 @@ import React, {
   useEffect,
   lazy,
   Suspense,
-  useState,
+  useContext,
 } from "react";
 import ReactDOM from "react-dom";
 import {
@@ -14,30 +14,22 @@ import {
   useLocation,
   Link,
 } from "react-router-dom";
-import { useList, useToggle, useWindowScroll } from "react-use";
+import { useList, useToggle } from "react-use";
 
 import "assets/scss/material-kit-pro-react.scss?v=1.9.0";
 import "assets/scss/global.scss";
 
-import { StyledOffCanvas, Menu, Overlay } from "styled-off-canvas";
-
 import {
   ClickAwayListener,
   CssBaseline,
-  Fade,
-  makeStyles,
   useMediaQuery,
 } from "@material-ui/core";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import PageFooter from "components/PageFooter";
 
-import useHamburger from "hooks/useHamburger";
-
-import headersStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/headersStyle.js";
 import TimerPopup from "components/TimerPopup";
-import Dropdown from "components/Dropdown";
+import useScrollStop from "hooks/useScrollStop";
 
 const Home = lazy(() => import("./views/Home"));
 const Store = lazy(() => import("./views/Store"));
@@ -62,6 +54,8 @@ export const CartContext = createContext({
   reset: () => {},
 });
 
+export const ViewContext = createContext(true);
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -76,24 +70,25 @@ const App = () => {
   const isBig = useMediaQuery("(min-width: 600px)");
 
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <CssBaseline />
-      {isBig ? (
-        <>
-          {/* <Navbar /> */}
-          <BigNavbar /> <WebPageContent />
-        </>
-      ) : (
-        <MobileView>
-          <WebPageContent />
-        </MobileView>
-      )}
-    </BrowserRouter>
+    <ViewContext.Provider value={isBig}>
+      <BrowserRouter>
+        <ScrollToTop />
+        <CssBaseline />
+        {isBig ? (
+          <>
+            <BigNavbar /> <SiteContent />
+          </>
+        ) : (
+          <MobileView>
+            <SiteContent />
+          </MobileView>
+        )}
+      </BrowserRouter>
+    </ViewContext.Provider>
   );
 };
 
-const WebPageContent = () => {
+const SiteContent = () => {
   const [
     cart,
     {
@@ -112,7 +107,7 @@ const WebPageContent = () => {
     },
   ] = useList([]);
 
-  const value = {
+  const cartValue = {
     cart,
     set,
     push,
@@ -129,7 +124,7 @@ const WebPageContent = () => {
   };
 
   return (
-    <CartContext.Provider value={value}>
+    <CartContext.Provider value={cartValue}>
       <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/" component={Home} />
@@ -148,78 +143,75 @@ const WebPageContent = () => {
   );
 };
 
-const Navbar = () => {
-  const unselectHamburger = () => {
-    document.getElementById("hamburger").checked = false;
-  };
+// const Navbar = () => {
+//   const unselectHamburger = () => {
+//     document.getElementById("hamburger").checked = false;
+//   };
 
-  const isShown = useHamburger(350);
+//   const isShown = useHamburger(350);
 
-  return (
-    <Fade in={isShown}>
-      <div className="front">
-        <ClickAwayListener onClickAway={unselectHamburger}>
-          <div>
-            <input id="hamburger" className="hamburger" type="checkbox" />
-            <label className="hamburger" htmlFor="hamburger">
-              <i />
-              <div className="text">
-                <p className="close">close</p>
-                <p className="open">menu</p>
-              </div>
-            </label>
-            <section className="drawer-list">
-              <ul>
-                <li>
-                  <NavLink
-                    className="nav-item"
-                    to="/"
-                    onClick={unselectHamburger}
-                  >
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="nav-item"
-                    to="/store"
-                    onClick={unselectHamburger}
-                  >
-                    Store
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="nav-item"
-                    to="/about"
-                    onClick={unselectHamburger}
-                  >
-                    About
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="nav-item"
-                    to="/contact"
-                    onClick={unselectHamburger}
-                  >
-                    Contact
-                  </NavLink>
-                </li>
-              </ul>
-            </section>
-          </div>
-        </ClickAwayListener>
-      </div>
-    </Fade>
-  );
-};
+//   return (
+//     <Fade in={isShown}>
+//       <div className="front">
+//         <ClickAwayListener onClickAway={unselectHamburger}>
+//           <div>
+//             <input id="hamburger" className="hamburger" type="checkbox" />
+//             <label className="hamburger" htmlFor="hamburger">
+//               <i />
+//               <div className="text">
+//                 <p className="close">close</p>
+//                 <p className="open">menu</p>
+//               </div>
+//             </label>
+//             <section className="drawer-list">
+//               <ul>
+//                 <li>
+//                   <NavLink
+//                     className="nav-item"
+//                     to="/"
+//                     onClick={unselectHamburger}
+//                   >
+//                     Home
+//                   </NavLink>
+//                 </li>
+//                 <li>
+//                   <NavLink
+//                     className="nav-item"
+//                     to="/store"
+//                     onClick={unselectHamburger}
+//                   >
+//                     Store
+//                   </NavLink>
+//                 </li>
+//                 <li>
+//                   <NavLink
+//                     className="nav-item"
+//                     to="/about"
+//                     onClick={unselectHamburger}
+//                   >
+//                     About
+//                   </NavLink>
+//                 </li>
+//                 <li>
+//                   <NavLink
+//                     className="nav-item"
+//                     to="/contact"
+//                     onClick={unselectHamburger}
+//                   >
+//                     Contact
+//                   </NavLink>
+//                 </li>
+//               </ul>
+//             </section>
+//           </div>
+//         </ClickAwayListener>
+//       </div>
+//     </Fade>
+//   );
+// };
 
-const useStyles = makeStyles(headersStyle);
 const BigNavbar = () => {
-  const classes = useStyles();
-  const isBig = useMediaQuery("(min-width: 600px)");
-  const { x, y } = useWindowScroll();
+  const isBig = useContext(ViewContext);
 
   return (
     isBig && (
@@ -272,22 +264,97 @@ const BigNavbar = () => {
 };
 
 const MobileWrapper = styled.div`
+  background: white;
+  -moz-transform: ${(props) =>
+    props.isNav ? "translate3d(-75%, 0, -100px)" : "unset"};
+  -ms-transform: ${(props) =>
+    props.isNav ? "translate3d(-75%, 0, -100px)" : "unset"};
+  -o-transform: ${(props) =>
+    props.isNav ? " translate3d(-75%, 0, -100px)" : "unset"};
+  -webkit-transform: ${(props) =>
+    props.isNav ? "translate3d(-75%, 0, -100px)" : "unset"};
   transform: ${(props) =>
-    props.isNav ? "scale(0.7) translateX(-50%) translateY(-14%)" : "unset"};
-  width: ${(props) => (props.isNav ? "100vw" : "unset")};
-  height: ${(props) => (props.isNav ? "100vh" : "unset")};
-  transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
+    props.isNav ? "translate3d(-75%, 0, -100px)" : "unset"};
+  transform-origin: 100%;
+  box-shadow: ${(props) => (props.isNav ? "5px 10px 12px grey" : "unset")};
+  transition: all 0.6s ease-in-out;
+  -webkit-transition: all 0.6s ease-in-out;
+  -moz-transition: all 0.6s ease-in-out;
+  -o-transition: all 0.6s ease-in-out;
+  -ms-transition: all 0.6s ease-in-out;
+`;
+
+const OuterWrapper = styled.div`
+  background: hsla(0, 0%, 87%, 0.664);
+`;
+
+const slideLeft = keyframes`
+
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+`;
+
+const MobileMenu = styled.ul`
+  display: ${(props) => (props.isNav ? "unset" : "none")};
+  position: fixed;
+  z-index: 10000;
+  top: 12%;
+  right: 0;
+  text-align: right;
+  color: white;
+  margin-right: 5%;
+  list-style: none;
+  width: 100%;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+  span {
+    font-size: 1.8rem;
+    color: hsl(0, 0%, 15%);
+  }
+`;
+
+const MobileMenuItem = styled.li`
+  animation: ${slideLeft} 1s;
+  margin: 5% 0;
+  color: blue;
+  transition: all 1s ease-in-out;
+  }
+`;
+
+const DropdownContent = styled.ul`
+  overflow: hidden;
+  max-height: ${(props) => (props.isDrop ? "100vh" : "0")};
+  list-style: none;
+  transition: all 1s ease-in-out;
+`;
+
+const Dropdown = styled.li`
+  animation: ${slideLeft} 1s;
+`;
+
+const DropdownItem = styled.li`
+  margin-right: 7%;
+  span {
+    font-size: 1.4rem;
+  }
+  transition: all 1s ease-in-out;
 `;
 
 const MobileView = ({ children }) => {
   const [isNav, toggleNav] = useToggle(false);
+  const [isDropdown, toggleDropdown] = useToggle(false);
+
+  useScrollStop(isNav);
 
   return (
-    <div id="outer-wrapper">
+    <OuterWrapper isNav={isNav} id="outer-wrapper">
       <label className="menu">
         <input
           type="checkbox"
@@ -300,10 +367,47 @@ const MobileView = ({ children }) => {
           <span></span>
         </div>
       </label>
+      <MobileMenu isNav={isNav}>
+        <MobileMenuItem>
+          <Link to="/" onClick={toggleNav}>
+            <span>Home</span>
+          </Link>
+        </MobileMenuItem>
+        <MobileMenuItem>
+          <Link to="/store" onClick={toggleNav}>
+            <span>Store</span>
+          </Link>
+        </MobileMenuItem>
+        <Dropdown>
+          <span onClick={toggleDropdown}>About</span>
+          <DropdownContent isDrop={isDropdown}>
+            <DropdownItem>
+              <Link to="/about" onClick={toggleNav}>
+                <span>Production</span>
+              </Link>
+            </DropdownItem>
+            <DropdownItem>
+              <Link to="/about#faq" onClick={toggleNav}>
+                <span>FAQ</span>
+              </Link>
+            </DropdownItem>
+            <DropdownItem>
+              <Link to="/lab" onClick={toggleNav}>
+                <span>Lab Results</span>
+              </Link>
+            </DropdownItem>
+          </DropdownContent>
+        </Dropdown>
+        <MobileMenuItem>
+          <Link to="/contact" onClick={toggleNav}>
+            <span>Contact</span>
+          </Link>
+        </MobileMenuItem>
+      </MobileMenu>
       <MobileWrapper isNav={isNav} id="content-wrapper">
         {children}
       </MobileWrapper>
-    </div>
+    </OuterWrapper>
   );
 };
 

@@ -9,9 +9,7 @@ import {
   GridItem,
   Parallax,
   Card,
-  CardAvatar,
   CardBody,
-  CardFooter,
   CardHeader,
   Button,
   InfoArea,
@@ -30,16 +28,12 @@ import processStyle from "assets/jss/material-kit-pro-react/views/processStyle.j
 import blogsStyle from "assets/jss/material-kit-pro-react/views/sectionsSections/blogsStyle.js";
 
 import Troll from "assets/img/troll.png";
-import Benny from "assets/img/Benny.jpg";
-import FaceKendall from "assets/img/faces/kendall.jpg";
-import FaceAvatar from "assets/img/faces/avatar.jpg";
 
 import CardMembership from "@material-ui/icons/CardMembership";
 import CardGiftCard from "@material-ui/icons/CardGiftcard";
 import AttachMoney from "@material-ui/icons/AttachMoney";
 import QuestionAnswer from "@material-ui/icons/QuestionAnswer";
 import SmoothEntry from "components/SmoothEntry";
-import TrendingUp from "@material-ui/icons/TrendingUp";
 
 import bg from "assets/img/hexs.webp";
 

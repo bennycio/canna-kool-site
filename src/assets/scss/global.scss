@@ -22,6 +22,7 @@ html {
 
 body {
   margin: 0;
+  overflow-y: visible;
 }
 
 /**
@@ -382,6 +383,7 @@ template {
 
 $main: #05c7f2;
 $text: #ffffff;
+$test: hsl(0, 0%, 15%);
 $contrast: darken($main, 10%);
 
 .drawer-list {

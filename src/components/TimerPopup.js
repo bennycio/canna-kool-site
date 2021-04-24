@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { SnackbarContent } from "@bennycio/material-ui-pro";
 import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import { useToggle } from "react-use";
 import { Slide, Snackbar, useMediaQuery } from "@material-ui/core";
 import { Button } from "@bennycio/material-ui-pro";
+import { ViewContext } from "../index";
 
 const TimerPopup = () => {
   const [complete, toggle] = useToggle(false);
 
-  const isBig = useMediaQuery("(min-width: 600px)");
+  const isBig = useContext(ViewContext);
   useEffect(() => {
     setTimeout(() => {
       toggle(true);

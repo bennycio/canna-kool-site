@@ -1,6 +1,5 @@
 /*eslint-disable*/
 import React, { useEffect, useContext, useState } from "react";
-import styled from "styled-components";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // core components
