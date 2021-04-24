@@ -1,3 +1,5 @@
+const S3Client = require("@aws-sdk/client-s3").S3Client;
+
 exports.handler = async function (event, context) {
   // Set the AWS Region
   const REGION = "us-east-1"; //e.g. "us-east-1"

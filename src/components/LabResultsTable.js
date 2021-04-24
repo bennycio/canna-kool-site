@@ -56,19 +56,6 @@ const Cell = ({
   );
 };
 
-Cell.propTypes = {
-  cell: PropTypes.shape({
-    value: PropTypes.any.isRequired,
-  }),
-  row: PropTypes.shape({
-    index: PropTypes.number.isRequired,
-  }),
-  column: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-  }),
-  updateMyData: PropTypes.func.isRequired,
-};
-
 // Set our editable cell renderer as the default Cell renderer
 const defaultColumn = {
   Cell: Cell,
