@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 import Carousel from "react-slick";
 import { makeStyles } from "@material-ui/core/styles";
@@ -47,6 +47,7 @@ import { useMediaQuery } from "@material-ui/core";
 import SmoothEntry from "components/SmoothEntry";
 import bg from "assets/img/hexs.webp";
 import { NavLink } from "react-router-dom";
+import { ViewContext } from "index";
 
 const Home = () => {
   return (
@@ -434,7 +435,7 @@ const CarouselContainer = styled.div`
 `;
 
 const HomeProducts = () => {
-  const isBig = useMediaQuery("(min-width: 600px)");
+  const isBig = useContext(ViewContext);
   const classes = useStylesFeatures();
   const imageClasses = useStylesImages();
 
