@@ -95,19 +95,16 @@ const SectionTable = () => {
     []
   );
 
+  useEffect(() => {
+    getResults().then((value) => console.log(value));
+  }, []);
+
   const URL = process.env.REACT_APP_LAB_RESULTS_ENDPOINT;
 
   const getResults = async () => {
-    const response = await fetch(URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const response = await fetch(URL);
     console.log(response.ok);
-    return response;
+    return await response.text();
   };
 
   const [data, setData] = React.useState(React.useMemo(() => makeData(40), []));
@@ -132,8 +129,6 @@ const SectionTable = () => {
   function makeData(...lens) {
     const makeDataLevel = (depth = 0) => {
       const len = lens[depth];
-      let results = getResults();
-      console.log(results);
       return range(len).map((d) => {
         return {
           ...newPerson(),
