@@ -29,6 +29,7 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import styled from "styled-components";
 
 import PageFooter from "components/PageFooter";
 
@@ -270,94 +271,39 @@ const BigNavbar = () => {
   );
 };
 
+const MobileWrapper = styled.div`
+  transform: ${(props) =>
+    props.isNav ? "scale(0.7) translateX(-50%) translateY(-14%)" : "unset"};
+  width: ${(props) => (props.isNav ? "100vw" : "unset")};
+  height: ${(props) => (props.isNav ? "100vh" : "unset")};
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+`;
+
 const MobileView = ({ children }) => {
-  useEffect(() => {
-    const navExpand = [].slice.call(document.querySelectorAll(".nav-expand"));
-
-    navExpand.forEach((item) => {
-      item
-        .querySelector(".nav-link")
-        .addEventListener("click", () => item.classList.add("active"));
-      item
-        .querySelector(".nav-back-link")
-        .addEventListener("click", () => item.classList.remove("active"));
-    });
-
-    // ---------------------------------------
-    // not-so-important stuff starts here
-
-    const ham = document.getElementById("ham");
-    ham.addEventListener("click", function () {
-      document.body.classList.toggle("nav-is-toggled");
-    });
-  }, []);
-
-  function toggleNav() {
-    document.body.classList.toggle("nav-is-toggled");
-  }
+  const [isNav, toggleNav] = useToggle(false);
 
   return (
-    <>
-      <header className="nav-top">
-        <span className="hamburger material-icons" id="ham">
-          menu
-        </span>
-      </header>
-
-      <nav className="nav-drill">
-        <ul className="nav-items nav-level-1">
-          <li className="nav-item">
-            <Link className="nav-link" to="/" onClick={toggleNav}>
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/store" onClick={toggleNav}>
-              Store
-            </Link>
-          </li>
-          <li className="nav-item nav-expand">
-            <a className="nav-link nav-expand-link" href="#">
-              About <ArrowForwardIcon />
-            </a>
-
-            <ul className="nav-items nav-expand-content">
-              <li className="nav-item">
-                <a className="nav-link nav-back-link" href="javascript:;">
-                  Back
-                </a>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" to="/lab" onClick={toggleNav}>
-                  Lab Results
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link"
-                  to="/about#production"
-                  onClick={toggleNav}
-                >
-                  Production
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/about#faq" onClick={toggleNav}>
-                  FAQ
-                </Link>
-              </li>
-            </ul>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/contact" onClick={toggleNav}>
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      {children}
-    </>
+    <div id="outer-wrapper">
+      <label className="menu">
+        <input
+          type="checkbox"
+          checked={!isNav}
+          value={isNav}
+          onChange={toggleNav}
+        />
+        <div>
+          <span></span>
+          <span></span>
+        </div>
+      </label>
+      <MobileWrapper isNav={isNav} id="content-wrapper">
+        {children}
+      </MobileWrapper>
+    </div>
   );
 };
 
