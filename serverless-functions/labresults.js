@@ -1,7 +1,6 @@
 const AWS = require("aws-sdk");
 
 exports.handler = async function (event, context) {
-  console.log("here");
   AWS.config.update({ region: "us-east-1" });
   const s3 = new AWS.S3({
     accessKeyId: process.env.IAM_ID,
@@ -18,7 +17,6 @@ exports.handler = async function (event, context) {
 
   try {
     s3Objects = await s3.listObjectsV2(params).promise();
-    console.log(s3Objects);
   } catch (e) {
     console.log(e);
   }

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 import aboutUsStyle from "assets/jss/material-kit-pro-react/views/aboutUsStyle.js";
 import Troll from "assets/img/troll.png";
@@ -72,9 +72,11 @@ const SectionTable = () => {
 
   const results = useLabResults();
 
-  const [data, setData] = React.useState(
-    React.useMemo(() => makeData(results.KeyCount), [])
-  );
+  useEffect(() => {
+    setData(makeData(results.KeyCount));
+  }, [results]);
+
+  const [data, setData] = useState(makeData(results.KeyCount));
 
   function range(len) {
     const arr = [];
