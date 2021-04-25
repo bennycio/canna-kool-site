@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Parallax, GridContainer, GridItem } from "@bennycio/material-ui-pro";
 import LabResultsTable from "components/LabResultsTable";
 import { S3Client, ListObjectsCommand } from "@aws-sdk/client-s3";
+import useLabResults from "hooks/useLabResults";
 
 const useStyles = makeStyles(aboutUsStyle);
 
@@ -50,32 +51,6 @@ const LabResults = () => {
   );
 };
 
-const SectionHeader = () => {
-  const classes = useStyles();
-  return (
-    <>
-      <div className={classes.container}>
-        <GridContainer justify="center">
-          <GridItem
-            md={12}
-            sm={12}
-            className={classNames(
-              classes.mlAuto,
-              classes.mrAuto,
-              classes.textCenter
-            )}
-          >
-            <h1 className={classes.title} style={{ color: "black" }}>
-              Find out what makes our product safer <br /> and more effective
-              than any of our competitors
-            </h1>
-          </GridItem>
-        </GridContainer>
-      </div>
-    </>
-  );
-};
-
 const SectionTable = () => {
   const columns = React.useMemo(
     () => [
@@ -95,19 +70,11 @@ const SectionTable = () => {
     []
   );
 
-  useEffect(() => {
-    getResults().then((value) => console.log(value));
-  }, []);
+  const results = useLabResults();
 
-  const URL = process.env.REACT_APP_LAB_RESULTS_ENDPOINT;
-
-  const getResults = async () => {
-    const response = await fetch(URL);
-    console.log(response.ok);
-    return await response.text();
-  };
-
-  const [data, setData] = React.useState(React.useMemo(() => makeData(40), []));
+  const [data, setData] = React.useState(
+    React.useMemo(() => makeData(results.KeyCount), [])
+  );
 
   function range(len) {
     const arr = [];
@@ -117,12 +84,12 @@ const SectionTable = () => {
     return arr;
   }
 
-  function newPerson() {
+  function newResult(item) {
     const statusChance = Math.random();
     return {
-      date: randomDate(new Date(2012, 0, 1), new Date()),
+      date: item.LastModified,
       type: statusChance > 0.5 ? "efficacy" : "safety",
-      link: "test",
+      link: item.Key,
     };
   }
 
@@ -131,19 +98,13 @@ const SectionTable = () => {
       const len = lens[depth];
       return range(len).map((d) => {
         return {
-          ...newPerson(),
+          ...newResult(results.Contents[d]),
           subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined,
         };
       });
     };
 
     return makeDataLevel();
-  }
-
-  function randomDate(start, end) {
-    return new Date(
-      start.getTime() + Math.random() * (end.getTime() - start.getTime())
-    ).toLocaleDateString();
   }
 
   return (
